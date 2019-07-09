@@ -1,0 +1,5 @@
+<% # app/views/records/edit_fields/_contact_phone.html.erb %>
+<%= f.input :contact_phone, as: :tel, required: f.object.required?(key),
+    input_html: { class: 'form-control', multiple: true }
+%>
+
