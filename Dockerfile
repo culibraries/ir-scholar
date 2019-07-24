@@ -27,18 +27,19 @@ RUN mkdir -p /opt/fits && \
   curl -fSL -o /opt/fits-1.0.5.zip http://projects.iq.harvard.edu/files/fits/files/fits-1.0.5.zip && \
   cd /opt && unzip fits-1.0.5.zip && chmod +X fits-1.0.5/fits.sh
 
+COPY ./neverstop /neverstop
 RUN mkdir /data
 WORKDIR /data
 
 ADD Gemfile /data/Gemfile
-#ADD Gemfile.lock /data/Gemfile.lock
+ADD Gemfile.lock /data/Gemfile.lock
 RUN mkdir /data/build
 
-ARG RAILS_ENV=development
+ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}
 
-#ADD ./build/install_gems.sh /data/build
-#RUN ./build/install_gems.sh
+ADD ./build/install_gems.sh /data/build
+RUN ./build/install_gems.sh
 
 ADD . /data
 RUN gem update --system
@@ -48,9 +49,13 @@ RUN bundler install
 FROM builder
 
 RUN if [ "${RAILS_ENV}" = "production" ]; then \
-  echo "Precompiling assets with $RAILS_ENV environment"; \
-  RAILS_ENV=$RAILS_ENV SECRET_KEY_BASE=temporary bundle exec rails assets:precompile; \
-  cp public/assets/404-*.html public/404.html; \
-  cp public/assets/500-*.html public/500.html; \
+#  echo "Precompiling assets with $RAILS_ENV environment"; \
+  RAILS_ENV=$RAILS_ENV SCHOLARS_SECRET_KEY_BASE=temporary bundle exec rails assets:precompile; \
   fi
-CMD = ["bin/rails","s"]
+
+EXPOSE 3000/tcp
+
+ENTRYPOINT ["rails"]
+
+#bundle exec rails"]
+CMD ["s"]

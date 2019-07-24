@@ -5,5 +5,5 @@ test:
   host: localhost
   port: 6379
 production:
-  host: localhost
+  host: redis-headless
   port: 6379

@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::Base
+  def default_url_options
+    if Rails.env.production?
+      {:host => "test-scholar.colorado.edu"}
+    else  
+      {}
+    end
+  end
   helper Openseadragon::OpenseadragonHelper
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller

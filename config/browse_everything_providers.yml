@@ -29,9 +29,13 @@ file_system:
 <% if Rails.env.production? %>
 s3:
   :bucket: <%= ENV['AWS_S3_BUCKET'] %>
-  :response_type: :signed_url # set to :public_url for public urls or :s3_uri for an s3://BUCKET/KEY uri
+#  :response_type: :signed_url # (:signed_url) set to :public_url for public urls or :s3_uri for an s3://BUCKET/KEY uri
   :app_key: <%= ENV['AWS_S3_APP_KEY'] %> # :app_key, :app_secret, and :region can be specified
   :app_secret: <%= ENV['AWS_S3_APP_SECRET'] %> # explicitly here, or left out to use system-configured
   :region: <%= ENV['AWS_S3_REGION'] %> # defaults.
 #   See https://aws.amazon.com/blogs/security/a-new-and-standardized-way-to-manage-credentials-in-the-aws-sdks/
 <% end %>
+#<% if Rails.env.production? %>
+#file_system:
+#  :home: "/data/tmp"
+#<% end %>

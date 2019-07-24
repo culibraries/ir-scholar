@@ -9,6 +9,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
+
 development:
   <<: *default
   database: db/development.sqlite3
@@ -20,6 +21,20 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+#production:
+#  <<: *default
+#  database: db/production.sqlite3
+
+
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  database: <%= ENV.fetch('SCHOLARS_DB', 'samvera') %>
+  encoding: utf8
+  reconnect: true
+  username: <%= ENV.fetch('SCHOLARS_DB_USERNAME', 'root') %>
+  password: <%= ENV.fetch('SCHOLARS_DB_PASSWORD', '12341234') %>
+  host: <%= ENV.fetch('SCHOLARS_DB_HOST', '127.0.0.1') %>
+  port: <%= ENV.fetch('SCHOLARS_DB_PORT', 3306) %>
+
