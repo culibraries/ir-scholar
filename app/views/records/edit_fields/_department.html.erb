@@ -1,4 +1,4 @@
-# app/views/records/edit_fields/_department.html.erb
+<% # app/views/records/edit_fields/_department.html.erb %>
 <%= f.input :department, as: :select,
     collection: DepartmentsService.select_all_options,
     include_blank: true,
