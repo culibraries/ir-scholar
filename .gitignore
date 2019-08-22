@@ -28,8 +28,10 @@ pg_upgrade_*.log
 
 coverage/*
 
+/build
 # Ignore local overrides
-/docker-compose.override.yml
+docker-compose.override.example.yml
+docker-compose.override.yml
 /public/system
 /public/branding
 /public/hydra
