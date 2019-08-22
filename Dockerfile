@@ -25,9 +25,11 @@ RUN mkdir -p /var/lib/clamav && \
 
 RUN mkdir -p /opt/fits && \
   curl -fSL -o /opt/fits-1.0.5.zip http://projects.iq.harvard.edu/files/fits/files/fits-1.0.5.zip && \
-  cd /opt && unzip fits-1.0.5.zip && chmod +X fits-1.0.5/fits.sh
+  cd /opt && unzip fits-1.0.5.zip -d /opt/fits && rm fits-1.0.5.zip  && chmod +X /opt/fits/fits-1.0.5/fits.sh
 
-COPY ./neverstop /neverstop
+ENV PATH="/opt/fits/fits-1.0.5:${PATH}"
+
+#COPY ./neverstop /neverstop
 RUN mkdir /data
 WORKDIR /data
 

@@ -8,7 +8,7 @@
 /.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
+#/db/*.sqlite3
 /db/*.sqlite3-journal
 /db/postgres
 pg_upgrade_*.log
@@ -30,30 +30,9 @@ coverage/*
 
 # Ignore local overrides
 /docker-compose.override.yml
+
 /public/system
 /public/branding
-/public/hydra
-/public/jquery-ui/
-/public/*.gif
-/public/openseadragon
-/public/*.png
-/public/*.gif
-/public/*.gz
-/public/*.svg
-/public/qa
-/public/tinymce
-/public/*.json
-/public/*.js
-/public/*.css
-/public/blacklight
-/public/bootstrap
-/public/dataTables
-/public/favicon-*.ico
-/public/*.woff2
-/public/*.eot
-/public/*.ttf
-/public/*.woff
-/virtpy
 
 /vendor/bundle
 .byebug_history
@@ -66,9 +45,3 @@ fits.log
 rules.log
 log/rules.log
 blazegraph.jnl
-
-#Public Files
-/public/sitemap/*
-/public/assets*
-/public/branding*
-docker-compose.override.yml
