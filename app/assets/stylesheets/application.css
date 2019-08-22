@@ -14,3 +14,7 @@
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require_self
  */
+/** Global styles */
+@import "cu_boulder_font.css";
+@import "cu_boulder_branding.css";
+
