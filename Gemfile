@@ -14,13 +14,20 @@ gem 'qa'
 gem 'browse-everything'
 gem 'sidekiq'
 gem 'mini_magick'
+
 #gem 'tzinfo-data'
 #gem 'uglifier', '>= 1.3.0'
 #gem 'ruby-oembed'
 #gem 'blacklight-oembed'
 #gem 'curation_concerns'
+
+#gem 'libxml-ruby'
+#gem 'bulkrax', git: 'https://github.com/notch8/bulkrax'
+
 # Production servers
-gem 'mysql2', '~> 0.3.18'
+group :production do
+ gem 'mysql2', '~> 0.3.18'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'

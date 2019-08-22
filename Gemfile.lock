@@ -484,6 +484,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+    mysql2 (0.3.21)
     nest (3.1.2)
       redic
     net-http-persistent (3.0.1)
@@ -789,9 +790,11 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mini_magick
+  mysql2 (~> 0.3.18)
   puma (~> 3.7)
   qa
   rails (~> 5.1.7)
+  redis (~> 4.0)
   riiif (~> 2.0)
   rsolr (>= 1.0)
   rspec-rails
@@ -809,4 +812,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
