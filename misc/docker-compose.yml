@@ -1,0 +1,221 @@
+version: '3'
+
+volumes:
+  app:
+  blazegraph:
+  db:
+  fcrepo:
+  redis:
+  solr:
+  bundled:
+
+networks:
+  external:
+  internal:
+
+services:
+  ##
+  # Basic image for the rails application server, see Dockerfile
+  app: &app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/data
+      - app:/data/tmp/uploads
+      - bundled:/usr/local/bundle
+    tmpfs:
+      - /data/log
+    networks:
+      internal:
+      external:
+
+  ##
+  # Run the application in the currently set RAILS_ENV, set to development by default in the .env file.
+  web: &web
+    <<: *app
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+      - SCHOLARSARCHIVE_DB_HOST=db
+      - SCHOLARSARCHIVE_FEDORA_URL=http://fcrepo:8080/fcrepo
+      - SCHOLARSARCHIVE_SOLR_URL=http://solr:8983
+      - SCHOLARSARCHIVE_REDIS_HOST=redis
+      - SCHOLARSARCHIVE_REDIS_PORT='6379'
+      - SCHOLARSARCHIVE_TRIPLESTORE_ADAPTER_URL=http://blazegraph:8080/bigdata/namespace/development/sparql
+    # Ideally we will replace this set of commands with an entrypoint script that checks to see if these
+    # have been run already have been run and if so it just starts the server without the first three commands
+    # taking time to run.
+    command: >
+      bash -c "./build/entrypoint.sh &&
+      bundle exec puma -C config/puma/development.rb --dir /data --pidfile /data/tmp/pids/puma.pid -b tcp://0.0.0.0:3000 &&
+      tail -f log/development.log"
+    depends_on:
+      - db
+      - db_test
+      - solr
+      - fcrepo
+      - redis
+      - memcache
+      - blazegraph
+    expose:
+      - 3000
+
+  # Runs sidekiq to process background jobs
+  workers:
+    <<: *web
+    command: bundle exec sidekiq
+    depends_on:
+      - db
+      - db_test
+      - solr
+      - fcrepo
+      - redis
+      - blazegraph
+
+  ##
+  # Test environment for application
+  test: &test
+    <<: *web
+    environment:
+      - RAILS_ENV=test
+      - SCHOLARSARCHIVE_DB_HOST=db_test
+      - SCHOLARSARCHIVE_FEDORA_URL=http://fcrepo-test:8080/fcrepo
+      - SCHOLARSARCHIVE_SOLR_URL=http://solr-test:8983
+      - SCHOLARSARCHIVE_REDIS_HOST=redis
+      - SCHOLARSARCHIVE_REDIS_PORT='6379'
+      - SCHOLARSARCHIVE_TRIPLESTORE_ADAPTER_URL=http://blazegraph:8080/bigdata/namespace/development/sparql
+    depends_on:
+      - db_test
+      - solr-test
+      - fcrepo-test
+      - redis
+      - memcache
+      - blazegraph
+    command: >
+      bash -c "./build/entrypoint.sh &&
+      puma -b tcp://0.0.0.0:3001 -e test -d &&
+      tail -f log/test.log"
+    expose:
+      - 3001
+
+  ##
+  # Fedora repository server
+  blazegraph-image: &blazegraph-image
+    image: lyrasis/blazegraph:2.1.5
+    expose:
+      - 8080
+    networks:
+      internal:
+    command: bash -c "chmod a+wx /data && ./entrypoint.sh"
+  blazegraph:
+    <<: *blazegraph-image
+    volumes:
+      - blazegraph:/data
+      - ./config/blazegraph/RWStore.properties:/RWStore.properties
+
+  ##
+  # Run SOLR, precreating a core related to the RAILS_ENV currently set, persists data across sessions in a named volume.
+  solr: &solr
+    image: solr:alpine
+    expose:
+      - 8983
+    volumes:
+      - solr:/opt/solr/server/solr/mycores
+      - ./solr/conf:/opt/solr/server/solr/configsets/_default/conf
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - hydra-${RAILS_ENV}
+    networks:
+      internal:
+
+  ##
+  # Run SOLR, precreating a core related to the RAILS_ENV currently set, persists data across sessions in a named volume.
+  solr-test:
+    <<: *solr
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - hydra-test
+
+  ##
+  # Fedora repository server
+  fcrepo-image: &fcrepo-image
+    image: ualbertalib/docker-fcrepo4:4.7
+    environment:
+      - JAVA_OPTS=${JAVA_OPTS} -Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
+    expose:
+      - 8080
+    networks:
+      internal:
+  fcrepo:
+    <<: *fcrepo-image
+    volumes:
+      - fcrepo:/data
+  fcrepo-test:
+    <<: *fcrepo-image
+    tmpfs: /data
+
+  ##
+  # Run an instance of MySQL with a database named 'development' for running specs. See config/database.yml
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=12341234
+      - MYSQL_PASSWORD=12341234
+      - MYSQL_DATABASE=development
+    volumes:
+      - db:/var/lib/mysql
+      - ./config/mysql/mysqld.cnf:/etc/mysql/conf.d/custom.cnf
+    networks:
+      internal:
+
+  ##
+  # Run an instance of MySQL with a database named 'test' for running specs. See config/database.yml. Has no volume
+  # and doesn't intend on persisting data across sessions.
+  db_test:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=12341234
+      - MYSQL_PASSWORD=12341234
+      - MYSQL_DATABASE=test
+    volumes:
+      - ./config/mysql/mysqld.cnf:/etc/mysql/conf.d/custom.cnf
+    networks:
+      internal:
+
+  ##
+  # Load balancer, although not strictly necessary.. would allow the app to work with regular port 80
+  lb:
+    image: dockercloud/haproxy:1.5.3
+    links:
+      - web
+    environment:
+      - DOCKER_TLS_VERIFY
+      - DOCKER_HOST
+      - DOCKER_CERT_PATH
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # You must uncomment this line if and only if you are running docker-machine
+      # - $DOCKER_CERT_PATH:$DOCKER_CERT_PATH
+    networks:
+      internal:
+      external:
+
+  ##
+  # Redis for the background job queues
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis:/data
+    networks:
+      internal:
+
+  ##
+  # Memcache for rails caching
+  memcache:
+    image: memcached:alpine
+    networks:
+      internal:
