@@ -50,9 +50,9 @@ en:
     directory:
       suffix: "@colorado.edu"
     footer:
-      copyright_html: "<strong>Copyright &copy; Need to add ????</srong>"
+      copyright_html: "<strong>Copyright © 2018 University of Colorado Boulder</srong>"
       service_html: A service provided by  <a href="https://www.colorado.edu/libraries/libraries/" class="navbar-link" target="_blank">University of Colorado Boulder Libraries</a>.
-    institution_name: Institution
+    institution_name: CU Boulder
     institution_name_full: University of Colorado Boulder
-    product_name: Scholar
+    product_name: CU Scholar
     product_twitter_handle: "@cublibraries"
