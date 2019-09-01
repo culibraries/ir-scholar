@@ -1,16 +1,3 @@
-GIT
-  remote: https://github.com/samvera/hydra-derivatives.git
-  revision: 1c512b860c63171057f4c675338d1ea0833fc0df
-  specs:
-    hydra-derivatives (3.4.2)
-      active-fedora (>= 11.3.1, < 13)
-      active_encode (~> 0.1)
-      activesupport (>= 4.0, < 6)
-      addressable (~> 2.5)
-      deprecation
-      mime-types (> 2.0, < 4.0)
-      mini_magick (>= 3.2, < 5)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -53,7 +40,7 @@ GEM
       activesupport (>= 3.0.0)
       rdf (>= 2.0.2, < 4.0)
       rdf-vocab (>= 2.0, < 4.0)
-    active_encode (0.5.0)
+    active_encode (0.6.0)
       rails
     activejob (5.1.7)
       activesupport (= 5.1.7)
@@ -71,8 +58,8 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     almond-rails (0.1.0)
       rails (>= 4.2, < 6)
     arel (8.0.0)
@@ -297,6 +284,14 @@ GEM
     hydra-core (10.6.2)
       hydra-access-controls (= 10.6.2)
       railties (>= 4.0.0, < 6)
+    hydra-derivatives (3.4.2)
+      active-fedora (>= 11.3.1, < 13)
+      active_encode (~> 0.1)
+      activesupport (>= 4.0, < 6)
+      addressable (~> 2.5)
+      deprecation
+      mime-types (> 2.0, < 4.0)
+      mini_magick (>= 3.2, < 5)
     hydra-editor (4.0.2)
       active-fedora (>= 9.0.0)
       almond-rails (~> 0.1)
@@ -477,8 +472,8 @@ GEM
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.0331)
-    mini_magick (4.9.3)
-    mini_mime (1.0.1)
+    mini_magick (4.9.5)
+    mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     multi_json (1.13.1)
@@ -489,12 +484,12 @@ GEM
       redic
     net-http-persistent (3.0.1)
       connection_pool (~> 2.2)
-    nio4r (2.3.1)
+    nio4r (2.5.1)
     noid (0.9.0)
     noid-rails (3.0.1)
       actionpack (>= 5.0.0, < 6)
       noid (~> 0.9)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     nokogumbo (1.5.0)
       nokogiri
@@ -511,7 +506,7 @@ GEM
     os (1.0.1)
     posix-spawn (0.3.13)
     power_converter (0.1.2)
-    public_suffix (3.1.0)
+    public_suffix (4.0.1)
     pul_uv_rails (2.0.1)
     puma (3.12.1)
     qa (2.2.0)
@@ -541,7 +536,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.4)
+    rails-html-sanitizer (1.2.0)
       loofah (~> 2.2, >= 2.2.2)
     rails_autolink (1.1.6)
       rails (> 3.1)
@@ -551,7 +546,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.3.2)
+    rake (12.3.3)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -606,7 +601,7 @@ GEM
     rdf-turtle (3.0.6)
       ebnf (~> 1.1)
       rdf (~> 3.0)
-    rdf-vocab (3.0.6)
+    rdf-vocab (3.0.8)
       rdf (~> 3.0, >= 3.0.11)
     rdf-xsd (3.0.1)
       rdf (~> 3.0)
@@ -700,7 +695,7 @@ GEM
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
-    slop (4.6.2)
+    slop (4.7.0)
     solr_wrapper (2.1.0)
       faraday
       retriable
@@ -783,7 +778,7 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.6)
   fcrepo_wrapper
-  hydra-derivatives!
+  hydra-derivatives (= 3.4.2)
   hydra-role-management
   hyrax (= 2.5.1)
   jbuilder (~> 2.5)
