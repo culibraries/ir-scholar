@@ -1,4 +1,6 @@
 Hyrax.config do |config|
+  # Injected via `rails g hyrax:work Default`
+  config.register_curation_concern :default
   # Injected via `rails g hyrax:work DefaultWork`
   config.register_curation_concern :default_work
   # Register roles that are expected by your implementation.

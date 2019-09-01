@@ -1,5 +1,8 @@
 ---
 en:
+  activefedora:
+    models:
+      default: "Other Scholarly Content"
   blacklight:
     search:
       fields:
