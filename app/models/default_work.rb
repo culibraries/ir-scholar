@@ -15,6 +15,7 @@ class DefaultWork < ActiveFedora::Base
   property :contact_phone, predicate: ::RDF::Vocab::VCARD.hasTelephone do |index|
     index.as :stored_searchable
   end
+  
   property :department, predicate: ::RDF::URI.new("http://lib.colorado.edu/departments"), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
