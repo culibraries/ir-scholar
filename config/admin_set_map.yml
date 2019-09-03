@@ -1,19 +1,16 @@
 #This file is in the order of `ModelName: "Admin Set Name"`
 #If changes are being made to this file, please follow this order
 
-#Article: "Article"
-#BatchUploadItem: "Batch Upload Item"
+Article: "Article"
 GraduateThesisOrDissertation: "Graduate Thesis Or Dissertation"
-#GraduateProject: "Graduate Project"
-#HonorsCollegeThesis: "Honors College Theses"
-#UndergraduateThesisOrProject: "Undergraduate Thesis Or Project"
-#EescPublication: "Eesc Publication"
-#TechnicalReport: "Technical Report"
-#Dataset: "Dataset"
-#OpenEducationalResource: "Open Educational Resource"
-#AdministrativeReportOrPublication: "Administrative Report Or Publication"
-#ConferenceProceedingsOrJournal: "Conference Proceedings Or Journal"
+UndergraduateHonorsThesis: "Undergraduate Honors Thesis"
+TechnicalReport: "Technical Report"
+Dataset: "Dataset"
+WorkingPaper: "Working Paper"
+Presentation: "Presentation"
+ConferenceProceedings: "Conference Proceedings"
 Default: "Default"
-#PurchasedEResource: "Purchased e-Resource"
+Book: "Book"
+BookChapter: "Book Chapter"
 
 
