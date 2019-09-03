@@ -3,6 +3,16 @@ en:
   activefedora:
     models:
       default: "Other Scholarly Content"
+      article: "Article"
+      graduate_thesis_or_dissertation: "Graduate Thesis Or Dissertation"
+      undergraduate_honors_thesis: "Undergraduate Honors Thesis"
+      technical_report: "Technical Report"
+      dataset: "Data Set"
+      working_paper: "Working Paper"
+      presentation: "Presentation"
+      conference_proceedings: "Conference Proceeding"
+      book: "Book"
+      book_chapter: "Book Chapter"
   blacklight:
     search:
       fields:

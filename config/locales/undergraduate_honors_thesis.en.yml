@@ -1,0 +1,8 @@
+en:
+  hyrax:
+    icons:
+      undergraduate_honors_thesis: "fa fa-file-text-o"
+    select_type:
+      undergraduate_honors_thesis:
+        description: "Undergraduate honors theses"
+        name: "Undergraduate Honors Thesis"

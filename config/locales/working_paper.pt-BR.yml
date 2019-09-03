@@ -1,0 +1,8 @@
+pt-BR:
+  hyrax:
+    icons:
+      working_paper:     'fa fa-file-text-o'
+    select_type:
+      working_paper:
+        description:        "Working paper trabalhos"
+        name:               "Working Paper"

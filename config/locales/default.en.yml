@@ -1,8 +1,8 @@
 en:
   hyrax:
     icons:
-      default:     'fa fa-file-text-o'
+      default: "fa fa-file-text-o"
     select_type:
       default:
-        description:        "Default works"
-        name:               "Default"
+        description: "Digital content that does not fit into any of these other categories"
+        name: "Other Works"
