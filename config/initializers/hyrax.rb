@@ -3,6 +3,26 @@ Hyrax.config do |config|
   config.register_curation_concern :default
   # Injected via `rails g hyrax:work DefaultWork`
   config.register_curation_concern :default_work
+  # Injected via `rails g hyrax:work GraduateThesisOrDissertation`
+  config.register_curation_concern :graduate_thesis_or_dissertation
+  # Injected via `rails g hyrax:work Article`
+  config.register_curation_concern :article
+  # Injected via `rails g hyrax:work UndergraduateHonorsThesis`
+  config.register_curation_concern :undergraduate_honors_thesis
+  # Injected via `rails g hyrax:work TechnicalReport`
+  config.register_curation_concern :technical_report
+  # Injected via `rails g hyrax:work Dataset`
+  config.register_curation_concern :dataset
+  # Injected via `rails g hyrax:work WorkingPaper`
+  config.register_curation_concern :working_paper
+  # Injected via `rails g hyrax:work Presentation`
+  config.register_curation_concern :presentation
+  # Injected via `rails g hyrax:work ConferenceProceeding`
+  config.register_curation_concern :conference_proceeding
+  # Injected via `rails g hyrax:work Book`
+  config.register_curation_concern :book
+  # Injected via `rails g hyrax:work BookChapter`
+  config.register_curation_concern :book_chapter
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
   # @note there are magical roles as defined in Hyrax::RoleRegistry::MAGIC_ROLES
