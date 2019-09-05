@@ -2,8 +2,8 @@
 #  `rails generate hyrax:work Dataset`
 module Hyrax
   # Generated form for Dataset
-  class DatasetForm < Hyrax::Forms::WorkForm
+  class DatasetForm < Scholar::GeneralWorkForm
     self.model_class = ::Dataset
-    self.terms += [:resource_type]
+    # self.terms += [:resource_type]
   end
 end

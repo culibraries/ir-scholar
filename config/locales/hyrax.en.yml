@@ -1,5 +1,9 @@
 ---
 en:
+  hyrax:
+    base:
+      show:
+        last_modified: This is last shit date
   activefedora:
     models:
       default: "Other Scholarly Content"
