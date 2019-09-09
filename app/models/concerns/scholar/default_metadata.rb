@@ -96,9 +96,9 @@ module Scholar
       # accessor value used by AddOtherFieldOptionActor to persist "Other" values provided by the user
       attr_accessor :degree_field_other
 
-      property :degree_level, predicate: ::RDF::URI.new('http://purl.org/NET/UNTL/vocabularies/degree-information/#level'), multiple: false do |index|
-        index.as :stored_searchable, :facetable
-      end
+      # property :degree_level, predicate: ::RDF::URI.new('http://purl.org/NET/UNTL/vocabularies/degree-information/#level'), multiple: false do |index|
+      #   index.as :stored_searchable, :facetable
+      # end
 
       # accessor value used by AddOtherFieldOptionActor to persist "Other" values provided by the user
       attr_accessor :degree_level_other

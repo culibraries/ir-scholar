@@ -57,7 +57,8 @@ RUN if [ "${RAILS_ENV}" = "production" ]; then \
 
 EXPOSE 3000/tcp
 
-ENTRYPOINT ["rails"]
+#ENTRYPOINT ["rails"]
 
 #bundle exec rails"]
-CMD ["s"]
+CMD ["/data/bin/rails s"]
+#CMD ["/data/misc/neverstop"]
