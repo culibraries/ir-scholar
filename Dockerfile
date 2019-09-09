@@ -44,6 +44,7 @@ ADD ./build/install_gems.sh /data/build
 RUN ./build/install_gems.sh
 
 ADD . /data
+RUN git checkout metadata-wt
 RUN gem update --system
 RUN gem install bundler
 RUN bundler install
