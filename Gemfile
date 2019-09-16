@@ -15,7 +15,9 @@ gem 'browse-everything'
 gem 'sidekiq'
 gem 'mini_magick'
 
-#gem 'tzinfo-data'
+gem 'omniauth-saml'
+ 
+ #gem 'tzinfo-data'
 #gem 'uglifier', '>= 1.3.0'
 #gem 'ruby-oembed'
 #gem 'blacklight-oembed'

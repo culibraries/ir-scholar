@@ -19,7 +19,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:saml] 
 
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
@@ -27,4 +28,15 @@ class User < ApplicationRecord
   def to_s
     email
   end
+
+  def self.from_omniauth(access_token)
+    email = case access_token.provider.to_s
+            when 'saml' then "#{access_token.uid}@colorado.edu"
+            else access_token.uid
+            end
+    User.where(email: email).first_or_create do |user|
+      user.email = email
+    end
+  end
+   
 end
