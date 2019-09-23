@@ -2,5 +2,7 @@
 <%= f.input :degree_grantors, as: :select,
     collection: DegreeGrantorsService.select_all_options,
     include_blank: true,
+    selected: 'http://id.loc.gov/authorities/names/n50000485',
     input_html: { class: 'form-control' }
+    
 %>

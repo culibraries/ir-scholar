@@ -1,5 +1,5 @@
 <% # app/views/records/edit_fields/_degree_grantors.html.erb %>
-<%= f.input :degree_grantors, as: :select,
+<%= f.input :degree_name, as: :select,
     collection: DegreeNameService.select_all_options,
     include_blank: true,
     input_html: { class: 'form-control' }

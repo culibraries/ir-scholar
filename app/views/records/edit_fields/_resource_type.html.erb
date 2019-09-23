@@ -1,0 +1,10 @@
+<% collection = Hyrax::ResourceTypesService.select_options %>
+<% collection.select! { |tuple| tuple.first.include? "Undergraduate Honors Thesis" } if f.object.model.class.to_s == "UndergraduateHonorsThesis" %>
+<% collection.select! { |opt| opt.first.include?("Dissertation") || opt.first.include?("Masters") } if f.object.model.class.to_s == "GraduateThesisOrDissertation" %>
+<% if f.object.model.class.to_s == "GraduateThesisOrDissertation" || f.object.model.class.to_s == "UndergraduateHonorsThesis" %>
+  <%= f.input :resource_type, as: :select, collection: collection,
+    input_html: { class: 'form-control', multiple: false }  %>
+<% else %>
+  <%= f.input :resource_type, as: :select, collection: collection,
+    input_html: { class: 'form-control', multiple: true } %>
+<% end %> 
