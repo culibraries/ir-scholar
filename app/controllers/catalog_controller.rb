@@ -90,6 +90,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("contact_email", :stored_searchable), label: "Contact Email"
     config.add_index_field solr_name("contact_phone", :stored_searchable), label: "Contact Phone"
     config.add_index_field solr_name("department", :stored_searchable), label: "Department"
+    config.add_index_field solr_name("academic_affiliation", :stored_searchable), label: "Academic Affiliation"
     # CU Boulder Additions End
 
     # solr fields to be displayed in the show (single result) view
@@ -116,6 +117,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("contact_email", :stored_searchable)
     config.add_show_field solr_name("contact_phone", :stored_searchable)
     config.add_show_field solr_name("department", :stored_searchable)
+    config.add_show_field solr_name("academic_affiliation", :stored_searchable)
     # CU Boulder Additions End
 
     # "fielded" search configuration. Used by pulldown among other places.
