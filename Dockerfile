@@ -12,7 +12,7 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
 RUN gem install bundler
 
 RUN apt-get update -qq && apt-get upgrade -y && \
-  apt-get install -y build-essential libpq-dev mysql-client nodejs libreoffice imagemagick unzip ghostscript yarn
+  apt-get install -y build-essential libpq-dev mysql-client nodejs libreoffice imagemagick unzip ghostscript yarn vim
 
 # install clamav for antivirus
 # fetch clamav local database
@@ -33,21 +33,23 @@ ENV PATH="/opt/fits/fits-1.0.5:${PATH}"
 RUN mkdir /data
 WORKDIR /data
 
-ADD Gemfile /data/Gemfile
-ADD Gemfile.lock /data/Gemfile.lock
-RUN mkdir /data/build
+COPY . /data/
+#ADD Gemfile /data/Gemfile
+#ADD Gemfile.lock /data/Gemfile.lock
+#RUN mkdir /data/build
 
 ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}
 
-ADD ./build/install_gems.sh /data/build
-RUN ./build/install_gems.sh
-
-ADD . /data
-RUN git checkout metadata-wt
+#ADD . /data
+#RUN git checkout metadata-wt
 RUN gem update --system
 RUN gem install bundler
 RUN bundler install
+
+#ADD ./build/install_gems.sh /data/build
+RUN ./build/install_gems.sh
+
 
 FROM builder
 
@@ -61,5 +63,5 @@ EXPOSE 3000/tcp
 #ENTRYPOINT ["rails"]
 
 #bundle exec rails"]
-CMD ["/data/bin/rails s"]
+CMD ["bundle exec puma"]
 #CMD ["/data/misc/neverstop"]
