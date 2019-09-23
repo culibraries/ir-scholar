@@ -26,20 +26,19 @@ class SolrDocument
 
   use_extension( Hydra::ContentNegotiation )
 
-  ## CU Boulder Modifications
-  def self.solrized_methods(property_names)
-    property_names.each do |property_name|
-      define_method property_name.to_sym do
-        values = self[Solrizer.solr_name(property_name)]
-        if values.respond_to?(:each)
-          values.reject(&:blank?)
-        else
-          values
-        end
-      end
-    end
-  end
-
+  # CU Boulder Modifications
+  # def self.solrized_methods(property_names)
+  #   property_names.each do |property_name|
+  #     define_method property_name.to_sym do
+  #       values = self[Solrizer.solr_name(property_name)]
+  #       if values.respond_to?(:each)
+  #         values.reject(&:blank?)
+  #       else
+  #         values
+  #       end
+  #     end
+  #   end
+  # end
 
   def contact_email
     self[Solrizer.solr_name('contact_email')]
@@ -92,38 +91,113 @@ class SolrDocument
   def contributor_committeemember
     self[Solrizer.solr_name('contributor_committeemember')]
   end
-  
-  solrized_methods %w[
-    date_accepted
-    date_available
-    date_collected
-    date_copyright
-    date_issued
-    date_valid
-    date_reviewed
-    digitization_spec
-    doi
-    editor
-    file_extent
-    file_format
-    graduation_year
-    has_journal
-    has_number
-    has_volume
-    hydrologic_unit_code
-    in_series
-    interactivity_type
-    is_based_on_url
-    is_referenced_by
-    isbn
-    issn
-    learning_resource_type
-    other_affiliation
-    replaces
-    tableofcontents
-    time_required
-    typical_age_range
-    web_of_science_uid
-  ]
+  def creator
+    self[Solrizer.solr_name('creator')]
+  end
+  def academic_affiliation
+    self[Solrizer.solr_name('academic_affiliation')]
+  end
+  def resource_type
+    self[Solrizer.solr_name('resource_type')]
+  end
+  def graduation_year
+    self[Solrizer.solr_name('graduation_year')]
+  end
+  def rights_statement
+    self[Solrizer.solr_name('rights_statement')]
+  end
+  def other_affiliation
+    self[Solrizer.solr_name('other_affiliation')]
+  end
+  def date_accepted
+    self[Solrizer.solr_name('date_accepted')]
+  end
+  def date_available
+    self[Solrizer.solr_name('date_available')]
+  end
+  def date_collected
+    self[Solrizer.solr_name('date_collected')]
+  end
+  def date_copyright
+    self[Solrizer.solr_name('date_copyright')]
+  end
+  def date_issued
+    self[Solrizer.solr_name('date_issued')]
+  end
+  def date_valid
+    self[Solrizer.solr_name('date_valid')]
+  end
+  def date_reviewed
+    self[Solrizer.solr_name('date_reviewed')]
+  end
+  def digitization_spec
+    self[Solrizer.solr_name('digitization_spec')]
+  end
+  def doi
+    self[Solrizer.solr_name('doi')]
+  end
+  def editor
+    self[Solrizer.solr_name('editor')]
+  end
+  def file_extent
+    self[Solrizer.solr_name('file_extent')]
+  end
+  def file_format
+    self[Solrizer.solr_name('file_format')]
+  end
+  def graduation_year
+    self[Solrizer.solr_name('graduation_year')]
+  end
+  def has_journal
+    self[Solrizer.solr_name('has_journal')]
+  end
+  def has_number
+    self[Solrizer.solr_name('has_number')]
+  end
+  def has_volume
+    self[Solrizer.solr_name('has_volume')]
+  end
+  def hydrologic_unit_code
+    self[Solrizer.solr_name('hydrologic_unit_code')]
+  end
+  def in_series
+    self[Solrizer.solr_name('in_series')]
+  end
+  def interactivity_type
+    self[Solrizer.solr_name('interactivity_type')]
+  end
+  def is_based_on_url
+    self[Solrizer.solr_name('is_based_on_url')]
+  end
+  def is_referenced_by
+    self[Solrizer.solr_name('is_referenced_by')]
+  end
+  def isbn
+    self[Solrizer.solr_name('isbn')]
+  end
+  def issn
+    self[Solrizer.solr_name('issn')]
+  end
+  def learning_resource_type
+    self[Solrizer.solr_name('learning_resource_type')]
+  end
+  def other_affiliation
+    self[Solrizer.solr_name('other_affiliation')]
+  end
+  def replaces
+    self[Solrizer.solr_name('replaces')]
+  end
+  def tableofcontents
+    self[Solrizer.solr_name('tableofcontents')]
+  end
+  def time_required
+    self[Solrizer.solr_name('time_required')]
+  end
+  def typical_age_range
+    self[Solrizer.solr_name('typical_age_range')]
+  end
+  def web_of_science_uid
+    self[Solrizer.solr_name('web_of_science_uid')]
+  end
 
 end
