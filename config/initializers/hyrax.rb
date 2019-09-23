@@ -130,7 +130,7 @@ Hyrax.config do |config|
 
   # Location autocomplete uses geonames to search for named regions
   # Username for connecting to geonames
-  # config.geonames_username = ''
+  # config.geonames_username = 'libnotify'
 
   # Should the acceptance of the licence agreement be active (checkbox), or
   # implied when the save button is pressed? Set to true for active
@@ -144,7 +144,7 @@ Hyrax.config do |config|
 
   # How many rows of items should appear on the work show view?
   # The default is 10
-  # config.show_work_item_rows = 10
+  config.show_work_item_rows = 20
 
   # Enable IIIF image service. This is required to use the
   # IIIF viewer enabled show page
