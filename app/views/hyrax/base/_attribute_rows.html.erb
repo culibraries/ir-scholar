@@ -1,14 +1,14 @@
-<%= presenter.attribute_to_html(:abstract ,label: "Abstract", render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:abstract ,label: t('hyrax.base.show.abstract'), render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:has_journal,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:has_number,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:has_volume,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:is_referenced_by,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:contributor_advisor,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:contributor_committeemember,render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:contributor_advisor,label: t('hyrax.base.show.contributor_advisor'),render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:contributor_committeemember,label: t('hyrax.base.show.contributor_committeemember'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:degree_field,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:degree_grantors,render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:degree_grantors,label: t('hyrax.base.show.degree_grantors'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:degree_name,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:graduation_year,render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:graduation_year,label: t('hyrax.base.show.graduation_year'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:creator, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:contributor, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
@@ -33,14 +33,12 @@
 <%= presenter.attribute_to_html(:conference_location,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:conference_name,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:contributor,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:creator,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:date_available,render_as: :faceted, html_dl: true) %>
+
 <%= presenter.attribute_to_html(:date_created,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:date_issued,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:doi,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:embargo_reason,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:file_extent,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:file_format,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:identifier,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:in_series,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:isbn,render_as: :faceted, html_dl: true) %>
