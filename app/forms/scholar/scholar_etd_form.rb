@@ -7,13 +7,14 @@ module Scholar
       self.terms = [:title, :creator, :academic_affiliation, :department, :resource_type, :degree_level, :graduation_year, :rights_statement,
         :contributor_advisor,
         :contributor_committeemember,
+        :contributor,
         :date_issued, 
         :abstract,
         :degree_grantors,
         :publisher,
         :alt_title,
-        :subject,
         :keyword, 
+        :subject,
         :doi,
         :bibliographic_citation,
         :additional_information,
@@ -28,22 +29,6 @@ module Scholar
       self.required_fields = [:title, :creator,:academic_affiliation,:department, :resource_type, :degree_level,:graduation_year, :rights_statement]
       #print self.required_fields
       #puts self.required_fields.delete(:license)
-      # def self.multiple?(field)
-      #   if [:title].include? field.to_sym
-      #     false
-      #   else
-      #     super
-      #   end
-      # end
-  
-      # def self.model_attributes(_)
-      #   attrs = super
-      #   attrs[:title] = Array(attrs[:title]) if attrs[:title]
-      #   attrs
-      # end
-  
-      # def title
-      #   super.first || ""
-      # end
+      
     end
   end

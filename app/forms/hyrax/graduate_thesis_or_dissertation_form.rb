@@ -6,5 +6,29 @@ module Hyrax
   class GraduateThesisOrDissertationForm < Scholar::EtdWorkForm
     self.model_class = ::GraduateThesisOrDissertation
     #self.terms += [:resource_type]
+    self.terms -=[:contributor]
+
+    def self.multiple?(field)
+      if [:academic_affiliation, :resource_type ].include? field.to_sym
+        false
+      else
+        super
+      end
+    end
+
+    def self.model_attributes(_)
+      attrs = super
+      attrs[:academic_affiliation] = Array(attrs[:academic_affiliation]) if attrs[:academic_affiliation]
+      attrs[:resource_type] = Array(attrs[:resource_type]) if attrs[:resource_type]
+      attrs
+    end
+
+    def academic_affiliation
+      super.first || ""
+    end
+    def resource_type
+      super.first || ""
+    end
+
   end
 end
