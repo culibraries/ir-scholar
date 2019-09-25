@@ -10,6 +10,6 @@ class Book < ActiveFedora::Base
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
-  # include ::Hyrax::BasicMetadata
-  include Scholar::DefaultMetadata
+  include ::Hyrax::BasicMetadata
+  #include Scholar::DefaultMetadata
 end
