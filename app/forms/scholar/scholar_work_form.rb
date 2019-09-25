@@ -33,7 +33,7 @@ module Scholar
         :replaces,
         :resource_type,
         :rights_statement]
-      self.required_fields += [ :license, :creator, :academic_affiliation, :resource_type, :rights_statement]
+      self.required_fields += [ :creator, :academic_affiliation, :resource_type, :rights_statement]
     end
   end
 
