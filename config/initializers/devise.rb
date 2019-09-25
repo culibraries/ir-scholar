@@ -267,7 +267,8 @@ Devise.setup do |config|
   issuer:  'https://test-scholar.colorado.edu/users/auth/saml',
   private_key: ENV.fetch('SP_KEY_PEM', 'fakeKey'),
   certificate: ENV.fetch('SP_CERT_PEM', 'fakeCERT'),
-  uid_attribute: 'urn:oid:0.9.2342.19200300.100.1.3' 
+  uid_attribute: 'urn:oid:0.9.2342.19200300.100.1.1',
+  request_attributes: {}
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

@@ -28,8 +28,10 @@ class User < ApplicationRecord
   def to_s
     email
   end
-
+  
   def self.from_omniauth(access_token)
+    Rails.logger.info("EMAILEMAILEMAILID")
+    Rails.logger.info("#{access_token.uid}@colorado.edu")
     email = case access_token.provider.to_s
             when 'saml' then "#{access_token.uid}@colorado.edu"
             else access_token.uid

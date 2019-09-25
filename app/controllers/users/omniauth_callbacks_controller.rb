@@ -12,7 +12,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def find_user_and_redirect
+    Rails.logger.info("Begin ENV")
+    Rails.logger.info("OMNIAUTH.AUTH")
+    Rails.logger.info(request.env['omniauth.auth'].provider.to_s)
+    Rails.logger.info("End ENV")
     @user = User.from_omniauth(request.env['omniauth.auth'])
+    Rails.logger.info("USER")
+    Rails.logger.info(@user)
     prov = request.env['omniauth.auth'].provider.to_s
     sign_in_and_redirect @user, event: :authentication
     set_flash_message(:notice, :success, kind: prov) if is_navigational_format?
