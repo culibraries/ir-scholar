@@ -3,7 +3,7 @@
 class GraduateThesisOrDissertation < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   # after_initialize :init
-
+  #self.admin_set_id ||= "t435gc96m"
   # def init
   #   self.admin_set_id ||= "t435gc96m"
     
@@ -59,7 +59,7 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   property :replaces, predicate: ::RDF::Vocab::DC.replaces, multiple: false do |index|
     index.as :stored_searchable
   end
-  property :academic_affiliation, predicate: ::RDF::URI('http://vivoweb.org/ontology/core#AcademicDepartment') do |index|
+  property :academic_affiliation, predicate: ::RDF::URI('http://vivoweb.org/ontology/core#AcademicDepartment'), multiple: true do |index|
     index.as :stored_searchable, :facetable
   end
   property :date_issued, predicate: ::RDF::Vocab::DC.issued, multiple: false do |index|
