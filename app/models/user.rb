@@ -1,3 +1,4 @@
+require 'securerandom'
 class User < ApplicationRecord
   # Connects this user object to Hydra behaviors.
   include Hydra::User
@@ -30,15 +31,16 @@ class User < ApplicationRecord
   end
   
   def self.from_omniauth(access_token)
-    Rails.logger.info("EMAILEMAILEMAILID")
-    Rails.logger.info("#{access_token.uid}@colorado.edu")
-    email = case access_token.provider.to_s
+  email = case access_token.provider.to_s
             when 'saml' then "#{access_token.uid}@colorado.edu"
             else access_token.uid
             end
-    User.where(email: email).first_or_create do |user|
+
+   User.where(email: email).first_or_create do |user|
       user.email = email
-    end
+      user.password = SecureRandom.urlsafe_base64
+   end
+
+
   end
-   
 end
