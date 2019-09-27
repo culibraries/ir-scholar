@@ -7,8 +7,7 @@
     <% @default_value= v if f.object.model.class.to_s == "Book" && t == "Book" %>
     <% @default_value= v if f.object.model.class.to_s == "Presentation" && t == "Presentation" %>
     <% @default_value= v if f.object.model.class.to_s == "ConferenceProceedings" && t == "Conference Proceedings" %>
-    <% @default_value= v if f.object.model.class.to_s == "WorkingPaper" && t == "Working Paper" %>
-    <% @default_value= v if f.object.model.class.to_s == "TechnicalReport" && t == "Technical Report" %>
+    <% @default_value= v if f.object.model.class.to_s == "Report" && t == "Reports" %>
     <% @default_value= v if f.object.model.class.to_s == "Dataset" && t == "Dataset" %>
     <% @default_value= v if f.object.model.class.to_s == "UndergraduateHonorsThesis" && t == "Undergraduate Honors Thesis" %>
     <% @default_value= v if f.object.model.class.to_s == "Article" && t == "Article" %>
