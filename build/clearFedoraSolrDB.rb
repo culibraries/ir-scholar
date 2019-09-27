@@ -5,3 +5,8 @@ ActiveFedora::Cleaner.clean!
 # associated database entries for permission templates also have to be deleted.
 Hyrax::PermissionTemplateAccess.destroy_all
 Hyrax::PermissionTemplate.destroy_all
+
+# delete users and roles if exist
+Role.destroy_all
+User.destroy_all
+ContentBlock.destroy_all
