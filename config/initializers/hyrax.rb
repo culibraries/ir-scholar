@@ -9,11 +9,11 @@ Hyrax.config do |config|
   # Injected via `rails g hyrax:work Article`
   config.register_curation_concern :article
   # Injected via `rails g hyrax:work TechnicalReport`
-  config.register_curation_concern :technical_report
+  #config.register_curation_concern :technical_report
   # Injected via `rails g hyrax:work Dataset`
   config.register_curation_concern :dataset
   # Injected via `rails g hyrax:work WorkingPaper`
-  config.register_curation_concern :working_paper
+  # config.register_curation_concern :working_paper
   # Injected via `rails g hyrax:work Presentation`
   config.register_curation_concern :presentation
   # Injected via `rails g hyrax:work ConferenceProceeding`
@@ -24,6 +24,8 @@ Hyrax.config do |config|
   config.register_curation_concern :book_chapter
   # Injected via `rails g hyrax:work Default`
   config.register_curation_concern :default
+  # Injected via `rails g hyrax:work Report`
+  config.register_curation_concern :report
   
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
