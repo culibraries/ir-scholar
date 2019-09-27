@@ -2,23 +2,15 @@
 #  `rails generate hyrax:work GraduateThesisOrDissertation`
 class GraduateThesisOrDissertation < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
-  # after_initialize :init
-  #self.admin_set_id ||= "t435gc96m"
-  # def init
-  #   self.admin_set_id ||= "t435gc96m"
-    
-  #   #self.status = ACTIVE unless self.status
-  # end
 
   self.indexer = GraduateThesisOrDissertationIndexer
+  
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
 
   validates :title, presence: { message: 'Your work must have a title.' }
 
-  # property :title, predicate: ::RDF::Vocab::DC.title, multiple: false do |index|
-  #   index.as :stored_searchable, :facetable
-  # end
+  # ETD 
   property :department, predicate: ::RDF::URI.new("http://lib.colorado.edu/departments"), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
@@ -30,29 +22,20 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   property :contributor_committeemember, predicate: ::RDF::Vocab::MARCRelators.dgs do |index|
     index.as :stored_searchable, :facetable
   end
-
-  # property :degree_discipline, predicate: ::RDF::URI.new('http://dbpedia.org/ontology/academicDiscipline') do |index|
-  #   index.as :stored_searchable
-  # end
-  property :abstract, predicate: ::RDF::Vocab::DC.abstract do |index|
-    index.as :stored_searchable
-  end
   property :degree_grantors, predicate: ::RDF::Vocab::MARCRelators.dgg, multiple: false do |index|
     index.as :stored_searchable
   end
   property :degree_level, predicate: ::RDF::URI.new('http://purl.org/NET/UNTL/vocabularies/degree-information/#level'), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
-  # property :degree_name, predicate: ::RDF::URI.new('http://purl.org/ontology/bibo/ThesisDegree') do |index|
-  #   index.as :stored_searchable, :facetable
-  # end
-  # accessor value used by AddOtherFieldOptionActor to persist "Other" values provided by the user
-  #attr_accessor :degree_grantors_other
-
   property :graduation_year, predicate: ::RDF::URI.new('http://www.rdaregistry.info/Elements/w/#P10215'), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
-
+  
+  #common
+  property :abstract, predicate: ::RDF::Vocab::DC.abstract do |index|
+    index.as :stored_searchable
+  end
   property :doi, predicate: ::RDF::Vocab::Identifiers.doi, multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
@@ -78,7 +61,6 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   # schema (by adding accepts_nested_attributes)
   #include Scholar::EtdMetadata
   include ::Hyrax::BasicMetadata
-  
   
   
 end

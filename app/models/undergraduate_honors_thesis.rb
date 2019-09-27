@@ -19,15 +19,14 @@ class UndergraduateHonorsThesis < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
-  property :abstract, predicate: ::RDF::Vocab::DC.abstract do |index|
-    index.as :stored_searchable
-  end
+  
   property :degree_grantors, predicate: ::RDF::Vocab::MARCRelators.dgg, multiple: false do |index|
     index.as :stored_searchable
   end
   property :degree_level, predicate: ::RDF::URI.new('http://purl.org/NET/UNTL/vocabularies/degree-information/#level'), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
+  # Removed Degree Name for degree level
   # property :degree_name, predicate: ::RDF::URI.new('http://purl.org/ontology/bibo/ThesisDegree') do |index|
   #   index.as :stored_searchable, :facetable
   # end
@@ -35,6 +34,10 @@ class UndergraduateHonorsThesis < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
+  #Common
+  property :abstract, predicate: ::RDF::Vocab::DC.abstract do |index|
+    index.as :stored_searchable
+  end
   property :doi, predicate: ::RDF::Vocab::Identifiers.doi, multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
