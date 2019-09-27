@@ -10,7 +10,7 @@ en:
       show:
         abstract: "Abstract"
         degree_grantors: "Degree Grantor"
-        degree_field: "Degree Level"
+        degree_level: "Degree Level"
         contributor_advisor: "Advisor"
         contributor_committeemember: "Committee Member"
         graduation_year: "Commencement Year"
@@ -29,7 +29,7 @@ en:
         doi: "Digital Object Identifier for the resource. Example: https://doi.org/10.1000/182"
         graduation_year: "The commencement year for the author of the Thesis or Dissertation."
         abstract: "A brief description or summary of the item."
-        embargo_reason: ""
+        embargo_reason: "Embargo Reason"
         additional_information: "Any additional information not covered in other metadata fields."
     labels:
       defaults:
@@ -40,7 +40,7 @@ en:
         resource_type: "Resource Type"
         rights_statement: "Rights Statement"
         date_issued: "Date Issued"
-        degree_field: "Degree Field"
+        degree_level: "Degree Level"
         alt_title: "Alternative Title"
         doi: "DOI"
         identifier: "Identifier"
@@ -49,7 +49,9 @@ en:
         graduation_year: "Commencement Year"
         abstract: "Abstract or Summary"
         degree_name: "Degree Name"
+        embargo_reason: "Embargo Reason"
         additional_information: "Additional Information"
+
 # Title
 # Advisor
 # Creator

@@ -1,18 +1,13 @@
 ---
 en:
-  hyrax:
-    base:
-      show:
-        last_modified: This is last shit date
   activefedora:
     models:
       default: "Other Scholarly Content"
       article: "Article"
       graduate_thesis_or_dissertation: "Graduate Thesis Or Dissertation"
       undergraduate_honors_thesis: "Undergraduate Honors Thesis"
-      technical_report: "Technical Report"
+      report: "Technical Reports and Working Papers"
       dataset: "Data Set"
-      working_paper: "Working Paper"
       presentation: "Presentation"
       conference_proceedings: "Conference Proceeding"
       book: "Book"
@@ -63,6 +58,9 @@ en:
           subject_tesim: Subject
           title_tesim: Title
   hyrax:
+    base:
+      show:
+        last_modified: "Last Modified"
     account_name: My Institution Account Id
     directory:
       suffix: "@colorado.edu"
@@ -73,3 +71,37 @@ en:
     institution_name_full: University of Colorado Boulder
     product_name: CU Scholar
     product_twitter_handle: "@cublibraries"
+  simple_form:
+    hints:
+      defaults:
+        degree_grantors: "Organization granting the degree. This will usually be University of Colorado Boulder."
+        contributor_advisor: "The name of the Academic Advisor on this project. The name should be entered with the last name first: Smith, John Q."
+        contributor_committeemember: "The name(s) of Academic Committee Member(s) on this project. Enter one name per line, last name first: Smith, Joan Q."
+        academic_affiliation: "Academic Department/College/School/Unit at CU Boulder"
+        resource_type: "The general category of this resource (e.g. Masters Thesis, dissertation )."
+        alt_title: "An alternative title for this item. This should be a title that helps identify the item or a version of the title that differs significantly from the full Title."
+        doi: "Digital Object Identifier for the resource. Example: https://doi.org/10.1000/182"
+        graduation_year: "The commencement year for the author of the Thesis or Dissertation."
+        abstract: "A brief description or summary of the item."
+        embargo_reason: "Embargo Reason"
+        additional_information: "Any additional information not covered in other metadata fields."
+    labels:
+      defaults:
+        degree_grantors: "Degree Grantors"
+        contributor_advisor: "Advisor"
+        contributor_committeemember: "Committee Member"
+        academic_affiliation: "Academic Affiliation"
+        resource_type: "Resource Type"
+        rights_statement: "Rights Statement"
+        date_issued: "Date Issued"
+        degree_level: "Degree Level"
+        alt_title: "Alternative Title"
+        doi: "DOI"
+        identifier: "Identifier"
+        bibliographic_citation: "Citation"
+        embargo_reason: "Reason for Embargo"
+        graduation_year: "Commencement Year"
+        abstract: "Abstract or Summary"
+        degree_name: "Degree Name"
+        embargo_reason: "Embargo Reason"
+        additional_information: "Additional Information"
