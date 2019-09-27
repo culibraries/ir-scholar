@@ -5,6 +5,6 @@ module Hyrax
   # Generated form for Article
   class ArticleForm < Scholar::ArticleWorkForm
     self.model_class = ::Article
-    self.terms += [:resource_type]
+    #self.terms += [:resource_type]
   end
 end

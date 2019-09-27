@@ -6,5 +6,8 @@ module Hyrax
   class PresentationForm < Scholar::GeneralWorkForm
     self.model_class = ::Presentation
     #self.terms += [:resource_type]
+    self.terms -= [:has_journal,:has_number,:has_volume,:issn]
+
+    self.required_fields = [:title, :creator,:academic_affiliation, :resource_type, :rights_statement]
   end
 end
