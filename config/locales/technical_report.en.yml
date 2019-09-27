@@ -1,8 +1,0 @@
-en:
-  hyrax:
-    icons:
-      technical_report: "fa fa-file-text-o"
-    select_type:
-      technical_report:
-        description: "Technical Reports and Working Papers"
-        name: "Reports"

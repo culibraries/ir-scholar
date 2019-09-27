@@ -1,8 +1,0 @@
-it:
-  hyrax:
-    icons:
-      technical_report:     'fa fa-file-text-o'
-    select_type:
-      technical_report:
-        description:        "Technical report opere"
-        name:               "Technical Report"
