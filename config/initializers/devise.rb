@@ -270,7 +270,7 @@ Devise.setup do |config|
   uid_attribute: 'urn:oid:0.9.2342.19200300.100.1.1',
   request_attributes: [
     { :name => 'email', :name_format => 'urn:oid:0.9.2342.19200300.100.1.3', :friendly_name => 'Email address' },
-    { :name => 'urn:oid:2.16.840.1.113730.3.1.241', :name_format => 'urn:oid:2.16.840.1.113730.3.1.241', :friendly_name => 'Full name' },
+    { :name => 'name', :name_format => 'urn:oid:2.16.840.1.113730.3.1.241', :friendly_name => 'Full name' },
     { :name => 'first_name', :name_format => 'urn:oid:2.5.4.42', :friendly_name => 'Given name' },
     { :name => 'last_name', :name_format => 'urn:oid:2.5.4.4', :friendly_name => 'Family name' }
   ]
