@@ -4,13 +4,13 @@
 Article: "Article"
 GraduateThesisOrDissertation: "Graduate Thesis Or Dissertation"
 UndergraduateHonorsThesis: "Undergraduate Honors Thesis"
-TechnicalReport: "Technical Report"
 Dataset: "Dataset"
-WorkingPaper: "Working Paper"
 Presentation: "Presentation"
 ConferenceProceedings: "Conference Proceedings"
 Default: "Default"
 Book: "Book"
 BookChapter: "Book Chapter"
+Reports: "Reports"
+
 
 
