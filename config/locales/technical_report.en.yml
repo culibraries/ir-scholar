@@ -4,5 +4,5 @@ en:
       technical_report: "fa fa-file-text-o"
     select_type:
       technical_report:
-        description: "Technical reports"
-        name: "Technical Report"
+        description: "Technical Reports and Working Papers"
+        name: "Reports"
