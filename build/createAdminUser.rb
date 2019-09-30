@@ -1,5 +1,6 @@
-
 # Variable Please change within Prod system
+# If in prod change to Identikey email and display_name
+# Password set random not used when using SAML 
 email = "admin@colorado.edu"
 password = "password1915"
 display_name ="Admin"
