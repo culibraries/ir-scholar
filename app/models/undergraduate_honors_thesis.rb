@@ -8,9 +8,9 @@ class UndergraduateHonorsThesis < ActiveFedora::Base
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
   
-  property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|
-    index.as :stored_searchable
-  end
+  # property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|
+  #   index.as :stored_searchable
+  # end
   property :contributor_advisor, predicate: ::RDF::Vocab::MARCRelators.ths do |index|
     index.as :stored_searchable, :facetable
   end
@@ -33,7 +33,12 @@ class UndergraduateHonorsThesis < ActiveFedora::Base
   property :graduation_year, predicate: ::RDF::URI.new('http://www.rdaregistry.info/Elements/w/#P10215'), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
-
+  property :date_available, predicate: ::RDF::Vocab::DC.available, multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
+  
+  property :embargo_reason, predicate: ::RDF::Vocab::DC.accessRights, multiple: false 
+  
   #Common
   property :abstract, predicate: ::RDF::Vocab::DC.abstract do |index|
     index.as :stored_searchable
@@ -56,9 +61,9 @@ class UndergraduateHonorsThesis < ActiveFedora::Base
   property :additional_information, predicate: ::RDF::Vocab::DC.description do |index|
     index.as :stored_searchable
   end
-  property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
-    index.as :stored_searchable, :facetable
-  end
+  # property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
+  #   index.as :stored_searchable, :facetable
+  # end
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)

@@ -7,6 +7,10 @@ class Presentation < ActiveFedora::Base
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
+
+  # validates :date_available, format: { with: /(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01])/([12]\d{3})/ ,
+  #           message:'Date Availble format: mm/dd/yyyy '}
+
   
   #Presentation
   property :editor, predicate: ::RDF::Vocab::BIBO.editor do |index|
@@ -31,9 +35,15 @@ class Presentation < ActiveFedora::Base
     index.as :stored_searchable
   end
   #error maybe
-  property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|
-    index.as :stored_searchable
+  # property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|
+  #   index.as :stored_searchable
+  # end
+  property :date_available, predicate: ::RDF::Vocab::DC.available, multiple: false do |index|
+    index.as :stored_searchable, :facetable
   end
+  
+  property :embargo_reason, predicate: ::RDF::Vocab::DC.accessRights, multiple: false 
+  
   #common
   property :abstract, predicate: ::RDF::Vocab::DC.abstract do |index|
     index.as :stored_searchable
@@ -56,9 +66,9 @@ class Presentation < ActiveFedora::Base
   property :additional_information, predicate: ::RDF::Vocab::DC.description do |index|
     index.as :stored_searchable
   end
-  property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
-    index.as :stored_searchable, :facetable
-  end
+  # property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
+  #   index.as :stored_searchable, :facetable
+  # end
 
 
   # This must be included at the end, because it finalizes the metadata

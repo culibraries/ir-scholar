@@ -25,7 +25,6 @@ module Scholar
         :other_affiliation,
         :keyword,
         :embargo_reason,
-        :date_available,
         :is_referenced_by,
         :additional_information,
         :replaces,

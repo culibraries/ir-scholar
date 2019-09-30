@@ -11,13 +11,13 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
 
   # ETD 
-  property :department, predicate: ::RDF::URI.new("http://lib.colorado.edu/departments"), multiple: false do |index|
-    index.as :stored_searchable, :facetable
-  end
+  # property :department, predicate: ::RDF::URI.new("http://lib.colorado.edu/departments"), multiple: false do |index|
+  #   index.as :stored_searchable, :facetable
+  # end
 
-  property :contributor_advisor, predicate: ::RDF::Vocab::MARCRelators.ths do |index|
-    index.as :stored_searchable, :facetable
-  end
+  # property :contributor_advisor, predicate: ::RDF::Vocab::MARCRelators.ths do |index|
+  #   index.as :stored_searchable, :facetable
+  # end
 
   property :contributor_committeemember, predicate: ::RDF::Vocab::MARCRelators.dgs do |index|
     index.as :stored_searchable, :facetable
@@ -31,6 +31,12 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   property :graduation_year, predicate: ::RDF::URI.new('http://www.rdaregistry.info/Elements/w/#P10215'), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
+  
+  property :date_available, predicate: ::RDF::Vocab::DC.available, multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
+  
+  property :embargo_reason, predicate: ::RDF::Vocab::DC.accessRights, multiple: false 
   
   #common
   property :abstract, predicate: ::RDF::Vocab::DC.abstract do |index|
@@ -54,9 +60,9 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   property :additional_information, predicate: ::RDF::Vocab::DC.description do |index|
     index.as :stored_searchable
   end
-  property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
-    index.as :stored_searchable, :facetable
-  end
+  # property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
+  #   index.as :stored_searchable, :facetable
+  # end
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
   #include Scholar::EtdMetadata
