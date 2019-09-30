@@ -263,7 +263,7 @@ Devise.setup do |config|
   #idp_sso_target_url: 'https://fedauth-test.colorado.edu/idp/profile/SAML2/Redirect/SSO',
   config.omniauth :saml,
   idp_cert: ENV.fetch('IDP_CERT_PEM', 'fakeCERT'),
-  idp_sso_target_url: "https://fedauth-test.colorado.edu/idp/profile/SAML2/Redirect/SSO",
+  idp_sso_target_url: "https://fedauth.colorado.edu/idp/profile/SAML2/Redirect/SSO",
   issuer:  'https://test-scholar.colorado.edu/users/auth/saml',
   private_key: ENV.fetch('SP_KEY_PEM', 'fakeKey'),
   certificate: ENV.fetch('SP_CERT_PEM', 'fakeCERT'),
