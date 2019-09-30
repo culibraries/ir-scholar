@@ -1,4 +1,4 @@
-<%= presenter.attribute_to_html(:abstract ,label: t('hyrax.base.show.abstract'), render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:abstract ,label: t('hyrax.base.show.abstract'), html_dl: true) %>
 <%= presenter.attribute_to_html(:has_journal,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:has_number,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:has_volume,render_as: :faceted, html_dl: true) %>
@@ -33,12 +33,12 @@
 <%= presenter.attribute_to_html(:conference_location,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:conference_name,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:contributor,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:date_available,render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:date_available, html_dl: true) %>
 
 <%= presenter.attribute_to_html(:date_created,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:date_issued,render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:date_issued, html_dl: true) %>
 <%= presenter.attribute_to_html(:doi,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:embargo_reason,render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:editor,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:identifier,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:in_series,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:isbn,render_as: :faceted, html_dl: true) %>
@@ -46,6 +46,4 @@
 <%= presenter.attribute_to_html(:keyword,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:peerreviewed,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:publisher,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:replaces,render_as: :faceted, html_dl: true) %>
-
 

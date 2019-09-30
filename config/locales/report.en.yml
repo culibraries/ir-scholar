@@ -1,8 +1,8 @@
 en:
   hyrax:
     icons:
-      report:     'fa fa-file-text-o'
+      report: "fa fa-file-text-o"
     select_type:
       report:
-        description:        "Report works"
-        name:               "Report"
+        description: "Technical reports, working papers, reports, etc."
+        name: "Report"
