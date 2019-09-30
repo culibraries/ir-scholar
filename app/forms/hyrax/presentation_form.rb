@@ -9,5 +9,15 @@ module Hyrax
     self.terms -= [:has_journal,:has_number,:has_volume,:issn]
 
     self.required_fields = [:title, :creator,:academic_affiliation, :resource_type, :rights_statement]
+
+    def self.multiple?(field)
+      if [:academic_affiliation, :resource_type ].include? field.to_sym
+        true
+      else
+        super
+      end
+    end
+
+
   end
 end
