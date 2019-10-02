@@ -51,6 +51,7 @@ en:
         degree_name: "Degree Name"
         embargo_reason: "Embargo Reason"
         additional_information: "Additional Information"
+        depositor: "Depositor"
 
 # Title
 # Advisor
