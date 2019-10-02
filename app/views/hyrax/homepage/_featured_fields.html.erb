@@ -1,0 +1,25 @@
+<div>
+  <div class="featured-item-title">
+    <span class="sr-only"><%= t('hyrax.homepage.featured_works.document.title_label') %></span>
+    <h3>
+      <%= link_to [main_app, featured] do %>
+        <%= render_thumbnail_tag(featured, {width: 90}, {suppress_link: true}) + featured.title.first %>
+      <% end %>
+    </h3>
+  </div>
+  <div class="featured-field featured-item-creator">
+  <%
+=begin%>
+ t('hyrax.homepage.featured_works.document.creator_missing') 
+<%
+=end%>
+    <span class="featured-label"><%= t('hyrax.homepage.featured_works.document.creator_label') %>:</span> <%= link_to_facet_list(featured.creator,'creator',t('hyrax.homepage.featured_works.document.creator_missing')) %>
+  </div>
+  <div class="featured-field featured-item-subjects">
+    <span class="featured-label"><%= t('hyrax.homepage.featured_works.document.subject_label') %>:</span> <%= link_to_facet_list(featured.subject, 'subject', t('hyrax.homepage.featured_works.document.subject_missing')) %>
+  </div>
+  <div class="featured-field featured-item-resource-type">
+    <span class="featured-label"><%= t('hyrax.homepage.featured_works.document.resource_type_label') %>:</span> <%= link_to_facet_list(featured.resource_type,'resource_type',t('hyrax.homepage.featured_works.document.resource_type_missing')) %>
+  </div>
+  
+</div>
