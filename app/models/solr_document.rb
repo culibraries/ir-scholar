@@ -199,5 +199,13 @@ class SolrDocument
   def web_of_science_uid
     self[Solrizer.solr_name('web_of_science_uid')]
   end
-
+  def additional_information
+    self[Solrizer.solr_name('additional_information')]
+  end
+  def embargo_reason
+    self[Solrizer.solr_name('embargo_reason')]
+  end
+  def peerreviewed
+    self[Solrizer.solr_name('peerreviewed')]
+  end
 end
