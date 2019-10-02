@@ -11,6 +11,9 @@ class UndergraduateHonorsThesis < ActiveFedora::Base
   # property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|
   #   index.as :stored_searchable
   # end
+  property :peerreviewed, predicate: ::RDF::URI('http://purl.org/ontology/bibo/peerReviewed'), multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
   property :contributor_advisor, predicate: ::RDF::Vocab::MARCRelators.ths do |index|
     index.as :stored_searchable, :facetable
   end

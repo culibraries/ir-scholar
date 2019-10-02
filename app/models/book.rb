@@ -29,7 +29,7 @@ class Book < ActiveFedora::Base
     index.as :stored_searchable
   end
   property :editor, predicate: ::RDF::Vocab::BIBO.editor do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
   #error maybe
   # property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|

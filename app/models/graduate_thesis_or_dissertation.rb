@@ -14,10 +14,12 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   # property :department, predicate: ::RDF::URI.new("http://lib.colorado.edu/departments"), multiple: false do |index|
   #   index.as :stored_searchable, :facetable
   # end
-
-  # property :contributor_advisor, predicate: ::RDF::Vocab::MARCRelators.ths do |index|
-  #   index.as :stored_searchable, :facetable
-  # end
+  property :peerreviewed, predicate: ::RDF::URI('http://purl.org/ontology/bibo/peerReviewed'), multiple: false do |index|
+    index.as :stored_searchable, :facetable
+  end
+  property :contributor_advisor, predicate: ::RDF::Vocab::MARCRelators.ths do |index|
+    index.as :stored_searchable, :facetable
+  end
 
   property :contributor_committeemember, predicate: ::RDF::Vocab::MARCRelators.dgs do |index|
     index.as :stored_searchable, :facetable
