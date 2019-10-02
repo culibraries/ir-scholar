@@ -4,7 +4,8 @@ module Scholar
     # Generated form for DefaultWork
     class EtdWorkForm < Hyrax::Forms::WorkForm
 
-      self.terms = [:title, :creator, :academic_affiliation, :resource_type, :degree_level, :graduation_year, :rights_statement,
+      self.terms = [:title, :creator, :academic_affiliation, :resource_type, :degree_level, 
+        :graduation_year, :rights_statement,
         :contributor_advisor,
         :contributor_committeemember,
         :contributor,
@@ -13,7 +14,6 @@ module Scholar
         :degree_grantors,
         :publisher,
         :alt_title,
-        :keyword, 
         :subject,
         :doi,
         :bibliographic_citation,
@@ -26,10 +26,8 @@ module Scholar
         :visibility, :ordered_member_ids, :in_works_ids,
         :member_of_collection_ids, 
         :admin_set_id, :replaces]
-      self.required_fields = [:title, :creator,:academic_affiliation, :resource_type, :degree_level,:graduation_year, :rights_statement]
-      #:department,
-      #print self.required_fields
-      #puts self.required_fields.delete(:license)
+      self.required_fields = [:title, :creator,:academic_affiliation, 
+        :resource_type, :degree_level,:graduation_year, :rights_statement]
       
     end
   end
