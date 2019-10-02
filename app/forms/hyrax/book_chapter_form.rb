@@ -50,9 +50,9 @@ module Hyrax
       attrs
     end
 
-    def academic_affiliation
-      super.first || ""
-    end
+    # def academic_affiliation
+    #   super.first || ""
+    # end
 
   end
 end
