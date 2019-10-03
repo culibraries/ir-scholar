@@ -1,0 +1,6 @@
+
+<%= f.input :peerreviewed , as: :select,
+    collection: PeerReviewedService.select_all_options,
+    include_blank: true,
+    input_html: { class: 'form-control' }
+%>
