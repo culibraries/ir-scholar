@@ -1,50 +1,60 @@
 terms:
-- id: A&S ASSETT
-  term: A&S ASSETT
-- id: Academic Advising Center
-  term: Academic Advising Center
-- id: Academic Affairs
-  term: Academic Affairs
-- id: Admissions
-  term: Admissions
+- id: Academic Affiliation
+  term: Academic Affiliation
+- id: Accounting
+  term: Accounting
+- id: Administration
+  term: Administration
 - id: Advertising, Public Relations and Media Design
   term: Advertising, Public Relations and Media Design
 - id: Aerospace Engineering Sciences
   term: Aerospace Engineering Sciences
-- id: Alumni Association
-  term: Alumni Association
+- id: American Music Research Center
+  term: American Music Research Center
 - id: Anthropology
   term: Anthropology
 - id: Applied Mathematics
   term: Applied Mathematics
-- id: Art & Art History-Gallery
-  term: Art & Art History-Gallery
 - id: Art and Art History
   term: Art and Art History
 - id: Asian Languages and Civilizations
   term: Asian Languages and Civilizations
 - id: Astrophysical and Planetary Sciences (APS)
   term: Astrophysical and Planetary Sciences (APS)
+- id: ATLAS Institute
+  term: ATLAS Institute
 - id: Atmospheric and Oceanic Sciences (ATOC)
   term: Atmospheric and Oceanic Sciences (ATOC)
 - id: Biochemistry
   term: Biochemistry
-- id: Boulder Faculty Assembly
-  term: Boulder Faculty Assembly
-- id: Career Svcs-Central Office
-  term: Career Svcs-Central Office
+- id: Biofrontiers Institute
+  term: Biofrontiers Institute
+- id: Brass and Percussion
+  term: Brass and Percussion
+- id: Business Administration
+  term: Business Administration
+- id: Center for Asian Studies
+  term: Center for Asian Studies
+- id: Center for Asian Studies
+  term: Center for Asian Studies
 - id: Center for Environmental Journalism
   term: Center for Environmental Journalism
 - id: Center for Media, Religion and Culture
   term: Center for Media, Religion and Culture
 - id: Center for Medieval and Early Modern Studies
   term: Center for Medieval and Early Modern Studies
+- id: Center for Science & Technology Policy Research
+  term: Center for Science & Technology Policy Research
 - id: Center for STEM Learning
   term: Center for STEM Learning
+- id: Center for the Study of Origins
+  term: Center for the Study of Origins
 - id: Center for Western Civilization
   term: Center for Western Civilization
 - id: Chemical and Biological Engineering
   term: Chemical and Biological Engineering
+- id: Chemical Engineering
+  term: Chemical Engineering
 - id: Chemistry
   term: Chemistry
 - id: Cinema Studies & Moving Image Arts
@@ -53,56 +63,58 @@ terms:
   term: Civil, Environmental and Architectural Engineering
 - id: Classics
   term: Classics
+- id: College of Arts and Sciences
+  term: College of Arts and Sciences
+- id: College of Engineering and Applied Science
+  term: College of Engineering and Applied Science
+- id: College of Media, Communication and Information
+  term: College of Media, Communication and Information
+- id: College of Music
+  term: College of Music
 - id: Communication
   term: Communication
+- id: Comparative Literature
+  term: Comparative Literature
+- id: Composition
+  term: Composition
 - id: Computer Science
   term: Computer Science
-- id: Conference on World Affairs
-  term: Conference on World Affairs
+- id: Conducting
+  term: Conducting
 - id: Conservative Thought
   term: Conservative Thought
 - id: Continuing Education & Professional Studies
   term: Continuing Education & Professional Studies
+- id: Cooperative Institute for Research in Environmental Sciences
+  term: Cooperative Institute for Research in Environmental Sciences
 - id: Critical Media Practices
   term: Critical Media Practices
-- id: CS Post Bacc Program
-  term: CS Post Bacc Program
-- id: Ctr for the Study of Origins
-  term: Ctr for the Study of Origins
-- id: CU at DC Internship
-  term: CU at DC Internship
+- id: CU Engage
+  term: CU Engage
 - id: Ecology and Evolutionary Biology
   term: Ecology and Evolutionary Biology
 - id: Economics
   term: Economics
 - id: Electrical, Computer and Energy Engineering (ECEE)
   term: Electrical, Computer and Energy Engineering (ECEE)
-- id: Employee Services
-  term: Employee Services
-- id: Engineering-Bold Center
-  term: Engineering-Bold Center
+- id: Engineering Management Program
+  term: Engineering Management Program
 - id: English
   term: English
+- id: Entrepreneurship & Small Business Management
+  term: Entrepreneurship & Small Business Management
+- id: Entrepreneurship Center for Music
+  term: Entrepreneurship Center for Music
 - id: Environmental Center
   term: Environmental Center
-- id: Environmental Design
-  term: Environmental Design
-- id: Environmental Studies Program
-  term: Environmental Studies Program
+- id: Environmental Design Program
+  term: Environmental Design Program
+- id: Environmental Studies
+  term: Environmental Studies
 - id: Ethnic Studies
   term: Ethnic Studies
-- id: Fac Man-Administration
-  term: Fac Man-Administration
-- id: Fac Man-Capital Construction
-  term: Fac Man-Capital Construction
-- id: Faculty Affairs
-  term: Faculty Affairs
-- id: Faculty Council, A&S
-  term: Faculty Council, A&S
-- id: Faculty Teaching Excellence Program (FTEP)
-  term: Faculty Teaching Excellence Program (FTEP)
-- id: Financial Aid
-  term: Financial Aid
+- id: Finance
+  term: Finance
 - id: French & Italian
   term: French & Italian
 - id: General Engineering
@@ -113,129 +125,127 @@ terms:
   term: Geological Sciences
 - id: Germanic and Slavic Languages and Literatures
   term: Germanic and Slavic Languages and Literatures
-- id: Global Engineering RAP
-  term: Global Engineering RAP
-- id: Graduate Teacher Program
-  term: Graduate Teacher Program
-- id: Health Professions RAP
-  term: Health Professions RAP
 - id: Herbst Humanities Program
   term: Herbst Humanities Program
 - id: History
   term: History
 - id: Honors Program
   term: Honors Program
-- id: Housing & Dining Services
-  term: Housing & Dining Services
 - id: Humanities
   term: Humanities
 - id: Information Science
   term: Information Science
+- id: Institute for Behavioral Genetics
+  term: Institute for Behavioral Genetics
+- id: Institute of Arctic & Alpine Research
+  term: Institute of Arctic & Alpine Research
+- id: Institute of Behavioral Science
+  term: Institute of Behavioral Science
+- id: Institute of Cognitive Science
+  term: Institute of Cognitive Science
 - id: Integrated Teaching & Learning (ITL) Program
   term: Integrated Teaching & Learning (ITL) Program
 - id: Integrative Physiology
   term: Integrative Physiology
+- id: Interdisciplinary Telecommunications
+  term: Interdisciplinary Telecommunications
 - id: Intermedia Art, Writing and Performance
   term: Intermedia Art, Writing and Performance
 - id: International Education
   term: International Education
 - id: International English Center (IEC)
   term: International English Center (IEC)
-- id: IRISS Grand Challenge
-  term: IRISS Grand Challenge
+- id: JILA
+  term: JILA
 - id: Journalism
   term: Journalism
+- id: Keyboard
+  term: Keyboard
+- id: Laboratory for Atmospheric & Space Physics
+  term: Laboratory for Atmospheric & Space Physics
+- id: Leeds School of Business
+  term: Leeds School of Business
 - id: Linguistics
   term: Linguistics
-- id: Masters of the Environment
-  term: Masters of the Environment
+- id: Management
+  term: Management
+- id: Marketing
+  term: Marketing
 - id: Materials Engineering
   term: Materials Engineering
+- id: Materials Science & Engineering Program
+  term: Materials Science & Engineering Program
 - id: Mathematics
   term: Mathematics
 - id: Mechanical Engineering
   term: Mechanical Engineering
 - id: Media Studies
   term: Media Studies
-- id: MFA in Experience Design
-  term: MFA in Experience Design
 - id: Molecular, Cellular & Developmental Biology (MCDB)
   term: Molecular, Cellular & Developmental Biology (MCDB)
-- id: National Snow &Ice Data Center (NSIDC)
-  term: National Snow &Ice Data Center (NSIDC)
+- id: Music Education
+  term: Music Education
+- id: Music Theory
+  term: Music Theory
+- id: Musicology
+  term: Musicology
+- id: National Education Policy Center
+  term: National Education Policy Center
+- id: National Snow & Ice Data Center (NSIDC)
+  term: National Snow & Ice Data Center (NSIDC)
 - id: National Solar Observatory
   term: National Solar Observatory
 - id: Native American and Indigenous Studies
   term: Native American and Indigenous Studies
-- id: NCWIT
-  term: NCWIT
-- id: New Student and Family Programs
-  term: New Student and Family Programs
-- id: Office of Business & Finance
-  term: Office of Business & Finance
-- id: Office of Data Analytics
-  term: Office of Data Analytics
-- id: Office of Diversity, Equity, and Community Engagement
-  term: Office of Diversity, Equity, and Community Engagement
-- id: Office of Technology Transfer
-  term: Office of Technology Transfer
-- id: Office of the Chancellor
-  term: Office of the Chancellor
-- id: OIT-Administration
-  term: OIT-Administration
-- id: Ombuds Office
-  term: Ombuds Office
+- id: Operations & Information Management
+  term: Operations & Information Management
 - id: Philosophy
   term: Philosophy
 - id: Physics
   term: Physics
 - id: Political Science
   term: Political Science
-- id: Pre-Collegiate Programs
-  term: Pre-Collegiate Programs
-- id: President's Leadership Class
-  term: President's Leadership Class
 - id: Program for Writing and Rhetoric
   term: Program for Writing and Rhetoric
 - id: Psychology and Neuroscience
   term: Psychology and Neuroscience
 - id: Religious Studies
   term: Religious Studies
-- id: Research & Engineering  Ctr for Unmanned Vehicles (RECUV)
-  term: Research & Engineering  Ctr for Unmanned Vehicles (RECUV)
-- id: Research & Innovation Office
-  term: Research & Innovation Office
+- id: Renewable & Sustainable Energy Institute
+  term: Renewable & Sustainable Energy Institute
+- id: Research and Engineering Center for Unmanned Vehicles (RECUV)
+  term: Research and Engineering Center for Unmanned Vehicles (RECUV)
+- id: School of Education
+  term: School of Education
+- id: School of Education
+  term: School of Education
 - id: Sociology
   term: Sociology
 - id: Spanish and Portuguese
   term: Spanish and Portuguese
 - id: Speech, Language, and Hearing Sciences (SLHS)
   term: Speech, Language, and Hearing Sciences (SLHS)
-- id: STRATEGIC INIT, OFC OF
-  term: STRATEGIC INIT, OFC OF
-- id: Student Academic Services Center
-  term: Student Academic Services Center
+- id: Strings
+  term: Strings
 - id: Sustainability Innovation Lab
   term: Sustainability Innovation Lab
 - id: Technology, Cybersecurity and Policy Program
   term: Technology, Cybersecurity and Policy Program
+- id: The National Center for Women & Information Technology
+  term: The National Center for Women & Information Technology
 - id: Theatre and Dance
   term: Theatre and Dance
-- id: UMC-Administration
-  term: UMC-Administration
-- id: Undergraduate Education
-  term: Undergraduate Education
-- id: Undergraduate Enrichment Programs
-  term: Undergraduate Enrichment Programs
-- id: University of Colorado Foundation
-  term: University of Colorado Foundation
-- id: University of Colorado President
-  term: University of Colorado President
-- id: VC Student Affairs
-  term: VC Student Affairs
-- id: Veterans Affairs
-  term: Veterans Affairs
-- id: Wellness Administration
-  term: Wellness Administration
+- id: Thompson Jazz Studies Program
+  term: Thompson Jazz Studies Program
+- id: University Libraries
+  term: University Libraries
+- id: University of Colorado Museum of Natural History
+  term: University of Colorado Museum of Natural History
+- id: Voice and Opera
+  term: Voice and Opera
 - id: Women and Gender Studies
   term: Women and Gender Studies
+- id: Woodwinds
+  term: Woodwinds
+- id: Other
+  term: Other
