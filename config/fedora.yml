@@ -12,7 +12,7 @@ production:
   user: fedoraAdmin
   password: <%= ENV.fetch('FEDORA_PASSWORD', 'secret3') %>
   url: <%= ENV.fetch('SCHOLARS_FEDORA_URL', 'http://fcrepo:8080/fcrepo') %>/rest
-  base_path: /ir-prod
+  base_path: /production
   request: { timeout: 1000, open_timeout: 1000 }
 staging:
   user: fedoraAdmin
