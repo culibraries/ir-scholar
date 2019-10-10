@@ -22,6 +22,7 @@ pg_upgrade_*.log
 !/tmp/pids/.keep
 !/log/.keep
 !/tmp/.keep
+!/tmp/cache/.keep
 
 /node_modules
 /yarn-error.log
