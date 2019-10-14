@@ -72,7 +72,7 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
             resp=s.post(durl, data=json.dumps(rdata),headers=headers)
             soup = BeautifulSoup(resp.text,'lxml')
             new_url=soup.find("meta",  property="og:url")
-            print("New URL: ",new_url)
+            print("New URL: ",new_url["content"])
             #print(s.cookies.get_dict())
             #print(response.status_code)
             #print(response.cookies)
