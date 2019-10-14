@@ -63,5 +63,6 @@ EXPOSE 3000/tcp
 #ENTRYPOINT ["rails"]
 
 #bundle exec rails"]
-CMD ["bundle exec puma"]
+#CMD ["bundle exec puma"]
+CMD ["bundle exec puma -C config/puma/production.rb"
 #CMD ["/data/misc/neverstop"]
