@@ -6,7 +6,7 @@
 #
 default: &default
   pool: <%= ENV.fetch("DB_POOL") { 5 } %>
-  timeout: 5000
+  timeout: <%= ENV.fetch("DB_TIMEOUT") { 5000 } %>
 
 development:
   <<: *default
