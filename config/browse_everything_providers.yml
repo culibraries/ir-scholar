@@ -8,7 +8,7 @@
 
 <% if Rails.env.development? || Rails.env.test? %>
 file_system:
-  :home: "/Users/mast4541/github/cu/ir/develop/scholar/tmp_ir"
+  :home: "/Users/mast4541/github/cu/ir/develop/scholar/tmp"
 <% end %>
 # dropbox:
 #   :app_key: YOUR_DROPBOX_APP_KEY
