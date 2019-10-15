@@ -3,14 +3,6 @@
 module Scholar
     # Generated form for DefaultWork
     class GeneralWorkForm < Hyrax::Forms::WorkForm
-      # include Scholar::DefaultWorkFormBehavior
-      # include DefaultWorkFormBehavior
-      # extend ActiveSupport::Concern
-      #attr_accessor :current_user
-
-      # admin_visability=[]
-      # admin_visability << %i[keyword,embargo_reason,replaces] if current_user.admin?
-      
       self.terms = [:title, :creator, :academic_affiliation,:resource_type, :rights_statement,
         :conference_location,
         :conference_name,
@@ -46,8 +38,7 @@ module Scholar
         :visibility, :ordered_member_ids, :in_works_ids,
         :member_of_collection_ids, 
         :admin_set_id ]
-        # self.terms << admin_visability 
-
+       
     end
   end
  
