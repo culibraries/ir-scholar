@@ -1,6 +1,6 @@
-<% # app/views/records/edit_fields/_academic_affiliation.html.erb %>
-<% if f.object.multiple? key %>
-    <%= f.input :academic_affiliation, as: :multi_value,as: :select ,
+<% # app/views/records/edit_fields/_academic_affiliation.html.erb  %>
+<% if f.object.multiple? key%>
+    <%= f.input :academic_affiliation, as: :multi_value_select ,
         collection: AcademicAffiliationService.select_all_options,
         include_blank: true,
         input_html: { class: 'form-control'}
