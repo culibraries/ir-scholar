@@ -9,11 +9,21 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  #devise_for :users
-  devise_for :users, path_names: { sign_in: 'auth/saml'}, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
-  devise_scope :user do
-    get 'users/auth/saml', to: 'users/omniauth_authorize#passthru', defaults: { provider: :saml }, as: 'new_cu_session'
+  # Depending on environment - SAML integration for :users
+  if Rails.env.production?
+    devise_for :users, path_names: { sign_in: 'auth/saml'}, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
+    devise_scope :user do
+      get 'users/auth/saml', to: 'users/omniauth_authorize#passthru', defaults: { provider: :saml }, as: 'new_cu_session'
+    end
+
+  else 
+    devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
+    devise_scope :user do
+      get 'users/auth/saml', to: 'users/omniauth_authorize#passthru', defaults: { provider: :saml }, as: 'new_cu_session'
+    end
+
   end
+
    
   mount Hydra::RoleManagement::Engine => '/'
 
