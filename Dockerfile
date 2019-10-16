@@ -29,10 +29,10 @@ RUN mkdir -p /opt/fits && \
 
 ENV PATH="/opt/fits/fits-1.0.5:${PATH}"
 # Python2 setup
-RUN apt install -y python-pip
-RUN pip install --no-cache-dir -r requirements.txt
-RUN rm requirements.txt
-
+RUN apt-get install -y python-pip
+#RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install boto3==1.9.250
+RUN pip install requests==2.22.0
 #COPY ./neverstop /neverstop
 RUN mkdir /data
 WORKDIR /data
