@@ -3,7 +3,7 @@ Rails.application.configure do
   config.serve_static_assets = true
   # CU Boulder Additions
 
-  config.active_job.queue_adapter = :inline
+  config.active_job.queue_adapter = :sidekiq
 
   # Code is not reloaded between requests.
   
