@@ -260,7 +260,20 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-
+  #idp_sso_target_url: 'https://fedauth-test.colorado.edu/idp/profile/SAML2/Redirect/SSO',
+  config.omniauth :saml,
+  idp_cert: ENV.fetch('IDP_CERT_PEM', 'fakeCERT'),
+  idp_sso_target_url: "https://fedauth.colorado.edu/idp/profile/SAML2/Redirect/SSO",
+  issuer:  'https://test-scholar.colorado.edu/users/auth/saml',
+  private_key: ENV.fetch('SP_KEY_PEM', 'fakeKey'),
+  certificate: ENV.fetch('SP_CERT_PEM', 'fakeCERT'),
+  uid_attribute: 'urn:oid:0.9.2342.19200300.100.1.1',
+  request_attributes: [
+    { :name => 'email', :name_format => 'urn:oid:0.9.2342.19200300.100.1.3', :friendly_name => 'Email address' },
+    { :name => 'name', :name_format => 'urn:oid:2.16.840.1.113730.3.1.241', :friendly_name => 'Full name' },
+    { :name => 'first_name', :name_format => 'urn:oid:2.5.4.42', :friendly_name => 'Given name' },
+    { :name => 'last_name', :name_format => 'urn:oid:2.5.4.4', :friendly_name => 'Family name' }
+  ]
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
