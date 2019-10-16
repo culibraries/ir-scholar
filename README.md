@@ -2,7 +2,15 @@
 
 Samvera Hyrax application for the deployment to k8s cluster.
 
+### Branch Management
 
+     <feature branch> --> develop --> release --> master
+     
+     `develop` is used for local development (SAML not integrated)
+     `release` includes SAML --> Testing Branch
+     `master` production Branch - Requires PR to merge to master
+     
+ 
 ### Setup Development Environment
 
 1. Java 1.8
