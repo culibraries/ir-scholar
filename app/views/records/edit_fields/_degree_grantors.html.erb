@@ -1,0 +1,14 @@
+<% # app/views/records/edit_fields/_degree_grantors.html.erb %>
+<% @default_value= "http://id.loc.gov/authorities/names/n50000485" %>
+<% if f.lookup_action == "edit" %>
+    <%= f.input :degree_grantors, as: :select,
+    collection: DegreeGrantorsService.select_all_options,
+    include_blank: true,
+    input_html: { class: 'form-control' } %>
+<% else %>
+    <%= f.input :degree_grantors, as: :select,
+    collection: DegreeGrantorsService.select_all_options,
+    include_blank: true,
+    selected: @default_value,
+    input_html: { class: 'form-control' } %>
+<% end %>

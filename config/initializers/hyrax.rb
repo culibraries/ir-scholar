@@ -1,6 +1,28 @@
 Hyrax.config do |config|
-  # Injected via `rails g hyrax:work DefaultWork`
-  config.register_curation_concern :default_work
+  
+  
+  # Injected via `rails g hyrax:work GraduateThesisOrDissertation`
+  config.register_curation_concern :graduate_thesis_or_dissertation
+  # Injected via `rails g hyrax:work UndergraduateHonorsThesis`
+  config.register_curation_concern :undergraduate_honors_thesis
+  # Injected via `rails g hyrax:work Article`
+  config.register_curation_concern :article
+  # Injected via `rails g hyrax:work Dataset`
+  config.register_curation_concern :dataset
+  # Injected via `rails g hyrax:work Presentation`
+  config.register_curation_concern :presentation
+  # Injected via `rails g hyrax:work ConferenceProceeding`
+  config.register_curation_concern :conference_proceeding
+  # Injected via `rails g hyrax:work Book`
+  config.register_curation_concern :book
+  # Injected via `rails g hyrax:work BookChapter`
+  config.register_curation_concern :book_chapter
+  # Injected via `rails g hyrax:work Report`
+  config.register_curation_concern :report
+  # Injected via `rails g hyrax:work Default`
+  config.register_curation_concern :default
+  
+  
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
   # @note there are magical roles as defined in Hyrax::RoleRegistry::MAGIC_ROLES
@@ -24,7 +46,7 @@ Hyrax.config do |config|
   # config.rendering_predicate = ::RDF::DC.hasFormat
 
   # Email recipient of messages sent via the contact form
-  # config.contact_email = "repo-admin@example.org"
+  config.contact_email = ENV['EMAIL_USERNAME']
 
   # Text prefacing the subject entered in the contact form
   # config.subject_prefix = "Contact form:"
@@ -106,7 +128,7 @@ Hyrax.config do |config|
 
   # Location autocomplete uses geonames to search for named regions
   # Username for connecting to geonames
-  # config.geonames_username = ''
+  # config.geonames_username = 'libnotify'
 
   # Should the acceptance of the licence agreement be active (checkbox), or
   # implied when the save button is pressed? Set to true for active
@@ -120,7 +142,7 @@ Hyrax.config do |config|
 
   # How many rows of items should appear on the work show view?
   # The default is 10
-  # config.show_work_item_rows = 10
+  config.show_work_item_rows = 20
 
   # Enable IIIF image service. This is required to use the
   # IIIF viewer enabled show page
@@ -220,7 +242,7 @@ Hyrax.config do |config|
   # config.fits_message_length = 5
 
   # ActiveJob queue to handle ingest-like jobs
-  # config.ingest_queue_name = :default
+  config.ingest_queue_name = :ingest
 
   ## Attributes for the lock manager which ensures a single process/thread is mutating a ore:Aggregation at once.
   # How many times to retry to acquire the lock before raising UnableToAcquireLockError

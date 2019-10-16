@@ -1,0 +1,21 @@
+<li class="recent-item">
+    <div class="row">
+      <div class="col-sm-12">
+        <span class="sr-only"><%= t('hyrax.homepage.recently_uploaded.document.title_label') %></span>
+        <h3>
+          <%= link_to [main_app, recent_document] do %>
+            <%= render_thumbnail_tag(recent_document, {width: 90}, {suppress_link: true}) + recent_document.to_s %>
+          <% end %>
+        </h3>
+        <p class="recent-field">
+          <span class="recent-label"><%= t('hyrax.homepage.featured_works.document.creator_label') %>:</span> <%= link_to_facet_list(recent_document.creator,'creator',t('hyrax.homepage.featured_works.document.creator_missing')) %>
+        </p>
+        <p class="recent-field">
+          <span class="recent-label"><%= t('hyrax.homepage.featured_works.document.subject_label') %>:</span> <%= link_to_facet_list(recent_document.subject, 'subject', t('hyrax.homepage.featured_works.document.subject_missing')) %>
+        </p>
+        <p class="recent-field">
+         <span class="recent-label"><%= t('hyrax.homepage.featured_works.document.resource_type_label') %>:</span> <%= link_to_facet_list(recent_document.resource_type,'resource_type',t('hyrax.homepage.featured_works.document.resource_type_missing')) %>
+        </p>
+      </div>
+    </div>
+</li>

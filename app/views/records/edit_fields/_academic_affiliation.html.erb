@@ -1,0 +1,14 @@
+<% # app/views/records/edit_fields/_academic_affiliation.html.erb  %>
+<% if f.object.model.class.to_s == "GraduateThesisOrDissertation" || f.object.model.class.to_s == "UndergraduateHonorsThesis" %>
+    <%= f.input :academic_affiliation, as: :select,
+        collection: AcademicAffiliationService.select_all_options,
+        include_blank: true,
+        input_html: { class: 'form-control' }
+    %>
+<% else %>
+    <%= f.input :academic_affiliation, as: :multi_value_select ,
+        collection: AcademicAffiliationService.select_all_options,
+        include_blank: true,
+        input_html: { class: 'form-control'}
+    %>
+<% end %>

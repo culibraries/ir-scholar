@@ -1,0 +1,6 @@
+<% # app/views/records/edit_fields/_degree_level.html.erb %>
+<%= f.input :degree_level, as: :select,
+    collection: DegreeLevelService.select_all_options,
+    include_blank: true,
+    input_html: { class: 'form-control' }
+%>

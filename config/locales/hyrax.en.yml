@@ -1,5 +1,17 @@
 ---
 en:
+  activefedora:
+    models:
+      default: "Other Scholarly Content"
+      article: "Article"
+      graduate_thesis_or_dissertation: "Graduate Thesis Or Dissertation"
+      undergraduate_honors_thesis: "Undergraduate Honors Thesis"
+      report: "Technical Reports and Working Papers"
+      dataset: "Data Set"
+      presentation: "Presentation"
+      conference_proceedings: "Conference Proceeding"
+      book: "Book"
+      book_chapter: "Book Chapter"
   blacklight:
     search:
       fields:
@@ -46,6 +58,29 @@ en:
           subject_tesim: Subject
           title_tesim: Title
   hyrax:
+    base:
+      show:
+        abstract: "Abstract"
+        degree_grantors: "Degree Grantor"
+        degree_level: "Degree Level"
+        contributor_advisor: "Advisor"
+        contributor_committeemember: "Committee Member"
+        graduation_year: "Commencement Year"
+        academic_affiliation: "Academic Affiliation"
+        rights_statement: "Rights Statement"
+        resource_type: "Resource Type"
+        last_modified: "Last Modified"
+        doi: "DOI"
+        in_series: "Series"
+    homepage:
+      featured_works:
+        document:
+          creator_label: "Creator"
+          creator_missing: "no creator specified"
+          subject_label: "Subject"
+          subject_missing: "no subject specified"
+          resource_type_label: "Resource Type"
+          resource_type_missing: "no resource type specified"
     account_name: My Institution Account Id
     directory:
       suffix: "@colorado.edu"
@@ -56,3 +91,60 @@ en:
     institution_name_full: University of Colorado Boulder
     product_name: CU Scholar
     product_twitter_handle: "@cublibraries"
+  simple_form:
+    hints:
+      defaults:
+        degree_grantors: "Organization granting the degree. This will usually be University of Colorado Boulder."
+        contributor_advisor: "The name of the Academic Advisor on this project. The name should be entered with the last name first: Smith, John Q."
+        contributor_committeemember: "The name(s) of Academic Committee Member(s) on this project. Enter one name per line, last name first: Smith, Joan Q."
+        academic_affiliation: "Academic Department/College/School/Unit at CU Boulder"
+        resource_type: "The general category of this resource (e.g. Masters Thesis, dissertation )."
+        alt_title: "An alternative title for this item. This should be a title that helps identify the item or a version of the title that differs significantly from the full Title."
+        doi: "Digital Object Identifier for the resource. Example: https://doi.org/10.1000/182"
+        graduation_year: "The commencement year for the author of the Thesis or Dissertation."
+        abstract: "A brief description or summary of the item."
+        embargo_reason: "Embargo Reason"
+        additional_information: "Any additional information not covered in other metadata fields."
+        date_issued: "The date the resource was published or issued, such as when an article is published in a journal. Format: mm/dd/yyyy"
+        date_available: "The date the item is available to public in the repository, such as after an embargo lifts. Format: mm/dd/yyyy"
+        other_affiliation: "Organizational affiliation for the for the resource that is not an academic unit, department, or college."
+        peerreviewed: "Indicate whether the item has undergone formal peer review such as peer review used in the academic journal publishing process."
+        editor: "Name(s) of editor(s). Names should be entered with the last name first, e.g. 'Smith, Joan Q.' "
+        in_series: "Series of which this publication is a part."
+        bibliographic_citation: "The preferred citation for this item."
+    labels:
+      defaults:
+        degree_grantors: "Degree Grantors"
+        contributor_advisor: "Advisor"
+        contributor_committeemember: "Committee Member"
+        academic_affiliation: "Academic Affiliation"
+        resource_type: "Resource Type"
+        rights_statement: "Rights Statement"
+        date_issued: "Date Issued"
+        degree_level: "Degree Level"
+        alt_title: "Alternative Title"
+        doi: "DOI"
+        identifier: "Identifier"
+        bibliographic_citation: "Citation"
+        embargo_reason: "Reason for Embargo"
+        graduation_year: "Commencement Year"
+        abstract: "Abstract or Summary"
+        degree_name: "Degree Name"
+        embargo_reason: "Embargo Reason"
+        additional_information: "Additional Information"
+        date_available: "Date Available"
+        other_affiliation: "Non-Academic Affiliation"
+        peerreviewed: "Peer Reviewed"
+        editor: "Editor"
+        in_series: "Series"
+        conference_name: "Conference Name"
+        conference_location: "Conference Location"
+        related_url: "Related URL"
+        based_near: "Location"
+        is_referenced_by: "Referenced By"
+        isbn: "ISBN"
+        issn: "ISSN" 
+        has_journal: "Journal Title"
+        has_number: "Journal Issue/Number"
+        has_volume: "Journal Volume"
+

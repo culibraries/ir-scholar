@@ -8,10 +8,12 @@
 /.bundle
 
 # Ignore the default SQLite database.
-#/db/*.sqlite3
+/db/*.sqlite3
 /db/*.sqlite3-journal
 /db/postgres
 pg_upgrade_*.log
+
+.git
 
 # Ignore all logfiles and tempfiles.
 /tmp/pids/*
@@ -20,6 +22,7 @@ pg_upgrade_*.log
 !/tmp/pids/.keep
 !/log/.keep
 !/tmp/.keep
+!/tmp/cache/.keep
 
 /node_modules
 /yarn-error.log

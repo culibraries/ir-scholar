@@ -1,0 +1,9 @@
+terms:
+  - id: "http://id.loc.gov/authorities/names/n50000485"
+    term: "University of Colorado Boulder"
+    active: true
+    admin_only: false
+  - id: "Other"
+    term: "Other"
+    active: true
+    admin_only: false

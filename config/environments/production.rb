@@ -3,17 +3,19 @@ Rails.application.configure do
   config.serve_static_assets = true
   # CU Boulder Additions
 
-  config.active_job.queue_adapter = :inline
+  config.active_job.queue_adapter = :sidekiq
 
   # Code is not reloaded between requests.
+  
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
+  
   config.eager_load = true
-
+  
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
@@ -26,7 +28,7 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   #config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-  OmniAuth.config.failure_raise_out_environments = ['development', 'staging', 'production']
+
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
@@ -69,6 +71,15 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: ENV['EMAIL_HOST'],
+    port: ENV['EMAIL_PORT'],
+    user_name: ENV['EMAIL_USERNAME'],
+    password: ENV['EMAIL_PASSWORD'],
+    enable_starttls_auto: true
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
