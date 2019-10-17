@@ -28,7 +28,10 @@ class Report < ActiveFedora::Base
   property :in_series, predicate: ::RDF::URI.new('http://lsdis.cs.uga.edu/projects/semdis/opus#in_series') do |index|
     index.as :stored_searchable
   end
-  property :embargo_reason, predicate: ::RDF::Vocab::DC.accessRights, multiple: false 
+  property :embargo_reason, predicate: ::RDF::Vocab::DC.accessRights, multiple: false do |index|
+    index.as :stored_searchable
+  end
+
     
   #error maybe
   # property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|

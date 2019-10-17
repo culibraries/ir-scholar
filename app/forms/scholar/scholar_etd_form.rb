@@ -25,7 +25,7 @@ module Scholar
         :visibility_during_lease, :lease_expiration_date, :visibility_after_lease,
         :visibility, :ordered_member_ids, :in_works_ids,
         :member_of_collection_ids, 
-        :admin_set_id, :replaces]
+        :admin_set_id, :replaces,:embargo_reason]
       self.required_fields = [:title, :creator,:academic_affiliation, 
         :resource_type, :degree_level,:graduation_year, :rights_statement]
       

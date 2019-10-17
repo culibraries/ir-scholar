@@ -40,7 +40,9 @@ class UndergraduateHonorsThesis < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
   
-  property :embargo_reason, predicate: ::RDF::Vocab::DC.accessRights, multiple: false 
+  property :embargo_reason, predicate: ::RDF::Vocab::DC.accessRights, multiple: false do |index|
+    index.as :stored_searchable
+  end
   
   #Common
   property :abstract, predicate: ::RDF::Vocab::DC.abstract do |index|
