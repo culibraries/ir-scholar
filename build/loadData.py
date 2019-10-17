@@ -43,11 +43,11 @@ def transformData(itm):
         data['graduate_thesis_or_dissertation']['degree_level']="Dissertation"
         data['graduate_thesis_or_dissertation']['degree_year']=itm['publication_date'].split('-')[0]
         data['graduate_thesis_or_dissertation']['degree_year']=default_rights_statement
-        data['graduate_thesis_or_dissertation']['uploaded_files[]']="/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
-        data['graduate_thesis_or_dissertation']["selected_files[0][url]"]="/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
-        data['graduate_thesis_or_dissertation']["selected_files[0][file_name]"]="payForPlayShirkingInTheNfl.pdf"
-        data['graduate_thesis_or_dissertation']["selected_files[0][file_size]"]:"484898"
-        data['graduate_thesis_or_dissertation']["selected_files[]"]="/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
+        # data['graduate_thesis_or_dissertation']['uploaded_files[]']="/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
+        # data['graduate_thesis_or_dissertation']["selected_files[0][url]"]="/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
+        # data['graduate_thesis_or_dissertation']["selected_files[0][file_name]"]="payForPlayShirkingInTheNfl.pdf"
+        # data['graduate_thesis_or_dissertation']["selected_files[0][file_size]"]:"484898"
+        # data['graduate_thesis_or_dissertation']["selected_files[]"]="/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
     return data
     
 def loadItems(work_type="graduate_thesis_or_dissertations"):
