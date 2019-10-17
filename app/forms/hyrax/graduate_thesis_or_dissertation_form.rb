@@ -9,8 +9,9 @@ module Hyrax
     self.terms -=[:contributor]
 
     def self.multiple?(field)
-      if [:academic_affiliation, :resource_type,:language].include? field.to_sym
+      if [:academic_affiliation, :resource_type].include? field.to_sym
         false
+        #,:language
       else
         super
       end
@@ -20,7 +21,7 @@ module Hyrax
       attrs = super
       attrs[:academic_affiliation] = Array(attrs[:academic_affiliation]) if attrs[:academic_affiliation]
       attrs[:resource_type] = Array(attrs[:resource_type]) if attrs[:resource_type]
-      attrs[:language] = Array(attrs[:language]) if attrs[:language]
+      # attrs[:language] = Array(attrs[:language]) if attrs[:language]
       attrs
     end
 
@@ -30,8 +31,8 @@ module Hyrax
     def resource_type
       super.first || ""
     end
-    def language
-      super.first || ""
-    end
+    # def language
+    #   super.first || ""
+    # end
   end
 end
