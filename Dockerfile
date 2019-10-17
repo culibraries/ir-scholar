@@ -28,11 +28,6 @@ RUN mkdir -p /opt/fits && \
   cd /opt && unzip fits-1.0.5.zip -d /opt/fits && rm fits-1.0.5.zip  && chmod +X /opt/fits/fits-1.0.5/fits.sh
 
 ENV PATH="/opt/fits/fits-1.0.5:${PATH}"
-# Python2 setup
-RUN apt-get install -y python-pip
-#RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install boto3==1.9.250
-RUN pip install requests==2.22.0
 #COPY ./neverstop /neverstop
 RUN mkdir /data
 WORKDIR /data
@@ -41,6 +36,11 @@ COPY . /data/
 #ADD Gemfile /data/Gemfile
 #ADD Gemfile.lock /data/Gemfile.lock
 #RUN mkdir /data/build
+
+# Python2 setup
+RUN apt install -y python-pip
+RUN pip install --no-cache-dir -r requirements.txt
+
 
 ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}
