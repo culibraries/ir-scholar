@@ -18,6 +18,19 @@ headers={'Content-Type': 'application/json'}
 
 s = requests.session()
 
+def deep_get(_dict, keys, default=None):
+    """
+    Deep get on python dictionary. Key is in dot notation.
+    Returns value if found. Default returned if not found.
+    Default can be set to another deep_get function.
+    """
+    keys=keys.split('.')
+    def _reducer(d, key):
+        if isinstance(d, dict):
+            return d.get(key, default)
+        return default
+    return reduce(_reducer, keys, _dict)
+
 def login():
     rep = s.get("{0}/users/sign_in".format(base_url))
     soup = BeautifulSoup(rep.text,'lxml')
@@ -43,13 +56,28 @@ def transformData(itm):
         data['graduate_thesis_or_dissertation']['degree_level']="Dissertation"
         data['graduate_thesis_or_dissertation']['degree_year']=itm['publication_date'].split('-')[0]
         data['graduate_thesis_or_dissertation']['degree_year']=default_rights_statement
-        # data['graduate_thesis_or_dissertation']['uploaded_files[]']="/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
+        key=deep_get(itm, "data_files.s3.processed.key")
+        bucket=deep_get(itm, "data_files.s3.processed.bucket")
+        additional_files=deep_get(itm, "data_files.s3.processed.additional_files")
+        if key:
+            data['graduate_thesis_or_dissertation']['uploaded_files[]']=[]
+        else:
+            # Need to opt
+            data['graduate_thesis_or_dissertation']['uploaded_files[]']=['7']
+        #"/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
         # data['graduate_thesis_or_dissertation']["selected_files[0][url]"]="/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
         # data['graduate_thesis_or_dissertation']["selected_files[0][file_name]"]="payForPlayShirkingInTheNfl.pdf"
         # data['graduate_thesis_or_dissertation']["selected_files[0][file_size]"]:"484898"
         # data['graduate_thesis_or_dissertation']["selected_files[]"]="/Users/mast4541/github/cu/ir/develop/scholar/tmp/uploads/hyrax/uploaded_file/file/10/payForPlayShirkingInTheNfl.pdf"
     return data
-    
+
+def downloadFromS3(key,bucket,dataDir='{0}/tmp/uploads/hyrax/uploaded_file/file/'.format(app_dir)):
+    s3 = boto3.client('s3')
+    filename="{0}/{1}/{2}".format(dtaDir,"100",key.split('/')[-1])
+    with open(filename, 'wb') as f:
+        s3.download_fileobj(bucket , key, f)
+    return filename
+
 def loadItems(work_type="graduate_thesis_or_dissertations"):
     login()
     req=requests.get(api_url)
