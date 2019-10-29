@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/samvera/hydra-derivatives.git
+  revision: f781d112e05155c90d3de9c6bc05308864ecb1cf
+  specs:
+    hydra-derivatives (3.5.0)
+      active-fedora (>= 11.3.1, < 14)
+      active_encode (~> 0.1)
+      activesupport (>= 4.0, < 6)
+      addressable (~> 2.5)
+      deprecation
+      mime-types (> 2.0, < 4.0)
+      mini_magick (>= 3.2, < 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -284,14 +297,6 @@ GEM
     hydra-core (10.6.2)
       hydra-access-controls (= 10.6.2)
       railties (>= 4.0.0, < 6)
-    hydra-derivatives (3.4.2)
-      active-fedora (>= 11.3.1, < 13)
-      active_encode (~> 0.1)
-      activesupport (>= 4.0, < 6)
-      addressable (~> 2.5)
-      deprecation
-      mime-types (> 2.0, < 4.0)
-      mini_magick (>= 3.2, < 5)
     hydra-editor (4.0.2)
       active-fedora (>= 9.0.0)
       almond-rails (~> 0.1)
@@ -778,7 +783,7 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.6)
   fcrepo_wrapper
-  hydra-derivatives (= 3.4.2)
+  hydra-derivatives!
   hydra-role-management
   hyrax (= 2.5.1)
   jbuilder (~> 2.5)

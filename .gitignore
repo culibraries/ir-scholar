@@ -28,6 +28,8 @@ pg_upgrade_*.log
 
 coverage/*
 
+__pycache__
+
 #/build
 # Ignore local overrides
 docker-compose.override.example.yml
