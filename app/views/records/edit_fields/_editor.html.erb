@@ -1,0 +1,9 @@
+<% # app/views/records/edit_fields/_editor.html.erb %>
+<%= f.input key,
+  as: :multi_value,
+  input_html: {
+    class: 'form-control',
+    data: { 'autocomplete-url' => "/authorities/search/local/advisors",
+      'autocomplete' => key }
+  } ,
+  required: f.object.required?(key) %>

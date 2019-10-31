@@ -23,3 +23,4 @@
 //= require_tree .
 //= require hyrax
 
+//= require zizia/application.js

@@ -7,7 +7,8 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
-
+  validates :date_issued, format: { with: /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/ ,
+            message:'Date Availble format: yyyy-mm-dd '}
   validates :title, presence: { message: 'Your work must have a title.' }
 
   # ETD 
