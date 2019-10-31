@@ -53,7 +53,6 @@ module Zizia
     attr_accessor :metadata_mapper_class
 
     def initialize
-      puts "HHHHHHHHHHHHHHHHHHHHHHHHH"
       self.metadata_mapper_class = Zizia::HyraxBasicMetadataMapper
     end
   end
