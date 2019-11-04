@@ -13,7 +13,15 @@ a:link, a:visited { color: #0277BD; transition: background-color 0.25s ease, bor
 a:hover { color: #B71C1C; text-decoration-color: rgba(183, 28, 28, 0.65); -webkit-text-decoration-color: rgba(183, 28, 28, 0.65); }
 a:active { color: #B71C1C; text-decoration-color: rgba(183, 28, 28, 0.65); -webkit-text-decoration-color: rgba(183, 28, 28, 0.65); }
 
+
 /** Branding styles */
+body.dashboard {
+    padding-top:93px;
+}
+.btn {
+    white-space: nowrap !important;
+}
+
 #print-header { display: none; }
 
 .banner-white .header-wrapper, header.white { background: #fff; color: #111111; }
