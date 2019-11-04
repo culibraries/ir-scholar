@@ -1,16 +1,13 @@
 #This file is in the order of `ModelName: "Admin Set Name"`
 #If changes are being made to this file, please follow this order
 
-Article: "Article"
-GraduateThesisOrDissertation: "Graduate Thesis Or Dissertation"
-UndergraduateHonorsThesis: "Undergraduate Honors Thesis"
-Dataset: "Dataset"
-Presentation: "Presentation"
-ConferenceProceedings: "Conference Proceedings"
+nv935286k: "Article"
+k643b116n: "Graduate Thesis Or Dissertation"
+m326m172d: "Undergraduate Honors Thesis"
+j6731378s: "Dataset"
+0p0966899: "Presentation"
+c534fn941: "Conference Proceedings"
 Default: "Default"
-Book: "Book"
-BookChapter: "Book Chapter"
-Reports: "Reports"
-
-
-
+dn39x152w: "Book"
+pr76f341v: "Book Chapter"
+j098zb08p: "Reports"
