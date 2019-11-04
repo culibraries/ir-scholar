@@ -45,4 +45,5 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
   #mount Bulkrax::Engine, at: '/'
+  mount Zizia::Engine => '/'
 end
