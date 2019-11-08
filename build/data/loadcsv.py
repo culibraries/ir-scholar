@@ -183,6 +183,7 @@ def transform(itm):
     #data_row['date_available'] = itm["publication_date"].split(' ')[0]
     data_row['date_issued'] = itm["publication_date"].split(' ')[0]
     data_row['doi'] = itm['doi']
+    data_row['degree_name'] = itm['degree_name']
     data_row['peerreviewed'] = itm['peer_reviewed']
     data_row['replaces'] = replaces(itm)
     try:
@@ -199,11 +200,11 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
     data = req.json()
     csv_data = []
     error_data = []
-    for itm in data['results'][:10]:
+    for itm in data['results'][10:13]:
         try:
-            data = transform(itm)
-            csv_data.append(data)
-            # print(data)
+            #data = transform(itm)
+            csv_data.append(transform(itm))
+            print(itm)
         except:
             error_data.append(itm)
     keys = csv_data[0].keys()

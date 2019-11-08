@@ -198,7 +198,7 @@ module Zizia
       end
       # CU Boulder Overide
       def cuboulder_fields
-        [:abstract,:academic_affiliation,:additional_information,:alt_title,:contributor_advisor,
+        [ :degree_name,:abstract,:academic_affiliation,:additional_information,:alt_title,:contributor_advisor,
           :contributor_committeemember,:date_available,:date_issued,:degree_grantors,:degree_level,
           :doi,:embargo_reason,:graduation_year, :peerreviewed,:replaces,:language,:admin_set_id,
         ]
