@@ -94,4 +94,5 @@ end
 
 gem 'riiif', '~> 2.0'
 
-gem 'zizia', git: 'https://github.com/curationexperts/zizia.git'
+#gem 'zizia', git: 'https://github.com/curationexperts/zizia.git'
+gem 'zizia', git: 'https://github.com/culibraries/zizia.git'
