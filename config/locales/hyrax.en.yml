@@ -121,6 +121,7 @@ en:
         resource_type: "Resource Type"
         rights_statement: "Rights Statement"
         date_issued: "Date Issued"
+        date_created: "Date Created"
         degree_level: "Degree Level"
         alt_title: "Alternative Title"
         doi: "DOI"
