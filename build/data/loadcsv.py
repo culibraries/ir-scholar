@@ -199,7 +199,7 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
     data = req.json()
     csv_data = []
     error_data = []
-    for itm in data['results'][:10]:
+    for itm in data['results'][10:20]:
         try:
             data = transform(itm)
             csv_data.append(data)
