@@ -208,13 +208,13 @@ module Zizia
           Rails.logger.info "[zizia] event: record_created, batch_id: #{batch_id}, record_id: #{created.id}, collection_id: #{collection_id}, record_title: #{attrs[:title]&.first}"
           csv_import_detail.success_count += 1
           # CU Boulder export of new generated URL and use Replaces to generate a map from Bepress to Samvera redirects
-          open(Rails.root.join('tmp',"batch_#{batch_id}_processed.out"), 'a') do |f|
+          open(Rails.root.join('tmp/load_results',"load_batch#{batch_id}_processed.out"), 'a') do |f|
             new_url = work_url(created.id,attrs[:admin_set_id])
             f << "#{batch_id} , #{created.id} , #{new_url} , #{attrs[:replaces]} , #{attrs[:title]&.first} \n"
           end
         else
           # Log Errors for batch import
-          open(Rails.root.join('tmp',"#{batch_id}_errors.out"), 'a') do |f|
+          open(Rails.root.join('tmp/load_results',"load_batch#{batch_id}_errors.out"), 'a') do |f|
             f << "=========================================\n"
             created.errors.each do |attr, msg|
               Rails.logger.error "[zizia] event: validation_failed, batch_id: #{batch_id}, collection_id: #{collection_id}, attribute: #{attr.capitalize}, message: #{msg}, record_title: record_title: #{attrs[:title] ? attrs[:title] : attrs}"
