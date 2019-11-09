@@ -70,6 +70,7 @@ en:
         rights_statement: "Rights Statement"
         resource_type: "Resource Type"
         last_modified: "Last Modified"
+        date_issued: "Date Issued"
         doi: "DOI"
         in_series: "Series"
     homepage:
@@ -94,7 +95,7 @@ en:
   simple_form:
     hints:
       defaults:
-        degree_grantors: "Organization granting the degree. This will usually be University of Colorado Boulder."
+        degree_grantors: "Organization granting the resource. This will usually be University of Colorado Boulder."
         contributor_advisor: "The name of the Academic Advisor on this project. The name should be entered with the last name first: Smith, John Q."
         contributor_committeemember: "The name(s) of Academic Committee Member(s) on this project. Enter one name per line, last name first: Smith, Joan Q."
         academic_affiliation: "Academic Department/College/School/Unit at CU Boulder"
@@ -105,7 +106,7 @@ en:
         abstract: "A brief description or summary of the item."
         embargo_reason: "Embargo Reason"
         additional_information: "Any additional information not covered in other metadata fields."
-        date_issued: "The date the resource was published or issued, such as when an article is published in a journal. Format: yyyy-mm-dd"
+        date_issued: "The date the resource was published or awarded, such as when an article is published in a journal. Format: yyyy-mm-dd"
         date_available: "The date the item is available to public in the repository, such as after an embargo lifts. Format: yyyy-mm-dd"
         other_affiliation: "Organizational affiliation for the for the resource that is not an academic unit, department, or college."
         peerreviewed: "Indicate whether the item has undergone formal peer review such as peer review used in the academic journal publishing process."
@@ -114,13 +115,15 @@ en:
         bibliographic_citation: "The preferred citation for this item."
     labels:
       defaults:
-        degree_grantors: "Degree Grantors"
+        degree_grantors: "Degree Grantor"
+        degree_grantors_u: "Granting Institution"
         contributor_advisor: "Advisor"
         contributor_committeemember: "Committee Member"
         academic_affiliation: "Academic Affiliation"
         resource_type: "Resource Type"
         rights_statement: "Rights Statement"
         date_issued: "Date Issued"
+        date_issued_u: "Date Awarded"
         date_created: "Date Created"
         degree_level: "Degree Level"
         alt_title: "Alternative Title"

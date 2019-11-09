@@ -194,28 +194,40 @@ def transform(itm):
     return data_row
 
 
+def writeCsvFile(csv_data, error_data, count):
+    now = datetime.now().isoformat().replace(':', '').split('.')[0]
+    keys = csv_data[0].keys()
+    with open('{0}_{1}_dataload_{2}.csv'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
+        dict_writer = csv.DictWriter(output_file, keys)
+        dict_writer.writeheader()
+        dict_writer.writerows(csv_data)
+    if error_data:
+        with open('{0}_{1}_error_{2}.json'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
+            output_file.wrie(json.dumps(error_data, indent=4))
+
+
 def loadItems(work_type="graduate_thesis_or_dissertations"):
     # login()
     req = requests.get(api_url)
     data = req.json()
     csv_data = []
     error_data = []
-    for itm in data['results'][10:13]:
+    count = 0
+    for itm in data['results'][40:55]:
         try:
             #data = transform(itm)
             csv_data.append(transform(itm))
             print(itm)
         except:
             error_data.append(itm)
-    keys = csv_data[0].keys()
-    now = datetime.now().isoformat().replace(':', '').split('.')[0]
-    with open('{0}_{1}_dataload.csv'.format(now, defaults['resource type'].lower()), 'w') as output_file:
-        dict_writer = csv.DictWriter(output_file, keys)
-        dict_writer.writeheader()
-        dict_writer.writerows(csv_data)
-    if error_data:
-        with open('{0}_{1}_error.json'.format(now, defaults['resource type'].lower()), 'w') as output_file:
-            output_file.wrie(json.dumps(error_data, indent=4))
+        count += 1
+        if (count % 250 == 0 and count != 0):
+            writeCsvFile(csv_data, error_data, count)
+            csv_data = []
+            error_data = []
+    # Write remaining csv if data
+    if csv_data or error_data:
+        writeCsvFile(csv_data, error_data, count)
 
 
 if __name__ == "__main__":

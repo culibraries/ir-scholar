@@ -9,7 +9,9 @@ module Hyrax
     :graduation_year,:has_journal,:has_number,:has_volume,:identifier,:in_series,:is_referenced_by,:isbn,:issn,:keyword,
     :language,:license,:location,:other_affiliation,:peerreviewed,:publisher,:replaces,:resource_type,:rights_statement,
     to: :solr_document
-    
+    def name 
+      "BookChapterPresenter"
+    end
   end
 end
 

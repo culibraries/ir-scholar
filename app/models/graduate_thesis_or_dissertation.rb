@@ -15,6 +15,10 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   # property :department, predicate: ::RDF::URI.new("http://lib.colorado.edu/departments"), multiple: false do |index|
   #   index.as :stored_searchable, :facetable
   # end
+  property :degree_name, predicate: ::RDF::URI.new('http://purl.org/ontology/bibo/ThesisDegree') do |index|
+    index.as :stored_searchable, :facetable
+  end
+  
   property :peerreviewed, predicate: ::RDF::URI('http://purl.org/ontology/bibo/peerReviewed'), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end

@@ -10,5 +10,8 @@ module Hyrax
     :language,:license,:location,:other_affiliation,:peerreviewed,:publisher,:replaces,:resource_type,:rights_statement,
     to: :solr_document
   end
+  def name 
+    "DefaultPresenter"
+  end
 end
 #:embargo_reason,:file_extent,:file_format,
