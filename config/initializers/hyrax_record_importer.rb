@@ -139,7 +139,8 @@ module Zizia
     # @param [String] filename
     # @return [String] a full pathname to the found file
     def find_file_path(filename)
-      filepath = Dir.glob("#{ENV['IMPORT_PATH']}/**/#{filename}").first
+      filepath="#{ENV['IMPORT_PATH']}/#{filename}"
+      #filepath = Dir.glob("#{ENV['IMPORT_PATH']}/#{filename}").first
       raise "Cannot find file #{filename}... Are you sure it has been uploaded and that the filename matches?" if filepath.nil?
       filepath
     end

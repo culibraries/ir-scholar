@@ -2,10 +2,12 @@ import csv
 import requests
 import json
 import re
+import logging
 from bs4 import BeautifulSoup
 from six.moves.html_parser import HTMLParser
 from functools import reduce
 from datetime import datetime
+
 
 now = datetime.now().isoformat().replace(':', '').split('.')[0]
 academic_affiliation_file = "academicAffiliationMap.csv"
@@ -14,7 +16,7 @@ academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
     csvfile, delimiter='|', skipinitialspace=True)]
 csvfile.close()
 
-api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"dissertation","abstract":{"$regex":"<sup>"}}}'
+api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"dissertation"}}&page_size=0'
 # base_url="http://localhost:3000"      #/concern/graduate_thesis_or_dissertations/new"
 headers = {'Content-Type': 'application/json'}
 csv_divider = "|~|"
@@ -27,7 +29,7 @@ csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor
 defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'rights statement': 'http://rightsstatements.org/vocab/InC/1.0/',
             'degree_grantors': 'http://id.loc.gov/authorities/names/n50000485',
-            'admin_set_id': 'qb98mf449',
+            'admin_set_id': 'k643b116n',
             'visibility': 'open',
             'resource type': 'Dissertation',
             'degree_level': 'Doctoral',
@@ -72,7 +74,8 @@ def clean_format_name(names, divider="|~|"):
             tmp.remove('')
         except:
             pass
-        newName.append("{0}, {1}".format(tmp[-1], " ".join(tmp[:-1])))
+        if tmp:
+            newName.append("{0}, {1}".format(tmp[-1], " ".join(tmp[:-1])))
     return divider.join(newName)
 
 
@@ -163,17 +166,26 @@ def transform(itm):
     data_row = dict.fromkeys(csv_headers, '')
     data_row.update(defaults)
     data_row['title'] = itm['title']
+
     data_row['creator'] = clean_format_name(
         itm['authors'], divider=csv_divider)
-    data_row['contributor_advisor'] = clean_format_name(
-        ",".join(itm['advisors'][:1]), divider=csv_divider)
-    data_row['contributor_committeemember'] = clean_format_name(
-        ",".join(itm['advisors'][1:]), divider=csv_divider)
+    if itm['advisors']:
+        data_row['contributor_advisor'] = clean_format_name(
+            ",".join(itm['advisors'][:1]), divider=csv_divider)
+    else:
+        data_row['contributor_advisor'] = ''
+    if len(itm['advisors']) > 1:
+        data_row['contributor_committeemember'] = clean_format_name(
+            ",".join(itm['advisors'][1:]), divider=csv_divider)
+    else:
+        data_row['contributor_committeemember'] = ''
     data_row['abstract'] = clean_abstract_text(itm['abstract'])
     #data_row['date created'] = itm['publication_date'].split(' ')[0]
     #data_row['date_created'] = itm['publication_date'].split(' ')[0]
     data_row['subject'] = csv_divider.join(itm['keywords'])
     data_row['keyword'] = csv_divider.join(itm['keywords'])
+    if not data_row['keyword']:
+        data_row['keyword'] = 'keyword'
     data_row['academic_affiliation'] = academicAffiliation(itm)
     data_row['graduation_year'] = graduationYear(itm)
     data_row['license'] = itm['distribution_license']
@@ -187,8 +199,8 @@ def transform(itm):
     data_row['peerreviewed'] = itm['peer_reviewed']
     data_row['replaces'] = replaces(itm)
     try:
-        data_row['files'] = 'ableToDownload.pdf'
-        #data_row['files'] = getFiles(itm)
+        #data_row['files'] = 'ableToDownload.pdf'
+        data_row['files'] = getFiles(itm)
     except UnableToDownload:
         data_row['files'] = 'unableToDownload.pdf'
     return data_row
@@ -197,13 +209,13 @@ def transform(itm):
 def writeCsvFile(csv_data, error_data, count):
     now = datetime.now().isoformat().replace(':', '').split('.')[0]
     keys = csv_data[0].keys()
-    with open('{0}_{1}_dataload_{2}.csv'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
+    with open('csv_output/{0}_{1}_dataload_{2}.csv'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(csv_data)
     if error_data:
-        with open('{0}_{1}_error_{2}.json'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
-            output_file.wrie(json.dumps(error_data, indent=4))
+        with open('csv_output/{0}_{1}_error_{2}.json'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
+            output_file.write(json.dumps(error_data, indent=4))
 
 
 def loadItems(work_type="graduate_thesis_or_dissertations"):
@@ -213,12 +225,14 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
     csv_data = []
     error_data = []
     count = 0
-    for itm in data['results'][40:55]:
+    for itm in data['results']:
         try:
             #data = transform(itm)
             csv_data.append(transform(itm))
-            print(itm)
-        except:
+            # print(itm)
+        except Exception as e:
+            print(e)
+            logging.error('Error at %s', 'division', exc_info=e)
             error_data.append(itm)
         count += 1
         if (count % 250 == 0 and count != 0):
