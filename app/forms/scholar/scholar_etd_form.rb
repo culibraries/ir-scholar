@@ -11,6 +11,7 @@ module Scholar
         :contributor,
         :date_issued, 
         :abstract,
+        :degree_name,
         :degree_grantors,
         :publisher,
         :alt_title,

@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/curationexperts/zizia.git
+  remote: https://github.com/culibraries/zizia.git
   revision: 0eb66a5082faf45772110b8b8f6e24a1b74afb42
   specs:
     zizia (5.0.1)

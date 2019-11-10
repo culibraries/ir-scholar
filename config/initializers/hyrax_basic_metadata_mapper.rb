@@ -86,7 +86,21 @@ module Zizia
     def degree_level
       single_value('degree_level')
     end
-
+    def has_journal 
+      single_value('has_journal')
+    end
+    def has_number 
+      single_value('has_number')
+    end
+    def has_volume
+      single_value('has_volume')
+    end
+    def conference_location
+      single_value('conference_location')
+    end
+    def conference_name
+      single_value('conference_name')
+    end
     # We should accept visibility values that match the UI and transform them into
     # the controlled vocabulary term expected by Hyrax
     def visibility
@@ -184,10 +198,14 @@ module Zizia
       end
       # CU Boulder Overide
       def cuboulder_fields
-        [:abstract,:academic_affiliation,:additional_information,:alt_title,:contributor_advisor,
+        [ :degree_name,:abstract,:academic_affiliation,:additional_information,:alt_title,:contributor_advisor,
           :contributor_committeemember,:date_available,:date_issued,:degree_grantors,:degree_level,
-          :doi,:embargo_reason,:graduation_year, :peerreviewed,:replaces,:language,:admin_set_id]
+          :doi,:embargo_reason,:graduation_year, :peerreviewed,:replaces,:language,:admin_set_id,
+        ]
+        #  :editor,:has_journal,:has_number,:has_volume,:in_series,:is_referenced_by,:isbn,:issn,
+        #  :other_affiliation,:conference_location,:conference_name,:bibliographic_citation
+        #]
       end
-
+      
   end
 end

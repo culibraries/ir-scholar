@@ -1,7 +1,8 @@
 <%= presenter.attribute_to_html(:alt_title, label: t('simple_form.labels.defaults.alt_title') ,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:abstract ,label: t('hyrax.base.show.abstract'), html_dl: true) %>
 <%= presenter.attribute_to_html(:creator, render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:date_issued,label: t('simple_form.labels.defaults.date_issued') ,html_dl: true) %>
+<%= presenter.attribute_to_html(:date_issued,label: t('simple_form.labels.defaults.date_issued') ,html_dl: true) if presenter.name != "UndergraduateHonorsThesisPresenter" %>
+<%= presenter.attribute_to_html(:date_issued,label: t('simple_form.labels.defaults.date_issued_u') ,html_dl: true) if presenter.name == "UndergraduateHonorsThesisPresenter" %> 
 <%= presenter.attribute_to_html(:academic_affiliation,label: t('simple_form.labels.defaults.academic_affiliation'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:has_journal,label: t('simple_form.labels.defaults.has_journal'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:has_number,label: t('simple_form.labels.defaults.has_number'),render_as: :faceted, html_dl: true) %>
@@ -9,7 +10,8 @@
 <%= presenter.attribute_to_html(:contributor_advisor,label: t('hyrax.base.show.contributor_advisor'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:contributor_committeemember,label: t('hyrax.base.show.contributor_committeemember'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:degree_field,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:degree_grantors,render_as: :search_external_link, search_field: 'degree_grantors', label: t('simple_form.labels.defaults.degree_grantors'),html_dl: true)%>
+<%= presenter.attribute_to_html(:degree_grantors,render_as: :search_external_link, search_field: 'degree_grantors', label: t('simple_form.labels.defaults.degree_grantors'),html_dl: true) if presenter.name != "UndergraduateHonorsThesisPresenter"%>
+<%= presenter.attribute_to_html(:degree_grantors,render_as: :search_external_link, search_field: 'degree_grantors', label: t('simple_form.labels.defaults.degree_grantors_u'),html_dl: true) if presenter.name == "UndergraduateHonorsThesisPresenter"%>
 <%= presenter.attribute_to_html(:degree_level,label: t('hyrax.base.show.degree_level'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:graduation_year,label: t('hyrax.base.show.graduation_year'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:editor,render_as: :faceted, html_dl: true) %>
