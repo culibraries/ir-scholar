@@ -15,6 +15,7 @@ pg_upgrade_*.log
 
 .git
 dump.rdb
+build/data/csv_output/*.csv
 # Ignore all logfiles and tempfiles.
 /tmp/pids/*
 /log/*
