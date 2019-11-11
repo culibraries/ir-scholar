@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/string'
-
+require 'json'
+require 'rest-client'
 
 module Zizia
   class HyraxRecordImporter < RecordImporter
@@ -193,6 +194,18 @@ module Zizia
         base_url = ENV.fetch('ROOT_URL', 'http://localhost:3000')
         "#{base_url}/concern/#{url_section}/#{id}"
       end
+      def save_cybercom(context_key,front_end_url,samvera_url)
+        query= '.json?query={"filter":{"context_key":"' + context_key + '","front_end_url":"' + front_end_url + '"}}'
+        catUrl=ENV.fetch('SCHOLAR_CATALOG',"https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final")
+        url= catUrl + query
+        catlog_token=ENV.fetch('SCHOLAR_CATALOG_TOKEN','developmentTokenNotNeeded')
+        headers={"Content-Type"=>"application/json", "Authorization"=>"Token #{catlog_token}"}
+        response=RestClient.get(url)
+        record=JSON.parse(response)['results'][0]
+        record['samvera_url']=samvera_url
+        url = "#{catUrl}/#{record['_id']}.json"
+        response=RestClient.put(url,record.to_json ,headers=headers)
+      end
 
       # Create an object using the Hyrax actor stack
       # We assume the object was created as expected if the actor stack returns true.
@@ -209,13 +222,15 @@ module Zizia
           Rails.logger.info "[zizia] event: record_created, batch_id: #{batch_id}, record_id: #{created.id}, collection_id: #{collection_id}, record_title: #{attrs[:title]&.first}"
           csv_import_detail.success_count += 1
           # CU Boulder export of new generated URL and use Replaces to generate a map from Bepress to Samvera redirects
-          open(Rails.root.join('tmp/load_results',"load_batch#{batch_id}_processed.out"), 'a') do |f|
-            new_url = work_url(created.id,attrs[:admin_set_id])
+          new_url = work_url(created.id,attrs[:admin_set_id])
+          open(Rails.root.join('tmp',"load_batch#{batch_id}_processed.out"), 'a') do |f|
             f << "#{batch_id} , #{created.id} , #{new_url} , #{attrs[:replaces]} , #{attrs[:title]&.first} \n"
           end
+          replace= "#{attrs[:replaces]}"
+          save_cybercom(replace.split('|')[0],replace.split('|')[1],new_url)
         else
           # Log Errors for batch import
-          open(Rails.root.join('tmp/load_results',"load_batch#{batch_id}_errors.out"), 'a') do |f|
+          open(Rails.root.join('tmp',"load_batch#{batch_id}_errors.out"), 'a') do |f|
             f << "=========================================\n"
             created.errors.each do |attr, msg|
               Rails.logger.error "[zizia] event: validation_failed, batch_id: #{batch_id}, collection_id: #{collection_id}, attribute: #{attr.capitalize}, message: #{msg}, record_title: record_title: #{attrs[:title] ? attrs[:title] : attrs}"

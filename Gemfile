@@ -91,6 +91,7 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
 end
+gem 'rest-client'
 
 gem 'riiif', '~> 2.0'
 
