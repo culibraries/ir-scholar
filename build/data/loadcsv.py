@@ -17,6 +17,7 @@ academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
 csvfile.close()
 
 api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"dissertation"}}&page_size=0'
+#api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar.json?query={"filter":{"document_type":"dissertation"}}&page_size=0'
 # base_url="http://localhost:3000"      #/concern/graduate_thesis_or_dissertations/new"
 headers = {'Content-Type': 'application/json'}
 csv_divider = "|~|"
@@ -37,6 +38,10 @@ defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             }
 
 # resource type, Rights Statement, date created,
+# Test
+# 'admin_set_id':'qb98mf449',
+# PRod
+# 'admin_set_id': 'k643b116n',
 
 
 class Error(Exception):
