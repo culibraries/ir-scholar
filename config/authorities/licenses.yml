@@ -53,6 +53,9 @@ terms:
   - id: https://creativecommons.org/licenses/by-nc-nd/4.0/
     term: Creative Commons BY-NC-ND Attribution-NonCommercial-NoDerivs 4.0 International
     active: true
+  - id: http://creativecommons.org/licenses/by-nc-nd/4.0/
+    term: Creative Commons BY-NC-ND Attribution-NonCommercial-NoDerivs 4.0 International
+    active: true
   - id: https://creativecommons.org/licenses/by-nc-sa/4.0/
     term: Creative Commons BY-NC-SA Attribution-NonCommercial-ShareAlike 4.0 International
     active: true
