@@ -198,7 +198,7 @@ def transform(itm):
     data_row['identifier'] = itm['identifier']
     data_row['related url'] = itm['url']
     #data_row['date_available'] = itm["publication_date"].split(' ')[0]
-    data_row['date_issued'] = itm["publication_date"].split(' ')[0]
+    data_row['date_issued'] = itm["publication_date"].split('-')[0]
     data_row['doi'] = itm['doi']
     data_row['degree_name'] = itm['degree_name']
     data_row['peerreviewed'] = itm['peer_reviewed']
