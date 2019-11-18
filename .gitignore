@@ -17,6 +17,7 @@ dump.rdb
 pg_upgrade_*.log
 
 build/data/csv_output/*.csv 
+build/data/csv_output/dissertation/*.csv
 # Ignore all logfiles and tempfiles.
 /tmp/pids/*
 /log/*

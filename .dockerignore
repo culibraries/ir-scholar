@@ -6,7 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
-
+build/data/csv_output/dissertation/*.csv
+build/data/csv_output/*.csv
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
