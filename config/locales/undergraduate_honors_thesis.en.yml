@@ -6,3 +6,7 @@ en:
       undergraduate_honors_thesis:
         description: "Undergraduate honors theses"
         name: "Undergraduate Honors Thesis"
+  simple_form:
+    labels:
+      defaults:
+        date_issued_u: "Date Awarded"

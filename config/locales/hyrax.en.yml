@@ -73,6 +73,7 @@ en:
         date_issued: "Date Issued"
         doi: "DOI"
         in_series: "Series"
+        date_issued_u: "Date Awarded"
     homepage:
       featured_works:
         document:
