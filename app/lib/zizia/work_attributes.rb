@@ -26,7 +26,17 @@ module Zizia
     # Override to choose a different Work class
     def klass
       #byebug
-      GraduateThesisOrDissertation
+      wtype=ENV.fetch('WORK_TYPE')
+      #byebug
+      puts "HELLLLLLLOOOOOOOOOOOOOOOO"
+      if wtype=="GraduateThesisOrDissertation" then
+        model=GraduateThesisOrDissertation
+      elsif wtype=="UndergraduateHonorsThesis" then
+        model=UndergraduateHonorsThesis 
+      elsif wtype=="Article" then
+        model=Article
+      end
+      model
     end
   end
 end

@@ -16,7 +16,7 @@ academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
     csvfile, delimiter='|', skipinitialspace=True)]
 csvfile.close()
 
-api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"dissertation"}}&page_size=0'
+api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"thesis"}}&page_size=0'
 #api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar.json?query={"filter":{"document_type":"dissertation"}}&page_size=0'
 # base_url="http://localhost:3000"      #/concern/graduate_thesis_or_dissertations/new"
 headers = {'Content-Type': 'application/json'}
@@ -30,10 +30,10 @@ csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor
 defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'rights statement': 'http://rightsstatements.org/vocab/InC/1.0/',
             'degree_grantors': 'http://id.loc.gov/authorities/names/n50000485',
-            'admin_set_id': 'k643b116n',
+            'admin_set_id': 'm326m172d',
             'visibility': 'open',
-            'resource type': 'Dissertation',
-            'degree_level': 'Doctoral',
+            'resource type': 'Undergraduate Thesis',
+            'degree_level': '',
             'degree_grantors': 'http://id.loc.gov/authorities/names/n50000485'
             }
 
@@ -42,6 +42,8 @@ defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
 # 'admin_set_id':'qb98mf449',
 # PRod
 # 'admin_set_id': 'k643b116n',
+# undergrad m326m172d
+# test qb98mf449
 
 
 class Error(Exception):
@@ -192,7 +194,7 @@ def transform(itm):
     if not data_row['keyword']:
         data_row['keyword'] = 'keyword'
     data_row['academic_affiliation'] = academicAffiliation(itm)
-    data_row['graduation_year'] = graduationYear(itm)
+    #data_row['graduation_year'] = graduationYear(itm)
     data_row['license'] = itm['distribution_license']
     data_row['publisher'] = itm["publisher"]
     data_row['identifier'] = itm['identifier']
@@ -214,12 +216,12 @@ def transform(itm):
 def writeCsvFile(csv_data, error_data, count):
     now = datetime.now().isoformat().replace(':', '').split('.')[0]
     keys = csv_data[0].keys()
-    with open('csv_output/{0}_{1}_dataload_{2}.csv'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
+    with open('csv_output/{0}_{1}_dataload_{2}.csv'.format(now, defaults['resource type'].replace(' ', '_').lower(), count), 'w') as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(csv_data)
     if error_data:
-        with open('csv_output/{0}_{1}_error_{2}.json'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
+        with open('csv_output/{0}_{1}_error_{2}.json'.format(now, defaults['resource type'].replace(' ', '_').lower(), count), 'w') as output_file:
             output_file.write(json.dumps(error_data, indent=4))
 
 
@@ -230,23 +232,30 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
     csv_data = []
     error_data = []
     count = 0
+    grad = 0
+    undergrad = ['honr_theses', 'advert_ugrad',
+                 'comm_ugrad', 'journ_ugrad', 'media_ugrad']
     for itm in data['results']:
-        try:
-            #data = transform(itm)
-            csv_data.append(transform(itm))
-            # print(itm)
-        except Exception as e:
-            print(e)
-            logging.error('Error at %s', 'division', exc_info=e)
-            error_data.append(itm)
-        count += 1
-        if (count % 250 == 0 and count != 0):
-            writeCsvFile(csv_data, error_data, count)
-            csv_data = []
-            error_data = []
+        if itm['front_end_url'].split('/')[-2] in undergrad:
+            try:
+                #data = transform(itm)
+                csv_data.append(transform(itm))
+                # print(itm)
+            except Exception as e:
+                print(e)
+                logging.error('Error at %s', 'division', exc_info=e)
+                error_data.append(itm)
+            count += 1
+            if (count % 250 == 0 and count != 0):
+                writeCsvFile(csv_data, error_data, count)
+                csv_data = []
+                error_data = []
+        else:
+            grad += 1
     # Write remaining csv if data
     if csv_data or error_data:
         writeCsvFile(csv_data, error_data, count)
+    print("Grad:", grad)
 
 
 if __name__ == "__main__":
