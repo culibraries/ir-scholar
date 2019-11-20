@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from six.moves.html_parser import HTMLParser
 from functools import reduce
 from datetime import datetime
-
+from dateutil.parser import parse
 
 now = datetime.now().isoformat().replace(':', '').split('.')[0]
 academic_affiliation_file = "academicAffiliationMap.csv"
@@ -16,7 +16,7 @@ academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
     csvfile, delimiter='|', skipinitialspace=True)]
 csvfile.close()
 
-api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"thesis"}}&page_size=0'
+api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final-final.json?query={"filter":{"document_type":"thesis"}}&page_size=0'
 #api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar.json?query={"filter":{"document_type":"dissertation"}}&page_size=0'
 # base_url="http://localhost:3000"      #/concern/graduate_thesis_or_dissertations/new"
 headers = {'Content-Type': 'application/json'}
@@ -169,6 +169,15 @@ def replaces(itm):
     return "{0}|{1}".format(itm['context_key'], itm['front_end_url'])
 
 
+def pubDateFormat(itm):
+    try:
+        mydate = parse(itm["publication_date"])
+        value = mydate.strftime("%Y-%m-%d")
+    except:
+        value = ""
+    return value
+
+
 def transform(itm):
     data_row = dict.fromkeys(csv_headers, '')
     data_row.update(defaults)
@@ -200,7 +209,8 @@ def transform(itm):
     data_row['identifier'] = itm['identifier']
     data_row['related url'] = itm['url']
     #data_row['date_available'] = itm["publication_date"].split(' ')[0]
-    data_row['date_issued'] = itm["publication_date"].split(' ')[0]
+    # itm["publication_date"].split('-')[0]
+    data_row['date_issued'] = pubDateFormat(itm)
     data_row['doi'] = itm['doi']
     data_row['degree_name'] = itm['degree_name']
     data_row['peerreviewed'] = itm['peer_reviewed']
