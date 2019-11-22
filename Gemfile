@@ -11,7 +11,7 @@ gem 'hydra-derivatives', '3.4.2' # , git: 'https://github.com/samvera/hydra-deri
 
 gem 'hydra-role-management'
 gem 'qa'
-gem 'browse-everything'
+#gem 'browse-everything'
 gem 'sidekiq'
 gem 'mini_magick'
 
@@ -28,7 +28,8 @@ gem 'omniauth-saml', :git => 'https://github.com/culibraries/omniauth-saml.git'
 
 # Production servers
 group :production do
- gem 'mysql2', '~> 0.3.18'
+ #gem 'mysql2', '~> 0.3.18'
+  gem 'mysql2'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -78,7 +79,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.5.1'
+gem 'hyrax', '2.6.0'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
