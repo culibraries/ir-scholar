@@ -6,6 +6,14 @@ class Presentation < ActiveFedora::Base
   self.indexer = PresentationIndexer
   # Change this to restrict which works can be added as a child.
   # self.valid_child_concerns = []
+  validates :date_issued, :allow_blank => true, 
+    format: { with: /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))|([12]\d{3}-(0[1-9]|1[0-2]))|(^[0-9]{4}$)/, 
+    message: "Date format: yyyy-mm-dd, yyyy-mm, yyyy"
+  } 
+  validates :date_available, :allow_blank => true, 
+    format: { with: /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))|([12]\d{3}-(0[1-9]|1[0-2]))|(^[0-9]{4}$)/, 
+    message: "Date format: yyyy-mm-dd, yyyy-mm, yyyy"
+  } 
   validates :title, presence: { message: 'Your work must have a title.' }
 
   # validates :date_available, format: { with: /(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01])/([12]\d{3})/ ,
