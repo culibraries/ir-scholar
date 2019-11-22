@@ -839,7 +839,7 @@ DEPENDENCIES
   rsolr (>= 1.0)
   rspec-rails
   sass-rails (~> 5.0)
-  selenium-webdriver
+  selenium-webdriverdocker 
   sidekiq
   solr_wrapper (>= 0.3)
   spring

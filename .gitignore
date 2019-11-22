@@ -9,6 +9,7 @@
 
 __pycache__
 .pyc
+.log
 dump.rdb
 # Ignore the default SQLite database.
 /db/*.sqlite3

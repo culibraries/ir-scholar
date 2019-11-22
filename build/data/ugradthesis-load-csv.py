@@ -245,7 +245,7 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
     grad = 0
     undergrad = ['honr_theses', 'advert_ugrad',
                  'comm_ugrad', 'journ_ugrad', 'media_ugrad']
-    for itm in data['results']:
+    for itm in data['results'][789:795]:
         if itm['front_end_url'].split('/')[-2] in undergrad:
             try:
                 #data = transform(itm)

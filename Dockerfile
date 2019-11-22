@@ -36,7 +36,7 @@ COPY . /data/
 #ADD Gemfile /data/Gemfile
 #ADD Gemfile.lock /data/Gemfile.lock
 #RUN mkdir /data/build
-
+COPY build/image_magic/policy.xml /etc/ImageMagick-6/policy.xml
 # Python2 setup
 RUN apt install -y python-pip
 RUN pip install --no-cache-dir -r requirements.txt
