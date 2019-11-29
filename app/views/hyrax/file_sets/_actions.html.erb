@@ -1,4 +1,4 @@
-  <% if file_set.user_can_perform_any_action? %>
+ 
   <div class="btn-group">
     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button" id="dropdownMenu_<%= file_set.id %>" aria-haspopup="true" aria-expanded="false">
       <span class="sr-only"><%= t('.press_to') %> </span>
@@ -37,8 +37,23 @@
                     data: { label: file_set.id } %>
       </li>
     <% end %>
-
+    <script>
+    $.fn.exists = function () {
+    return this.length !== 0;
+    }
+    if ( $('.canonical-image').exists() ){
+      download_link=$('#file_download').attr('href');
+      tmp=download_link.split('/');
+      noid=tmp[tmp.length-1]
+      template='<div><h2 class="sr-only">Downloadable Content</h2> <img class="representative-media" alt="" role="presentation" src="' 
+      template= template + download_link + '?file=thumbnail">'
+      template = template + '<a target="_blank" id="file_download" data-label="' + noid
+      template = template + '" href="'+ download_link + '">Download PDF</a></div>'
+      $('.canonical-image').after(template)
+      $('.canonical-image').remove()
+    }
+    </script>
     </ul>
   </div>
-  <% end %>
+
 

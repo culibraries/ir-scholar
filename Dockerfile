@@ -62,6 +62,7 @@ RUN if [ "${RAILS_ENV}" = "production" ]; then \
   RAILS_ENV=$RAILS_ENV SCHOLARS_SECRET_KEY_BASE=temporary bundle exec rails assets:precompile; \
   fi
 
+RUN mv /data/public/assets/work-*.png /data/public/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png
 EXPOSE 3000/tcp
 
 #ENTRYPOINT ["rails"]
