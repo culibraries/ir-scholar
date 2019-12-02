@@ -16,7 +16,7 @@ academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
     csvfile, delimiter='|', skipinitialspace=True)]
 csvfile.close()
 
-api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final-final.json?query={"filter":{"document_type":"thesis"}}&page_size=0'
+api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"thesis"}}&page_size=0'
 #api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar.json?query={"filter":{"document_type":"dissertation"}}&page_size=0'
 # base_url="http://localhost:3000"      #/concern/graduate_thesis_or_dissertations/new"
 headers = {'Content-Type': 'application/json'}
@@ -32,7 +32,7 @@ defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'degree_grantors': 'http://id.loc.gov/authorities/names/n50000485',
             'admin_set_id': 'm326m172d',
             'visibility': 'open',
-            'resource type': 'Undergraduate Thesis',
+            'resource type': 'Undergraduate Honors Thesis',
             'degree_level': '',
             'degree_grantors': 'http://id.loc.gov/authorities/names/n50000485'
             }
@@ -131,6 +131,14 @@ def clean_abstract_text(html):
 
 
 def getFiles(itm):
+    query = '{"filter":{"front_end_url":"' + \
+        itm['front_end_url'] + '","context_key":"' + itm['context_key'] + '"}}'
+    url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final-final.json?query='
+    req = requests.get(url + query)
+    data = req.json()
+    if data['count'] == 1:
+        itm = data['results'][0]
+        print("update")
     files = []
     main_file = deep_get(itm, 'data_files.s3.processed.key', default=None)
     if main_file.strip():
@@ -145,6 +153,14 @@ def getFiles(itm):
         itm, 'data_files.s3.processed.additional_files', default=[])
     alt_file = list(set(alt_file))
     return csv_divider.join(files + alt_file)
+
+
+def ugradAcademicAffiliation(itm):
+    if itm['department'].strip():
+        val = itm['department']
+    else:
+        val = "Honors Program"
+    return val
 
 
 def academicAffiliation(itm):
@@ -202,7 +218,8 @@ def transform(itm):
     data_row['keyword'] = csv_divider.join(itm['keywords'])
     if not data_row['keyword']:
         data_row['keyword'] = 'keyword'
-    data_row['academic_affiliation'] = academicAffiliation(itm)
+    data_row['academic_affiliation'] = ugradAcademicAffiliation(
+        itm)  # academicAffiliation(itm)
     #data_row['graduation_year'] = graduationYear(itm)
     data_row['license'] = itm['distribution_license']
     data_row['publisher'] = itm["publisher"]
@@ -245,7 +262,7 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
     grad = 0
     undergrad = ['honr_theses', 'advert_ugrad',
                  'comm_ugrad', 'journ_ugrad', 'media_ugrad']
-    for itm in data['results'][789:795]:
+    for itm in data['results']:
         if itm['front_end_url'].split('/')[-2] in undergrad:
             try:
                 #data = transform(itm)

@@ -227,7 +227,7 @@ module Zizia
             f << "#{batch_id} , #{created.id} , #{new_url} , #{attrs[:replaces]} , #{attrs[:title]&.first} \n"
           end
           replace= "#{attrs[:replaces]}"
-          #save_cybercom(replace.split('|')[0],replace.split('|')[1],new_url)
+          save_cybercom(replace.split('|')[0],replace.split('|')[1],new_url)
         else
           # Log Errors for batch import
           open(Rails.root.join('tmp',"load_batch#{batch_id}_errors.out"), 'a') do |f|
