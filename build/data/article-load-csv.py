@@ -28,7 +28,7 @@ csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor
 
 defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'rights statement': 'http://rightsstatements.org/vocab/InC/1.0/',
-            'admin_set_id': 'qb98mf449',
+            'admin_set_id': 'nv935286k',
             'visibility': 'open',
             'resource type': 'Article',
 
@@ -254,8 +254,8 @@ def transform(itm):
     data_row['editor'] = itm['editor']
     data_row['file_extent'] = setFileExtent(itm)
     try:
-        data_row['files'] = 'ableToDownload.pdf'
-        #data_row['files'] = getFiles(itm)
+        #data_row['files'] = 'ableToDownload.pdf'
+        data_row['files'] = getFiles(itm)
     except UnableToDownload:
         data_row['files'] = 'unableToDownload.pdf'
     return data_row
