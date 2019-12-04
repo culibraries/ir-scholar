@@ -24,15 +24,16 @@ csv_divider = "|~|"
 csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor', 'keyword', 'license', 'rights statement', 'publisher',
                'subject', 'language', 'identifier', 'location', 'related_url', 'bibliographic_citation', 'source', 'abstract', 'academic_affiliation',
                'has_journal', 'has_number', 'has_volume', 'issn', 'editor', 'in_series', 'additional_information', 'alt_title',  'date_available', 'date_issued',
-               , 'doi', 'embargo_reason', , 'peerreviewed', 'replaces', 'language', 'admin_set_id', 'visibility', 'files']
+               'doi', 'file_extent', 'file_format', 'embargo_reason', 'peerreviewed', 'replaces', 'language', 'admin_set_id', 'visibility', 'files']
 
 defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'rights statement': 'http://rightsstatements.org/vocab/InC/1.0/',
-            'admin_set_id': 'nv935286k',
+            'admin_set_id': 'qb98mf449',
             'visibility': 'open',
             'resource type': 'Article',
 
             }
+# Article Prod nv935286k
 
 # resource type, Rights Statement, date created,
 # Test
@@ -202,11 +203,21 @@ def identifierFormat(itm):
             value = itm['identifier']
     if itm['external_article_id'].strip():
         if value:
-            value = "{0}; External Arcticle ID: {1}".foramt(
+            value = "{0}; External Arcticle ID: {1}".format(
                 value, itm['external_article_id'])
         else:
-            value = "External Arcticle ID: {0}".foramt(
+            value = "External Arcticle ID: {0}".format(
                 itm['external_article_id'])
+    return value
+
+
+def setFileExtent(itm):
+    value = ''
+    if itm['fpage'].strip() and itm['lpage'].strip():
+        value = "{0}-{1}".format(itm['fpage'].strip(), itm['lpage'].strip())
+    elif itm['fpage'].strip() or itm['lpage'].strip():
+        value = "{0}{1}".format(
+            itm['fpage'].strip(), itm['lpage'].strip()).strip()
     return value
 
 
@@ -214,19 +225,8 @@ def transform(itm):
     data_row = dict.fromkeys(csv_headers, '')
     data_row.update(defaults)
     data_row['title'] = itm['title']
-
     data_row['creator'] = clean_format_name(
         itm['authors'], divider=csv_divider)
-    # if itm['advisors']:
-    #     data_row['contributor_advisor'] = clean_format_name(
-    #         ",".join(itm['advisors'][:1]), divider=csv_divider)
-    # else:
-    #     data_row['contributor_advisor'] = ''
-    # if len(itm['advisors']) > 1:
-    #     data_row['contributor_committeemember'] = clean_format_name(
-    #         ",".join(itm['advisors'][1:]), divider=csv_divider)
-    # else:
-    #     data_row['contributor_committeemember'] = ''
     data_row['abstract'] = clean_abstract_text(itm['abstract'])
     # data_row['date created'] = itm['publication_date'].split(' ')[0]
     # data_row['date_created'] = itm['publication_date'].split(' ')[0]
@@ -236,29 +236,30 @@ def transform(itm):
         data_row['keyword'] = 'Keyword'
     data_row['academic_affiliation'] = articleAcademicAffiliation(
         itm)  # academicAffiliation(itm)
-    # data_row['graduation_year'] = graduationYear(itm)
     data_row['license'] = itm['distribution_license']
     data_row['publisher'] = itm["publisher"]
-    data_row['identifier'] = identifierFormat(itm)  # itm['identifier']
+    data_row['identifier'] = identifierFormat(itm)
     data_row['related url'] = itm['url']
     # data_row['date_available'] = itm["publication_date"].split(' ')[0]
     # itm["publication_date"].split('-')[0]
     data_row['date_issued'] = pubDateFormat(itm)
     data_row['doi'] = itm['doi']
-    # data_row['degree_name'] = itm['degree_name']
     data_row['peerreviewed'] = itm['peer_reviewed']
     data_row['replaces'] = replaces(itm)
+    # Article
+    data_row['has_journal'] = itm['source_publication']
+    data_row['has_number'] = itm['issnum']
+    data_row['has_volume'] = itm['volnum']
+    data_row['issn'] = itm['issn']
+    data_row['editor'] = itm['editor']
+    data_row['file_extent'] = setFileExtent(itm)
     try:
-        # data_row['files'] = 'ableToDownload.pdf'
-        data_row['files'] = getFiles(itm)
+        data_row['files'] = 'ableToDownload.pdf'
+        #data_row['files'] = getFiles(itm)
     except UnableToDownload:
         data_row['files'] = 'unableToDownload.pdf'
     return data_row
 
-  'contributor', 'keyword', 'license', 'rights statement', 'publisher',
-               'subject', 'language', 'identifier', 'location', 'related_url', 'bibliographic_citation', 'source', 'abstract', 'academic_affiliation',
-               'has_journal','has_number','has_volume','issn','editor','in_series','additional_information', 'alt_title',  'date_available', 'date_issued',
-               , 'doi', 'embargo_reason', , 'peerreviewed', 'replaces', 'language', 'admin_set_id', 'visibility', 'files']
 
 def writeCsvFile(csv_data, error_data, count):
     now = datetime.now().isoformat().replace(':', '').split('.')[0]
@@ -279,30 +280,25 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
     csv_data = []
     error_data = []
     count = 0
-    grad = 0
-    undergrad = ['honr_theses', 'advert_ugrad',
-                 'comm_ugrad', 'journ_ugrad', 'media_ugrad']
-    for itm in data['results']:
-        if itm['front_end_url'].split('/')[-2] in undergrad:
-            try:
-                # data = transform(itm)
-                csv_data.append(transform(itm))
-                # print(itm)
-            except Exception as e:
-                print(e)
-                logging.error('Error at %s', 'division', exc_info=e)
-                error_data.append(itm)
-            count += 1
-            if (count % 250 == 0 and count != 0):
-                writeCsvFile(csv_data, error_data, count)
-                csv_data = []
-                error_data = []
-        else:
-            grad += 1
+    for itm in data['results'][10:15]:
+        try:
+            # data = transform(itm)
+            csv_data.append(transform(itm))
+            # print(itm)
+        except Exception as e:
+            print(e)
+            logging.error('Error at %s', 'division', exc_info=e)
+            error_data.append(itm)
+        count += 1
+        if (count % 250 == 0 and count != 0):
+            writeCsvFile(csv_data, error_data, count)
+            csv_data = []
+            error_data = []
+
     # Write remaining csv if data
     if csv_data or error_data:
         writeCsvFile(csv_data, error_data, count)
-    print("Grad:", grad)
+    print("count: ", count)
 
 
 if __name__ == "__main__":

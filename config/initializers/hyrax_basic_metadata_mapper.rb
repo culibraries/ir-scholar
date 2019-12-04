@@ -101,6 +101,15 @@ module Zizia
     def conference_name
       single_value('conference_name')
     end
+    def has_journal
+      single_value('has_journal')
+    end
+    def has_number
+      single_value('has_number')
+    end
+    def has_volume
+      single_value('has_volume')
+    end
     # We should accept visibility values that match the UI and transform them into
     # the controlled vocabulary term expected by Hyrax
     def visibility
@@ -208,6 +217,11 @@ module Zizia
           [ :abstract,:academic_affiliation,:additional_information,:alt_title,:contributor_advisor,
             :contributor_committeemember,:date_available,:date_issued,:degree_grantors,:peerreviewed,
             :doi,:embargo_reason, :replaces,:language,:admin_set_id,
+          ]
+        elsif wtype=="Article" then
+          [ :abstract,:academic_affiliation,:additional_information,:alt_title,:date_available,:date_issued,
+            :doi,:embargo_reason, :peerreviewed,:replaces,:language,:admin_set_id,:has_journal,:has_number,:has_volume,
+            :issn,:editor, :in_series,:file_extent
           ]
         end
         #  :editor,:has_journal,:has_number,:has_volume,:in_series,:is_referenced_by,:isbn,:issn,
