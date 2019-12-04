@@ -9,6 +9,8 @@ module Scholar
         :has_journal,
         :has_number,
         :has_volume,
+        :file_extent,
+        :file_format,
         :issn,
         :publisher,
         :doi,
