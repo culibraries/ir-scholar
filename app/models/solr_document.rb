@@ -52,6 +52,9 @@ class SolrDocument
   def abstract
     self[Solrizer.solr_name('abstract')]
   end
+  def abstract_search
+    self[Solrizer.solr_name('abstract')]
+  end
   def academic_affiliation
     self[Solrizer.solr_name('academic_affiliation')]
   end
@@ -210,5 +213,11 @@ class SolrDocument
   end
   def peerreviewed
     self[Solrizer.solr_name('peerreviewed')]
+  end
+  def file_extent
+    self[Solrizer.solr_name('file_extent')]
+  end
+  def file_format
+    self[Solrizer.solr_name('file_format')]
   end
 end

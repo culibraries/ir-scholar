@@ -18,13 +18,20 @@ en:
         rights_statement: "Rights Statement"
         resource_type: "Resource Type"
   simple_form:
+    error_notification:
+      default_message: 'Please review the problems below:'
+    'no': 'No'
+    required:
+      mark: "*"
+      text: required
+    'yes': 'Yes'
     hints:
       defaults:
         degree_grantors: "Organization granting the degree. This will usually be University of Colorado Boulder."
         contributor_advisor: "The name of the Academic Advisor on this project. The name should be entered with the last name first: Smith, John Q."
         contributor_committeemember: "The name(s) of Academic Committee Member(s) on this project. Enter one name per line, last name first: Smith, Joan Q."
         academic_affiliation: "Academic Department/College/School/Unit at CU Boulder"
-        resource_type: "The general category of this resource (e.g. Masters Thesis, dissertation )."
+        resource_type: "The general category of this resource (e.g. Masters Thesis, Dissertation, Audio, Presentation... )."
         alt_title: "An alternative title for this item. This should be a title that helps identify the item or a version of the title that differs significantly from the full Title."
         doi: "Digital Object Identifier for the resource. Example: https://doi.org/10.1000/182"
         graduation_year: "The commencement year for the author of the Thesis or Dissertation."

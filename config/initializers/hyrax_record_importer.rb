@@ -7,7 +7,7 @@ require 'rest-client'
 module Zizia
   class HyraxRecordImporter < RecordImporter
     # TODO: Get this from Hyrax config
-    DEFAULT_CREATOR_KEY = 'batchuser@colorado.edu'
+    DEFAULT_CREATOR_KEY = 'admin@colorado.edu'
 
     attr_accessor :csv_import_detail
 
@@ -105,7 +105,17 @@ module Zizia
       raise 'No curation_concern found for import' unless
         defined?(Hyrax) && Hyrax&.config&.curation_concerns&.any?
 
-      Hyrax.config.curation_concerns.first
+      wtype=ENV.fetch('WORK_TYPE')
+      if wtype=="GraduateThesisOrDissertation" then
+        model=GraduateThesisOrDissertation
+      elsif wtype=="UndergraduateHonorsThesis" then
+        model=UndergraduateHonorsThesis 
+      elsif wtype=="Article" then
+        model=Article
+      end
+      model
+
+      #Hyrax.config.curation_concerns.first
     end
 
     # The path on disk where file attachments can be found

@@ -1,11 +1,11 @@
 Hyrax.config do |config|
 
-  # Injected via `rails g hyrax:work UndergraduateHonorsThesis`
-  config.register_curation_concern :undergraduate_honors_thesis
-  # Injected via `rails g hyrax:work GraduateThesisOrDissertation`
-  config.register_curation_concern :graduate_thesis_or_dissertation
   # Injected via `rails g hyrax:work Article`
   config.register_curation_concern :article
+  # Injected via `rails g hyrax:work GraduateThesisOrDissertation`
+  config.register_curation_concern :graduate_thesis_or_dissertation
+  # Injected via `rails g hyrax:work UndergraduateHonorsThesis`
+  config.register_curation_concern :undergraduate_honors_thesis
   # Injected via `rails g hyrax:work Dataset`
   config.register_curation_concern :dataset
   # Injected via `rails g hyrax:work Presentation`

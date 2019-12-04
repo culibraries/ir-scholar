@@ -96,6 +96,8 @@ en:
   simple_form:
     hints:
       defaults:
+        file_format: "File Format (e.g. pdf, mp3, mp4)."
+        file_extent: "The length or runtime of the object (e.g. 45 minutes, 1234-1235 page numbers)."
         degree_grantors: "Organization granting the resource. This will usually be University of Colorado Boulder."
         contributor_advisor: "The name of the Academic Advisor on this project. The name should be entered with the last name first: Smith, John Q."
         contributor_committeemember: "The name(s) of Academic Committee Member(s) on this project. Enter one name per line, last name first: Smith, Joan Q."
@@ -116,6 +118,8 @@ en:
         bibliographic_citation: "The preferred citation for this item."
     labels:
       defaults:
+        file_format: "File Format"
+        file_extent: "File Extent"
         degree_grantors: "Degree Grantor"
         degree_grantors_u: "Granting Institution"
         contributor_advisor: "Advisor"

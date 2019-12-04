@@ -1,0 +1,1 @@
+Sidekiq.redis {|c| c.setex("cancelled-#{ARGV[0]}", 86400, 1) }
