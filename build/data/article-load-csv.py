@@ -280,7 +280,7 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
     csv_data = []
     error_data = []
     count = 0
-    for itm in data['results'][10:15]:
+    for itm in data['results']:
         try:
             # data = transform(itm)
             csv_data.append(transform(itm))
