@@ -284,7 +284,8 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
         try:
             # data = transform(itm)
             csv_data.append(transform(itm))
-            # print(itm)
+            print(itm)
+            print("List Count: ", len(csv_data))
         except Exception as e:
             print(e)
             logging.error('Error at %s', 'division', exc_info=e)
