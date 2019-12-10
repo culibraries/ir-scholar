@@ -1,5 +1,5 @@
 <%= presenter.attribute_to_html(:alt_title, label: t('simple_form.labels.defaults.alt_title') ,render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:abstract ,label: t('hyrax.base.show.abstract'), html_dl: true) %>
+<%= presenter.attribute_to_html(:abstract ,label: t('hyrax.base.show.abstract'), html_dl: true,render_as: :abstract) %>
 <%= presenter.attribute_to_html(:creator, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:date_issued,label: t('simple_form.labels.defaults.date_issued') ,html_dl: true) if presenter.name != "UndergraduateHonorsThesisPresenter" %>
 <%= presenter.attribute_to_html(:date_issued,label: t('simple_form.labels.defaults.date_issued_u') ,html_dl: true) if presenter.name == "UndergraduateHonorsThesisPresenter" %> 
@@ -40,8 +40,8 @@
 <%= presenter.attribute_to_html(:issn,label: t('simple_form.labels.defaults.issn'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:language, render_as: :search_external_link, search_field: 'language', label: t('simple_form.labels.defaults.language'), html_dl: true) %>
 <%= presenter.attribute_to_html(:is_referenced_by, label: t('simple_form.labels.defaults.is_referenced_by'),render_as: :faceted, html_dl: true) %>
-<%= presenter.attribute_to_html(:license, render_as: :search_external_link, search_field: 'license', label: t('simple_form.labels.defaults.license'), html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_notes, html_dl: true) %>
 <%= presenter.attribute_to_html(:access_right, html_dl: true) %>
 <%= presenter.attribute_to_html(:depositor, label: t('simple_form.labels.defaults.depositor')) if current_user&.admin? %>
+<%= presenter.attribute_to_html( :replaces ) if current_user&.admin? %>
 <%= presenter.attribute_to_html(:embargo_reason, label: t('simple_form.labels.defaults.embargo_reason')) if current_user&.admin? %>
