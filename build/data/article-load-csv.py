@@ -8,6 +8,7 @@ from six.moves.html_parser import HTMLParser
 from functools import reduce
 from datetime import datetime
 from dateutil.parser import parse
+import pandas as pd
 
 now = datetime.now().isoformat().replace(':', '').split('.')[0]
 academic_affiliation_file = "academicAffiliationMap.csv"
@@ -264,13 +265,21 @@ def transform(itm):
 def writeCsvFile(csv_data, error_data, count):
     now = datetime.now().isoformat().replace(':', '').split('.')[0]
     keys = csv_data[0].keys()
-    with open('csv_output/{0}_{1}_dataload_{2}.csv'.format(now, defaults['resource type'].replace(' ', '_').lower(), count), 'w') as output_file:
+    filename = 'csv_output/{0}_{1}_dataload_{2}.csv'.format(
+        now, defaults['resource type'].replace(' ', '_').lower(), count)
+    errorfilename = 'csv_output/{0}_{1}_error_{2}.json'.format(
+        now, defaults['resource type'].replace(' ', '_').lower(), count)
+    with open(filename, 'w') as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(csv_data)
     if error_data:
-        with open('csv_output/{0}_{1}_error_{2}.json'.format(now, defaults['resource type'].replace(' ', '_').lower(), count), 'w') as output_file:
+        with open(errorfilename, 'w') as output_file:
             output_file.write(json.dumps(error_data, indent=4))
+    # Dedup
+    df = pd.read_csv(filename, sep=",")
+    df.drop_duplicates(subset=None, inplace=True)
+    df.to_csv(filename, index=False)
 
 
 def loadItems(work_type="graduate_thesis_or_dissertations"):
