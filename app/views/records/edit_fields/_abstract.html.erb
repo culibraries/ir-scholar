@@ -1,5 +1,12 @@
 <% if f.object.multiple? key %>
-  <%= f.input key, as: :multi_value, input_html: { class: 'form-control', rows: '14', type: 'textarea'}, required: f.object.required?(key) %>
+<%= f.input key, as: :multi_value, input_html: { class: 'form-control', rows: '24', type: 'textarea', id: "myabstract", style: "width:100%;height:400px;display:block;" }, required: f.object.required?(key) %>
 <% else %>
-  <%= f.input key, required: f.object.required?(key) %>
+<%= f.input key, input_html: { class: 'form-control', rows: '24', type: 'textarea', id: "myabstract", style: "width:100%;height:400px;display:block;" }, required: f.object.required?(key) %>
 <% end %>
+<script>
+tinymce.init({
+selector: '#myabstract',
+entity_encoding : "numeric"
+});
+$('#myabstract').parent().parent().removeClass("listing")
+</script>

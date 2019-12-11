@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/culibraries/zizia.git
-  revision: 20d597e202c9ffd8cf20dc32ff4c1a7489f7ea18
+  revision: 6e89653c6af25a294836dab299f2310fe774cf33
   specs:
     zizia (5.0.1)
       active-fedora
