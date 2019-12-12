@@ -1,11 +1,14 @@
 <% if f.object.multiple? key %>
-<%= f.input key, as: :multi_value, input_html: { class: 'form-control', rows: '24', type: 'textarea', id: "myabstract", style: "width:100%;height:400px;display:block;" }, required: f.object.required?(key) %>
+<%= f.input key, as: :multi_value, input_html: { class: 'form-control myabstract', rows: '24', type: 'textarea', style: "width:100%;height:400px;display:block;" }, required: f.object.required?(key) %>
 <% else %>
-<%= f.input key, input_html: { class: 'form-control', rows: '24', type: 'textarea', id: "myabstract", style: "width:100%;height:400px;display:block;" }, required: f.object.required?(key) %>
+<%= f.input key, input_html: { class: 'form-control myabstract', rows: '24', type: 'textarea', style: "width:100%;height:400px;display:block;" }, required: f.object.required?(key) %>
 <% end %>
 <script>
 tinymce.init({
-selector: '#myabstract'
+selector: '.myabstract'
 });
-$('#myabstract').parent().parent().removeClass("listing")
+try {
+  $('.myabstract').parent().parent().removeClass("listing")
+}
+catch(err) {}
 </script>
