@@ -39,7 +39,12 @@ class Report < ActiveFedora::Base
   property :embargo_reason, predicate: ::RDF::Vocab::DC.accessRights, multiple: false do |index|
     index.as :stored_searchable
   end
-
+  property :file_extent, predicate: ::RDF::Vocab::DC.extent do |index|
+    index.as :stored_searchable
+  end
+  property :file_format, predicate: ::RDF::Vocab::DC.FileFormat do |index|
+    index.as :stored_searchable, :facetable
+  end
     
   #error maybe
   # property :contributor, predicate: ::RDF::Vocab::DC11.contributor do |index|
