@@ -21,6 +21,9 @@ class ConferenceProceeding < ActiveFedora::Base
 
 
   #Conference
+  property :isbn, predicate: ::RDF::Vocab::Identifiers.isbn do |index|
+    index.as :stored_searchable
+  end
   property :editor, predicate: ::RDF::Vocab::BIBO.editor do |index|
     index.as :stored_searchable
   end
@@ -95,6 +98,7 @@ class ConferenceProceeding < ActiveFedora::Base
   property :file_format, predicate: ::RDF::Vocab::DC.FileFormat do |index|
     index.as :stored_searchable, :facetable
   end
+  
   # property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
   #   index.as :stored_searchable, :facetable
   # end
