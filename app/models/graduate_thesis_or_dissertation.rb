@@ -77,6 +77,12 @@ class GraduateThesisOrDissertation < ActiveFedora::Base
   property :additional_information, predicate: ::RDF::Vocab::DC.description do |index|
     index.as :stored_searchable
   end
+  property :file_extent, predicate: ::RDF::Vocab::DC.extent do |index|
+    index.as :stored_searchable
+  end
+  property :file_format, predicate: ::RDF::Vocab::DC.FileFormat do |index|
+    index.as :stored_searchable, :facetable
+  end
   # property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
   #   index.as :stored_searchable, :facetable
   # end

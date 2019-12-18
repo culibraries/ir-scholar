@@ -71,7 +71,12 @@ class Default < ActiveFedora::Base
   property :additional_information, predicate: ::RDF::Vocab::DC.description do |index|
     index.as :stored_searchable
   end
-  
+  property :file_extent, predicate: ::RDF::Vocab::DC.extent do |index|
+    index.as :stored_searchable
+  end
+  property :file_format, predicate: ::RDF::Vocab::DC.FileFormat do |index|
+    index.as :stored_searchable, :facetable
+  end
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
   include ::Hyrax::BasicMetadata
