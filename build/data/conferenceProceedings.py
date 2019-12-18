@@ -19,7 +19,7 @@ csvfile.close()
 # P
 # api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"presentation"}}&page_size=0'
 # confernece
-api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"conference","isbn":{"$ne":""}}}&page_size=0'
+api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"conference"}}&page_size=0'
 headers = {'Content-Type': 'application/json'}
 csv_divider = "|~|"
 # 'description','date_created',
@@ -33,20 +33,24 @@ csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor
 
 defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'rights statement': 'http://rightsstatements.org/vocab/InC/1.0/',
-            'admin_set_id': 'qb98mf449',
+            'admin_set_id': 'c534fn941',
             'visibility': 'open',
-            'resource type': 'Article',
+            'resource type': 'Conference Proceeding',
 
             }
-# Article Prod nv935286k
-
-# resource type, Rights Statement, date created,
-# Test
+# Test admin set
 # 'admin_set_id':'qb98mf449',
-# PRod
-# 'admin_set_id': 'k643b116n',
-# undergrad m326m172d
-# test qb98mf449
+
+# Production
+# <option data-sharing="true" value="dn39x152w">Book</option>
+# <option data-sharing="true" value="pr76f341v">Book Chapter</option>
+# <option data-sharing="true" value="c534fn941">Conference Proceedings</option>
+# <option data-sharing="true" value="0p0966899">Presentation</option>
+# <option data-sharing="true" value="j6731378s">Dataset</option>
+# <option data-sharing="true" value="m326m172d">Undergraduate Honors Thesis</option>
+# <option data-sharing="true" value="nv935286k">Article</option>
+# <option data-sharing="true" value="k643b116n">Graduate Thesis Or Dissertation</option>
+# <option data-sharing="true" selected="selected" value="admin_set/default">Default Admin Set</option>
 
 
 class Error(Exception):
@@ -271,8 +275,8 @@ def transform(itm):
     data_row['additional_information'] = eventDate(itm)
     data_row['file_extent'] = setFileExtent(itm)
     try:
-        data_row['files'] = 'ableToDownload.pdf'
-        # data_row['files'] = getFiles(itm)
+        #data_row['files'] = 'ableToDownload.pdf'
+        data_row['files'] = getFiles(itm)
     except UnableToDownload:
         data_row['files'] = 'unableToDownload.pdf'
     return data_row
