@@ -17,26 +17,25 @@ academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
     csvfile, delimiter='|', skipinitialspace=True)]
 csvfile.close()
 # P
+api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"presentation","conference_name":""}}'
 # api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"presentation"}}&page_size=0'
 # confernece
-#api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"conference"}}&page_size=0'
-api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"presentation","conference_name":{"$ne":""}}}'
+# api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"conference"}}&page_size=0'
 headers = {'Content-Type': 'application/json'}
 csv_divider = "|~|"
 # 'description','date_created',
 
 csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor', 'keyword', 'license', 'rights statement', 'publisher',
                'subject', 'language', 'identifier', 'location', 'related_url', 'bibliographic_citation', 'source', 'abstract', 'academic_affiliation',
-               'has_journal', 'has_number', 'has_volume', 'issn', 'editor', 'in_series', 'additional_information', 'alt_title',  'date_available', 'date_issued',
-               'conference_location', 'conference_name',
+               'editor', 'in_series', 'additional_information', 'alt_title',  'date_available', 'date_issued',
                'doi', 'file_extent', 'file_format', 'embargo_reason', 'peerreviewed', 'replaces', 'language', 'admin_set_id', 'visibility', 'files']
 
-
+# 'conference_location', 'conference_name',
 defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'rights statement': 'http://rightsstatements.org/vocab/InC/1.0/',
-            'admin_set_id': 'c534fn941',
+            'admin_set_id': '0p0966899',
             'visibility': 'open',
-            'resource type': 'Conference Proceeding',
+            'resource type': 'Presentation',
 
             }
 # Test admin set
@@ -235,12 +234,6 @@ def eventDate(itm):
     value = ''
     if itm['conference_dates'].strip():
         value = "Event Date: {0}".format(itm['conference_dates'])
-    if itm['comments'].strip():
-        if value:
-            value = "{0} - {1}".format(value,
-                                       clean_abstract_text(itm['comments']))
-        else:
-            value = "{0}".format(clean_abstract_text(itm['comments']))
     return value
 
 
@@ -270,16 +263,17 @@ def transform(itm):
     data_row['peerreviewed'] = itm['peer_reviewed']
     data_row['replaces'] = replaces(itm)
     # Article
-    data_row['has_journal'] = itm['source_publication']
-    data_row['has_number'] = itm['issnum']
-    data_row['has_volume'] = itm['volnum']
-    data_row['issn'] = itm['issn']
-    data_row['isbn'] = itm['isbn']
+    # data_row['has_journal'] = itm['source_publication']
+    # data_row['has_number'] = itm['issnum']
+    # data_row['has_volume'] = itm['volnum']
+    # data_row['issn'] = itm['issn']
+    # data_row['isbn'] = itm['isbn']
     data_row['editor'] = itm['editor']
     data_row['bibliographic_citation'] = itm['custom_citation']
-    data_row['conference_location'] = itm['conference_city']
-    data_row['conference_name'] = itm['conference_name']
-    data_row['additional_information'] = eventDate(itm)
+    # data_row['conference_location'] = itm['conference_city']
+    # data_row['conference_name'] = itm['conference_name']
+    data_row['additional_information'] = "{0}{1}".format(
+        clean_abstract_text(itm['comments']), itm['source_publication'])
     data_row['file_extent'] = setFileExtent(itm)
     try:
         #data_row['files'] = 'ableToDownload.pdf'
@@ -321,7 +315,7 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
             # data = transform(itm)
             csv_data.append(transform(itm))
             # print(itm)
-            #print("List Count: ", len(csv_data))
+            # print("List Count: ", len(csv_data))
         except Exception as e:
             print(e)
             logging.error('Error at %s', 'division', exc_info=e)
