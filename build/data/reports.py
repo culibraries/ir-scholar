@@ -33,7 +33,7 @@ csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor
 # 'conference_location', 'conference_name',
 defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'rights statement': 'http://rightsstatements.org/vocab/InC/1.0/',
-            'admin_set_id': 'qb98mf449',
+            'admin_set_id': 'j098zb08p',
             'visibility': 'open',
             }
 # Test admin set
@@ -305,13 +305,13 @@ def transform(itm):
     return data_row
 
 
-def writeCsvFile(csv_data, error_data, count):
+def writeCsvFile(csv_data, error_data, count, wtype="Report"):
     now = datetime.now().isoformat().replace(':', '').split('.')[0]
     keys = csv_data[0].keys()
     filename = 'csv_output/{0}_{1}_dataload_{2}.csv'.format(
-        now, defaults['resource type'].replace(' ', '_').lower(), count)
+        now, wtype.replace(' ', '_').lower(), count)
     errorfilename = 'csv_output/{0}_{1}_error_{2}.json'.format(
-        now, defaults['resource type'].replace(' ', '_').lower(), count)
+        now, wtype.replace(' ', '_').lower(), count)
     with open(filename, 'w') as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
