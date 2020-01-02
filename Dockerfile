@@ -67,6 +67,7 @@ RUN if [ "${RAILS_ENV}" = "production" ]; then \
   fi
 
 RUN mv /data/public/assets/work-*.png /data/public/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png
+RUN mv /data/public/assets/collection-*.png /data/public/assets/collection-a38b932554788aa578debf2319e8c4ba8a7db06b3ba57ecda1391a548a4b6e0a.png
 EXPOSE 3000/tcp
 
 #ENTRYPOINT ["rails"]
