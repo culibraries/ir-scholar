@@ -35,14 +35,14 @@ csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor
 # 'conference_location', 'conference_name',
 defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'rights statement': 'http://rightsstatements.org/vocab/InC/1.0/',
-            'admin_set_id': 'qb98mf449',
+            'admin_set_id': 'admin_set/default',
             'visibility': 'open',
             }
 # Test admin set
 # 'admin_set_id':'qb98mf449',
 
 # Production
-# <option data-sharing="true"  value="j098zb08p">Reports</option>
+# <option data-sharing="true" value="j098zb08p">Reports</option>
 # <option data-sharing="true" value="dn39x152w">Book</option>
 # <option data-sharing="true" value="pr76f341v">Book Chapter</option>
 # <option data-sharing="true" value="c534fn941">Conference Proceedings</option>
@@ -299,8 +299,8 @@ def transform(itm):
     data_row['file_extent'] = setFileExtent(itm)
     data_row['resource type'] = setResourceType(itm)
     try:
-        data_row['files'] = 'ableToDownload.pdf'
-        #data_row['files'] = getFiles(itm)
+        #data_row['files'] = 'ableToDownload.pdf'
+        data_row['files'] = getFiles(itm)
     except UnableToDownload:
         data_row['files'] = 'unableToDownload.pdf'
     return data_row
@@ -333,7 +333,7 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
     csv_data = []
     error_data = []
     count = 0
-    for itm in data['results'][72:77]:
+    for itm in data['results']:
         try:
             # data = transform(itm)
             csv_data.append(transform(itm))
