@@ -42,7 +42,6 @@ class CatalogController < ApplicationController
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
     #config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
-    config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
     config.add_facet_field solr_name("creator", :facetable), limit: 5
     config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
     config.add_facet_field solr_name("academic_affiliation", :facetable), label: "Academic Affiliation",limit: 5
@@ -52,6 +51,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("based_near_label", :facetable), limit: 5
     config.add_facet_field solr_name("publisher", :facetable), limit: 5
     config.add_facet_field solr_name("file_format", :facetable), limit: 5
+    config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
     config.add_facet_field solr_name('member_of_collection_ids', :symbol), limit: 5, label: 'Collections', helper_method: :collection_title_by_id
 
     # The generic_type isn't displayed on the facet list
@@ -114,7 +114,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("date_created", :stored_searchable)
     config.add_show_field solr_name("rights_statement", :stored_searchable)
     config.add_show_field solr_name("degree_grantors", :stored_searchable)
-    config.add_show_field solr_name("resource_type", :stored_searchable), label: "Resource Type"
+    config.add_show_field solr_name("resource_type", :stored_searchable), label: 'Resource Type'
     config.add_show_field solr_name("format", :stored_searchable)
     config.add_show_field solr_name("identifier", :stored_searchable)
 

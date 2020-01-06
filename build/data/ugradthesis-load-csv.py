@@ -16,7 +16,8 @@ academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
     csvfile, delimiter='|', skipinitialspace=True)]
 csvfile.close()
 
-api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"thesis"}}&page_size=0'
+api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final-2019-12-20.json?query={"filter":{"samvera_url":{"$exists":false},"document_type":"thesis"}}&page_size=0'
+#api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"thesis"}}&page_size=0'
 #api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar.json?query={"filter":{"document_type":"dissertation"}}&page_size=0'
 # base_url="http://localhost:3000"      #/concern/graduate_thesis_or_dissertations/new"
 headers = {'Content-Type': 'application/json'}
@@ -175,10 +176,12 @@ def academicAffiliation(itm):
 
 
 def graduationYear(itm):
-    year = itm["publication_date"].split('-')[0]
-    if not year:
-        return '9999'
-    return year
+    try:
+        mydate = parse(itm["publication_date"])
+        value = mydate.year  # .strftime("%Y-%m-%d")
+    except:
+        value = "9999"
+    return value
 
 
 def replaces(itm):
@@ -191,6 +194,19 @@ def pubDateFormat(itm):
         value = mydate.strftime("%Y-%m-%d")
     except:
         value = ""
+    return value
+
+
+def additonal_information(itm):
+    if itm['source_publication'].strip() and itm['comments'].strip():
+        value = "{0} - {1}".format(clean_abstract_text(
+            itm['comments']), itm['source_publication'])
+    elif itm['comments'].strip():
+        value = "{0}".format(clean_abstract_text(itm['comments']))
+    elif itm['source_publication'].strip():
+        value = "{0}".format(itm['source_publication'])
+    else:
+        value = ''
     return value
 
 
@@ -232,6 +248,8 @@ def transform(itm):
     data_row['degree_name'] = itm['degree_name']
     data_row['peerreviewed'] = itm['peer_reviewed']
     data_row['replaces'] = replaces(itm)
+    data_row['bibliographic_citation'] = itm['custom_citation']
+    data_row['additional_information'] = additonal_information(itm)
     try:
         #data_row['files'] = 'ableToDownload.pdf'
         data_row['files'] = getFiles(itm)

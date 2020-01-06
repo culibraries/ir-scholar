@@ -17,7 +17,8 @@ academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
     csvfile, delimiter='|', skipinitialspace=True)]
 csvfile.close()
 
-api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"article"}}&page_size=0'
+api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final-2019-12-20.json?query={%22filter%22:{%22samvera_url%22:{%22$exists%22:false},%22document_type%22:%22article%22}}&page_size=0'
+#api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"article"}}&page_size=0'
 headers = {'Content-Type': 'application/json'}
 csv_divider = "|~|"
 # 'description','date_created',
@@ -130,14 +131,14 @@ def clean_abstract_text(html):
 
 
 def getFiles(itm):
-    query = '{"filter":{"front_end_url":"' + \
-        itm['front_end_url'] + '","context_key":"' + itm['context_key'] + '"}}'
-    url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final-final.json?query='
-    req = requests.get(url + query)
-    data = req.json()
-    if data['count'] == 1:
-        itm = data['results'][0]
-        print("update")
+    # query = '{"filter":{"front_end_url":"' + \
+    #     itm['front_end_url'] + '","context_key":"' + itm['context_key'] + '"}}'
+    # url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final-final.json?query='
+    # req = requests.get(url + query)
+    # data = req.json()
+    # if data['count'] == 1:
+    #     itm = data['results'][0]
+    #     print("update")
     files = []
     main_file = deep_get(itm, 'data_files.s3.processed.key', default=None)
     if main_file.strip():
@@ -212,6 +213,19 @@ def identifierFormat(itm):
     return value
 
 
+def additonal_information(itm):
+    if itm['source_publication'].strip() and itm['comments'].strip():
+        value = "{0} - {1}".format(clean_abstract_text(
+            itm['comments']), itm['source_publication'])
+    elif itm['comments'].strip():
+        value = "{0}".format(clean_abstract_text(itm['comments']))
+    elif itm['source_publication'].strip():
+        value = "{0}".format(itm['source_publication'])
+    else:
+        value = ''
+    return value
+
+
 def setFileExtent(itm):
     value = ''
     if itm['fpage'].strip() and itm['lpage'].strip():
@@ -253,6 +267,8 @@ def transform(itm):
     data_row['has_volume'] = itm['volnum']
     data_row['issn'] = itm['issn']
     data_row['editor'] = itm['editor']
+    data_row['bibliographic_citation'] = itm['custom_citation']
+    data_row['additional_information'] = additonal_information(itm)
     data_row['file_extent'] = setFileExtent(itm)
     try:
         #data_row['files'] = 'ableToDownload.pdf'

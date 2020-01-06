@@ -16,8 +16,10 @@ csvfile = open(academic_affiliation_file, 'r')
 academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
     csvfile, delimiter='|', skipinitialspace=True)]
 csvfile.close()
-# P
-query = '{"filter":{"document_type":{"$in":["bookreview","book_review","editorial","leg_brief","leg_pub","memo","nepc_review","pol_brief","re_brief"]}}}&page_size=0'
+# Original Query
+#query = '{"filter":{"document_type":{"$in":["bookreview","book_review","editorial","leg_brief","leg_pub","memo","nepc_review","pol_brief","re_brief"]}}}&page_size=0'
+# Error Query
+query = '{"filter":{"document_type":{"$in":["","bookreview","book_review","editorial","leg_brief","leg_pub","memo","nepc_review","pol_brief","re_brief"]},"samvera_url":{"$exists":false}}}&page_size=0'
 
 api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final-2019-12-20.json?query=' + query
 # api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"presentation"}}&page_size=0'
@@ -344,7 +346,7 @@ def loadItems(work_type="graduate_thesis_or_dissertations"):
             logging.error('Error at %s', 'division', exc_info=e)
             error_data.append(itm)
         count += 1
-        if (count % 250 == 0 and count != 0):
+        if (count % 50 == 0 and count != 0):
             writeCsvFile(csv_data, error_data, count)
             csv_data = []
             error_data = []

@@ -17,7 +17,8 @@ academicMap = [{k: v for k, v in row.items()} for row in csv.DictReader(
     csvfile, delimiter='|', skipinitialspace=True)]
 csvfile.close()
 # P
-api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"dataset"}}&page_size=0'
+api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final-2019-12-20.json?query={"filter":{"samvera_url":{"$exists":false},"document_type":"dataset"}}&page_size=0'
+#api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"dataset"}}&page_size=0'
 # api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"presentation"}}&page_size=0'
 # confernece
 # api_url = 'https://libapps.colorado.edu/api/catalog/data/catalog/cuscholar-final.json?query={"filter":{"document_type":"conference"}}&page_size=0'
@@ -285,6 +286,7 @@ def transform(itm):
     data_row['bibliographic_citation'] = itm['custom_citation']
     # data_row['conference_location'] = itm['conference_city']
     # data_row['conference_name'] = itm['conference_name']
+    data_row['bibliographic_citation'] = itm['custom_citation']
     data_row['additional_information'] = additonal_information(itm)
     data_row['file_extent'] = setFileExtent(itm)
     try:
