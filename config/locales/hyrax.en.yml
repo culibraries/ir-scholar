@@ -114,7 +114,7 @@ en:
         doi: "Digital Object Identifier for the resource. Example: https://doi.org/10.1000/182"
         graduation_year: "The commencement year for the author of the Thesis or Dissertation."
         abstract: "A brief description or summary of the item."
-        embargo_reason: "Embargo Reason"
+        embargo_reason: ""
         additional_information: "Any additional information not covered in other metadata fields."
         date_issued: "The date the resource was published or awarded, such as when an article is published in a journal. Format: yyyy-mm-dd"
         date_available: "The date the item is available to public in the repository, such as after an embargo lifts. Format: yyyy-mm-dd"
@@ -123,6 +123,11 @@ en:
         editor: "Name(s) of editor(s). Names should be entered with the last name first, e.g. 'Smith, Joan Q.' "
         in_series: "Series of which this publication is a part."
         bibliographic_citation: "The preferred citation for this item."
+        conference_name: "The name of the conference at which the item was presented."
+        conference_location: "The location of the conference at which the item was presented. Include city, state, and country, as applicable."
+        event_date: "The event date or range of dates."
+        subject: "Headings or index terms describing what the work is about."
+        identifier: "A unique handle identifying the work."
     labels:
       defaults:
         file_format: "File Format"
@@ -155,6 +160,7 @@ en:
         in_series: "Series"
         conference_name: "Conference Name"
         conference_location: "Conference Location"
+        event_date: "Event Dates"
         related_url: "Related URL"
         based_near: "Location"
         is_referenced_by: "Referenced By"

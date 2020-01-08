@@ -1,7 +1,7 @@
 <% collection = Hyrax::ResourceTypesService.select_options %>
 <% collection.select! { |tuple| tuple.first.include? "Undergraduate Honors Thesis" } if f.object.model.class.to_s == "UndergraduateHonorsThesis" %>
 <% collection.select! { |opt| opt.first.include?("Dissertation") || opt.first.include?("Masters") } if f.object.model.class.to_s == "GraduateThesisOrDissertation" %>
-<% collection.select! { |tuple| tuple.first.include? "Article" } if f.object.model.class.to_s == "Article" %>
+<% collection.select! { |tuple| tuple.first.include?("Article") || tuple.first.include?("Preprint") || tuple.first.include?("Postprint") } if f.object.model.class.to_s == "Article" %>
 <% collection.select! { |tuple| tuple.first.include? "Part of Book" } if f.object.model.class.to_s == "BookChapter" %> 
 <% collection.select! { |tuple| tuple.first == "Book" } if f.object.model.class.to_s == "Book" %> 
 <% collection.select! { |tuple| tuple.first.include?("Presentation") } if f.object.model.class.to_s == "Presentation" %> 

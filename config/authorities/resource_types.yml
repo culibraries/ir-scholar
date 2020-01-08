@@ -21,6 +21,8 @@ terms:
     term: Poster
   - id: Preprint
     term: Preprint
+  - id: Postprint
+    term: Postprint
   - id: Presentation
     term: Presentation
   - id: Research Paper

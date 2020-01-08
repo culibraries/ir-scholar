@@ -33,6 +33,9 @@ class ConferenceProceeding < ActiveFedora::Base
   property :conference_name, predicate: ::RDF::Vocab::BIBO.presentedAt, multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
+  property :event_date, predicate: ::RDF::URI.new('http://purl.org/dc/dcmitype/Event'), multiple: false do |index|
+    index.as :stored_searchable
+  end
   property :has_journal, predicate: ::RDF::URI.new('http://purl.org/net/nknouf/ns/bibtex#hasJournal'), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end

@@ -5,6 +5,7 @@
 <%= presenter.attribute_to_html(:date_issued,label: t('simple_form.labels.defaults.date_issued_u') ,html_dl: true) if presenter.name == "UndergraduateHonorsThesisPresenter" %> 
 <%= presenter.attribute_to_html(:conference_name, label: t('simple_form.labels.defaults.conference_name') ,render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:conference_location, label: t('simple_form.labels.defaults.conference_location')  ,render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:event_date, label: t('simple_form.labels.defaults.event_date')  , html_dl: true) %>
 <%= presenter.attribute_to_html(:additional_information, label: t('simple_form.labels.defaults.additional_information') , html_dl: true) %>
 <%= presenter.attribute_to_html(:academic_affiliation,label: t('simple_form.labels.defaults.academic_affiliation'),render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:has_journal,label: t('simple_form.labels.defaults.has_journal'),render_as: :faceted, html_dl: true) %>

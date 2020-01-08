@@ -10,9 +10,9 @@ module Hyrax
       :resource_type, :date_issued, :rights_statement]
     self.terms -=[:degree_name,:degree_level,:degree_name,:graduation_year]
     def self.multiple?(field)
-      if [:academic_affiliation, :resource_type].include? field.to_sym
+      if [:resource_type].include? field.to_sym
         false
-        #,:language
+        #,:language :academic_affiliation, 
       else
         super
       end
@@ -20,15 +20,15 @@ module Hyrax
 
     def self.model_attributes(_)
       attrs = super
-      attrs[:academic_affiliation] = Array(attrs[:academic_affiliation]) if attrs[:academic_affiliation]
+      #attrs[:academic_affiliation] = Array(attrs[:academic_affiliation]) if attrs[:academic_affiliation]
       attrs[:resource_type] = Array(attrs[:resource_type]) if attrs[:resource_type]
       # attrs[:language] = Array(attrs[:language]) if attrs[:language]
       attrs
     end
 
-    def academic_affiliation
-      super.first || ""
-    end
+    # def academic_affiliation
+    #   super.first || ""
+    # end
     def resource_type
       super.first || ""
     end
