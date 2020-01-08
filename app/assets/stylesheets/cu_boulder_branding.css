@@ -80,5 +80,12 @@ header.ucb .site-name-wrapper { flex-grow: 1; padding-right: 40px; }
 .banner-dark .header-wrapper .affiliation, .banner-dark .header-wrapper .affiliation a:link, .banner-dark .header-wrapper .affiliation a:visited, header.ucb.dark .affiliation, header.ucb.dark .affiliation a:link, header.ucb.dark .affiliation a:visited { color: #9b9b9b; }
 .banner-white .header-wrapper .affiliation, .banner-white .header-wrapper .affiliation a:link, .banner-white .header-wrapper .affiliation a:visited, header.ucb.white .affiliation, header.ucb.white .affiliation a:link, header.ucb.white .affiliation a:visited { color: #757575; }
 .banner-light .header-wrapper .affiliation, .banner-light .header-wrapper .affiliation a:link, .banner-light .header-wrapper .affiliation a:visited, header.ucb.light .affiliation, header.ucb.light .affiliation a:link, header.ucb.light .affiliation a:visited { color: #6e6e6e; }
-
+@media screen and (min-width: 800px) {
+    .header-cuscholar { padding: 0px; }
+}
 /*# sourceMappingURL=branding.css.map */
+@media screen and (max-width: 768px) {
+    .header-cuscholar {
+        padding: 0px 0px 0px 15px;
+    }
+}
