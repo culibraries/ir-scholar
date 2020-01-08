@@ -1,6 +1,7 @@
 <% # app/views/records/edit_fields/_academic_affiliation.html.erb  %>
 <% if f.object.model.class.to_s == "GraduateThesisOrDissertation" || f.object.model.class.to_s == "UndergraduateHonorsThesis" %>
     <%= f.input key,
+        as: :multi_value,
         input_html: {
             class: 'form-control',
             data: { 'autocomplete-url' => "/authorities/search/local/academic_affiliation",

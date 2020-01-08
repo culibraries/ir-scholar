@@ -30,6 +30,9 @@ class Presentation < ActiveFedora::Base
   property :conference_name, predicate: ::RDF::Vocab::BIBO.presentedAt, multiple: false do |index|
     index.as :stored_searchable, :facetable
   end
+  property :event_date, predicate: ::RDF::URI.new('http://purl.org/dc/dcmitype/Event'), multiple: false do |index|
+    index.as :stored_searchable
+  end
   property :peerreviewed, predicate: ::RDF::URI('http://purl.org/ontology/bibo/peerReviewed'), multiple: false do |index|
     index.as :stored_searchable, :facetable
   end

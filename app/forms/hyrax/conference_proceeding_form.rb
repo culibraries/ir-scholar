@@ -6,6 +6,7 @@ module Hyrax
   class ConferenceProceedingForm < Scholar::GeneralWorkForm
     self.model_class = ::ConferenceProceeding
     # self.terms += [:resource_type]
+    #self.terms.insert(7,:event_date)
     self.required_fields = [:title, :creator,:academic_affiliation, :resource_type, :rights_statement]
 
     

@@ -6,7 +6,7 @@ module Hyrax
   class DatasetForm < Scholar::GeneralWorkForm
     self.model_class = ::Dataset
     # subtract self.terms 
-    self.terms -= [:conference_location,:conference_name,:has_journal,:has_number,:has_volume,:issn]
+    self.terms -= [:conference_location,:conference_name,:event_date,:has_journal,:has_number,:has_volume,:issn]
     
     self.required_fields = [:title, :creator,:academic_affiliation, :resource_type, :rights_statement]
 

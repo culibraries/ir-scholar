@@ -114,7 +114,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("date_created", :stored_searchable)
     config.add_show_field solr_name("rights_statement", :stored_searchable)
     config.add_show_field solr_name("degree_grantors", :stored_searchable)
-    config.add_show_field solr_name("resource_type", :stored_searchable), label: 'Resource Type'
+    config.add_show_field solr_name("resource_type", :stored_searchable)
     config.add_show_field solr_name("format", :stored_searchable)
     config.add_show_field solr_name("identifier", :stored_searchable)
 
@@ -235,6 +235,7 @@ class CatalogController < ApplicationController
       }
     end
     config.add_search_field('resource_type') do |field|
+      field.label = "Resource Type"
       solr_name = solr_name("resource_type", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,

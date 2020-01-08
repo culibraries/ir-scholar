@@ -73,6 +73,9 @@ class SolrDocument
   def conference_name
     self[Solrizer.solr_name('conference_name')]
   end
+  def event_date
+    self[Solrizer.solr_name('event_date')]
+  end
   def conference_section
     self[Solrizer.solr_name('conference_section')]
   end
