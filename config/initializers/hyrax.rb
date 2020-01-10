@@ -60,7 +60,7 @@ Hyrax.config do |config|
   config.uploader = {
     limitConcurrentUploads: 6,
     maxNumberOfFiles: 100,
-    maxFileSize: 2000.megabytes
+    maxFileSize: 10000.megabytes
   }
 
   # Enable displaying usage statistics in the UI

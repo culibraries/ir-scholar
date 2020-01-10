@@ -2,8 +2,8 @@
 # To integrate your app with Google Analytics, uncomment the lines below and add your API key information.
 #
 analytics:
-  app_name: <%= ENV.fetch("GOOGLE_OAUTH_APP_NAME")  %>
-  app_version: <%= ENV.fetch("GOOGLE_OAUTH_APP_VERSION")  %>
-  privkey_path: <%= ENV.fetch("GOOGLE_OAUTH_PRIVATE_KEY_PATH") %>
-  privkey_secret: <%= ENV.fetch("GOOGLE_OAUTH_PRIVATE_KEY_SECRET") %>
-  client_email: <%= ENV.fetch("GOOGLE_OAUTH_CLIENT_EMAIL") %>
+  app_name: cu-scholar
+  app_version: v2.6.0
+  privkey_path: /data/cu-scholar-98ddf6f79202.p12
+  privkey_secret: notasecret
+  client_email: cu-scholar-account@cu-scholar-264616.iam.gserviceaccount.com
