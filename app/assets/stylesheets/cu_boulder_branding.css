@@ -1,13 +1,13 @@
 .samvera-cu-brand {
     width:300px;
-    padding: 5px 15px;
-    height: 35px;
+    padding: 5px 15px !important;
+    height: 35px !important;
 }
 .samvera-cu-brand-department {
     width:300px;
     clear:both;
-    padding:4px 4px 4px 2px;
-    display:block;
+    padding:4px 4px 4px 2px !important;
+    display:block !important;
 }
 .collection-highlights img {
     height: 60px;
