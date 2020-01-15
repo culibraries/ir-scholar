@@ -24,7 +24,7 @@ Samvera Hyrax application for the deployment to k8s cluster.
     
     
     
-TODO List 
+TODO List !
 
 Things you may want to cover:
 
