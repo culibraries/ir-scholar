@@ -33,6 +33,7 @@ build/data/csv_output
 coverage/*
 
 #/build
+cu-scholar-98ddf6f79202.p12
 # Ignore local overrides
 docker-compose.override.example.yml
 docker-compose.override.yml
