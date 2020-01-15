@@ -58,6 +58,7 @@ en:
           subject_tesim: Subject
           title_tesim: Title
   hyrax:
+    work_url_label: "Citeable URL"
     base:
       show:
         abstract: "Abstract"
