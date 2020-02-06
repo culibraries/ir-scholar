@@ -59,6 +59,11 @@ en:
           title_tesim: Title
   hyrax:
     work_url_label: "Citeable URL"
+    search:
+      form:
+        q:
+          label: "Search %{application_name}"
+          placeholder:  "Enter search terms or select 'Go' to browse"
     base:
       show:
         abstract: "Abstract"
