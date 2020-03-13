@@ -66,16 +66,17 @@ Hyrax.config do |config|
   # Enable displaying usage statistics in the UI
   # Defaults to false
   # Requires a Google Analytics id and OAuth2 keyfile.  See README for more info
-  config.analytics = true
+  if Rails.env.production?
+    config.analytics = true
 
-  # Google Analytics tracking ID to gather usage statistics
-  config.google_analytics_id = 'UA-152058677-1'
+    # Google Analytics tracking ID to gather usage statistics
+    config.google_analytics_id = 'UA-152058677-1'
 
-  # Date you wish to start collecting Google Analytic statistics for
-  # Leaving it blank will set the start date to when ever the file was uploaded by
-  # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
-  config.analytic_start_date = DateTime.new(2020, 1, 9)
-
+    # Date you wish to start collecting Google Analytic statistics for
+    # Leaving it blank will set the start date to when ever the file was uploaded by
+    # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
+    config.analytic_start_date = DateTime.new(2020, 1, 9)
+  end
   # Enables a link to the citations page for a work
   # Default is false
   config.citations = true
@@ -113,7 +114,7 @@ Hyrax.config do |config|
 
   # Option to enable/disable full text extraction from PDFs
   # Default is true, set to false to disable full text extraction
-  # config.extract_full_text = true
+  # config.extract_full_text = false
 
   # How many seconds back from the current time that we should show by default of the user's activity on the user's dashboard
   # config.activity_to_show_default_seconds_since_now = 24*60*60
@@ -298,8 +299,8 @@ Hyrax.config do |config|
   # config.whitelisted_ingest_dirs = []
 end
 
-Date::DATE_FORMATS[:standard] = "%m/%d/%Y"
+Date::DATE_FORMATS[:standard] = "%Y-%m-%d"
 
-Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
-Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
-Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
+#Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
+#Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
+#Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')

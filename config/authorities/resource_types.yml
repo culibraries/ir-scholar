@@ -13,6 +13,8 @@ terms:
     term: Dissertation
   - id: Image
     term: Image
+  - id: Doctoral Thesis
+    term: Doctoral Thesis
   - id: Masters Thesis
     term: Masters Thesis
   - id: Part of Book
