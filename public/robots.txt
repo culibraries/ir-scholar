@@ -1,1 +1,17 @@
 # See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+#
+# To ban all spiders from the entire site uncomment the next two lines:
+# User-agent: *
+# Disallow: /
+# Load the sitemap
+# Sitemap: Need to Add
+User-agent: *
+Crawl-delay: 8
+Disallow: /catalog
+Disallow: /files/*/stats
+Disallow: /oai
+
+User-agent: Googlebot
+Allow: /catalog
+Disallow: /files/*/stats
+Disallow: /oai

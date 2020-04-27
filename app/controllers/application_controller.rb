@@ -2,8 +2,6 @@ class ApplicationController < ActionController::Base
   def default_url_options
     if Rails.env.production?
       {:host => "scholar.colorado.edu"}
-    elsif Rails.env.staging?
-      {:host => "test-scholar.colorado.edu"}
     else  
       {}
     end
