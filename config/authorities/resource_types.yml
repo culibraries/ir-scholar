@@ -43,3 +43,15 @@ terms:
     term: Working Paper
   - id: Other
     term: Other
+  - id: Brief
+    term: Brief
+  - id: Research Brief
+    term: Research Brief
+  - id: Policy Brief
+    term: Policy Brief
+  - id: Legislative Brief
+    term: Legislative Brief
+  - id: Memo
+    term: Memo
+  - id: Policy Memo
+    term: Policy Memo
