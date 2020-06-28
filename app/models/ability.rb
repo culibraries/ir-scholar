@@ -1,26 +1,21 @@
 class Ability
+  include Scholar::Ability::CollectionAbility
   include Hydra::Ability
-  
   include Hyrax::Ability
-  self.ability_logic += [:everyone_can_create_curation_concerns]
+  self.ability_logic += [:everyone_can_create_curation_concerns, :collection_abilities]
+  self.admin_group_name = 'admin'
 
-  # Define any customized permissions here.
   def custom_permissions
-    # Limits deleting objects to a the admin user
-    #
-    if current_user.admin?
+    if admin?
       can [:destroy], ActiveFedora::Base
-    end
-    can :manage, Zizia::CsvImport if current_user.admin?
-    can :manage, Zizia::CsvImportDetail if current_user.admin?
-    # Limits creating new objects to a specific group
-    #
-    # if user_groups.include? 'special_group'
-    #   can [:create], ActiveFedora::Base
-    # end
-    if current_user.admin?
-       can [:create, :show, :add_user, :remove_user, :index, :edit, :update, :destroy], Role
+      can [:create, :show, :add_user, :remove_user, :index, :edit, :update, :destroy], Role
+      can :manage, Zizia::CsvImport
+      can :manage, Zizia::CsvImportDetail
     end
     super
+  end
+
+  def admin?
+    user_groups.include? admin_group_name
   end
 end
