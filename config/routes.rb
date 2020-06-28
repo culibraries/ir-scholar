@@ -1,21 +1,25 @@
 Rails.application.routes.draw do
-  
+
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
-  
+
     concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
   end
 
-  # Depending on environment - SAML integration for :users
-  # devise_for :users
-  devise_for :users, :skip => [:registrations], path_names: { sign_in: 'auth/saml'}, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
-  devise_scope :user do
-    get 'users/auth/saml', to: 'users/omniauth_authorize#passthru', defaults: { provider: :saml }, as: 'new_cu_session'
-  end
-  
+  # Switching enviroment Staging/Production vs Development
+  # ========= Staging/Production ==============
+
+  # devise_for :users, :skip => [:registrations], path_names: { sign_in: 'auth/saml'}, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
+  # devise_scope :user do
+  #   get 'users/auth/saml', to: 'users/omniauth_authorize#passthru', defaults: { provider: :saml }, as: 'new_cu_session'
+  # end
+
+  # ========= Local Development ==============
+  devise_for :users , :skip => [:registrations]
+
   mount Hydra::RoleManagement::Engine => '/'
 
   mount Qa::Engine => '/authorities'
