@@ -12,10 +12,20 @@ class Ability
       can :manage, Zizia::CsvImport
       can :manage, Zizia::CsvImportDetail
     end
-    super
+    if collection_manager?
+      can :manage, ::Collection
+      can :manage_any, ::Collection
+      can :create_any, ::Collection
+      can :view_admin_show_any, ::Collection
+    end
+    cannot :manage, ::Collection unless collection_manager?
+    end
   end
 
   def admin?
     user_groups.include? admin_group_name
   end
-end
+
+  def collection_manager?
+    user_groups.any? { |x| ["collection_manager", "admin"].include?(x) }
+  end
