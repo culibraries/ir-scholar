@@ -8,7 +8,7 @@
 
 - CHANGELOG.md to keep track of all notable changes.
 - New interface for roles management page.
-- Collection permission : only allow admin to create new collection.
+- Collection permission : only allow admin and collection_manager role to manage collection (view, create, update, edit, destroy)
 
 ## [1.0.7]
 
