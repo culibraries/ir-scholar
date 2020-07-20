@@ -5,7 +5,7 @@
 ## [1.1.0]
 
 ### Added
-
+- Implement google recapcha v2 for contact form.
 - CHANGELOG.md to keep track of all notable changes.
 - New interface for roles management page.
 - Collection permission : only allow admin and collection_manager role to manage collection (view, create, update, edit, destroy)

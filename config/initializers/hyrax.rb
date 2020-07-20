@@ -20,8 +20,8 @@ Hyrax.config do |config|
   config.register_curation_concern :report
   # Injected via `rails g hyrax:work Default`
   config.register_curation_concern :default
-  
-  
+
+
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
   # @note there are magical roles as defined in Hyrax::RoleRegistry::MAGIC_ROLES
@@ -297,6 +297,18 @@ Hyrax.config do |config|
   # mount point.
   #
   # config.whitelisted_ingest_dirs = []
+
+  # Enables the use of Google ReCaptcha on the contact form.
+  # A site key and secret key need to be supplied in order for google
+  # to authenticate and authorize/validate the
+  config.recaptcha = true
+  #
+  # ReCaptcha site key and secret key, supplied by google after
+  # registering a domain.
+  config.recaptcha_site_key = ENV.fetch('RECAPTCHA_SITE_KEY', 'xxxx')
+  # WARNING: KEEP THIS SECRET. DO NOT STORE IN REPOSITORY
+  config.recaptcha_secret_key = ENV.fetch('RECAPTCHA_SECRET_KEY', 'xxxx')
+
 end
 
 Date::DATE_FORMATS[:standard] = "%Y-%m-%d"

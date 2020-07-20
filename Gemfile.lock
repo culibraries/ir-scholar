@@ -642,6 +642,8 @@ GEM
       rdf (~> 3.0, >= 3.0.11)
     rdf-xsd (3.0.1)
       rdf (~> 3.0)
+    recaptcha (5.5.0)
+      json
     redic (1.5.3)
       hiredis
     redis (4.1.2)
@@ -838,6 +840,7 @@ DEPENDENCIES
   puma (~> 3.7)
   qa
   rails (~> 5.1.7)
+  recaptcha
   redis (~> 4.0)
   rest-client
   riiif (~> 2.0)
