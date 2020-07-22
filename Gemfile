@@ -5,26 +5,20 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-#CU Boulder
+# CU Boulder
 # CU Boulder Additions , '3.4.2' #
 gem 'hydra-derivatives', '3.4.2' # , git: 'https://github.com/samvera/hydra-derivatives.git'
 
 gem 'hydra-role-management'
 gem 'qa'
-#gem 'browse-everything'
 gem 'sidekiq'
 gem 'mini_magick'
 
-#gem 'omniauth-saml'
+# SAML
 gem 'omniauth-saml', :git => 'https://github.com/culibraries/omniauth-saml.git'
- #gem 'tzinfo-data'
-#gem 'uglifier', '>= 1.3.0'
-#gem 'ruby-oembed'
-#gem 'blacklight-oembed'
-#gem 'curation_concerns'
 
-#gem 'libxml-ruby'
-#gem 'bulkrax', git: 'https://github.com/notch8/bulkrax'
+# Recaptcha
+gem "recaptcha", require: "recaptcha/rails"
 
 # Production servers
 group :production do
