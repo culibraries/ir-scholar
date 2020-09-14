@@ -1,4 +1,5 @@
-import os,glob
+import os
+import glob
 import json
 import xmltodict
 import re
@@ -9,6 +10,7 @@ from dateutil.parser import parse
 from functools import reduce
 from datetime import datetime
 import logging
+# from xmltos3 import xmltos3
 
 csv_divider = "|~|"
 
@@ -28,10 +30,69 @@ defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             }
 
 
-def transform(item):
+def transform(itm, file):
     data_row = dict.fromkeys(csv_headers, '')
     data_row.update(defaults)
     data_row['title'] = itm['DISS_description']['DISS_title']
+
+    author_name = itm['DISS_authorship']['DISS_author']['DISS_name']
+    data_row['creator'] = formatName(author_name)
+
+    description = itm['DISS_description']
+    if description['DISS_advisor']:
+        data_row['contributor_advisor'] = formatName(
+            description['DISS_advisor']['DISS_name'])
+    else:
+        data_row['contributor_advisor'] = ''
+
+    if description['DISS_cmte_member']:
+        data_row['contributor_committeemember'] = combineName(
+            description['DISS_cmte_member'])
+    else:
+        data_row['contributor_committeemember'] = ''
+
+    data_row['abstract'] = cleanAbstractText(
+        itm['DISS_content']['DISS_abstract']['DISS_para'])
+
+    data_row['subject'] = csv_divider.join(
+        description['DISS_categorization']['DISS_keyword'].split(', '))
+    data_row['keyword'] = csv_divider.join(
+        description['DISS_categorization']['DISS_keyword'].split(', '))
+
+    ########### need to review #########
+    # data_row['academic_affiliation'] = academicAffiliation(itm)
+    # data_row['graduation_year'] = graduationYear(itm)
+    #data_row['license'] = itm['distribution_license']
+    # data_row['publisher'] = itm["publisher"]
+    # data_row['identifier'] = itm['identifier']
+    #data_row['related url'] = itm['url']
+    #data_row['date_available'] = itm["publication_date"].split(' ')[0]
+    # itm["publication_date"].split('-')[0]
+    # data_row['date_issued'] = pubDateFormat(itm)
+    # data_row['doi'] = itm['doi']
+    # data_row['degree_name'] = itm['degree_name']
+    # data_row['peerreviewed'] = itm['peer_reviewed']
+    # data_row['replaces'] = replaces(itm)
+    # data_row['bibliographic_citation'] = itm['custom_citation']
+    # data_row['additional_information'] = additonal_information(itm)
+
+    data_row['academic_affiliation'] = ''
+    data_row['graduation_year'] = ''
+    data_row['license'] = ''
+    data_row['publisher'] = ''
+    data_row['identifier'] = ''
+    data_row['related url'] = ''
+    data_row['date_available'] = ''
+    data_row['date_issued'] = ''
+    data_row['doi'] = ''
+    data_row['degree_name'] = description['DISS_degree']
+    data_row['peerreviewed'] = ''
+    data_row['replaces'] = replaces(file)
+    data_row['bibliographic_citation'] = ''
+    data_row['additional_information'] = ''
+    data_row['files'] = itm['DISS_content']['DISS_binary']
+    return data_row
+
 
 def getAcademicMap():
     academic_affiliation_file = "academicAffiliationMap.csv"
@@ -42,19 +103,24 @@ def getAcademicMap():
     return academicMap
 
 
-def clean_format_name(names, divider="|~|"):
-    names = re.sub(', and ', ',', names, re.IGNORECASE)
-    names = re.sub(' and ', ',', names, re.IGNORECASE)
+def combineName(names, divider="|~|"):
     newName = []
-    for name in names.split(','):
-        tmp = name.split(" ")
-        try:
-            tmp.remove('')
-        except:
-            pass
-        if tmp:
-            newName.append("{0}, {1}".format(tmp[-1], " ".join(tmp[:-1])))
+    for name in names:
+        full_name = formatName(name['DISS_name'])
+        newName.append(full_name)
     return divider.join(newName)
+
+
+def formatName(name):
+    first_name = name.get('DISS_fname', '')
+    sur_name = name.get('DISS_surname', '')
+    suffix = name.get('DISS_suffix', '')
+    middle_name = name.get('DISS_middle', '')
+    return '{} {},{} {}'.format(xstr(suffix), xstr(sur_name), xstr(first_name), xstr(middle_name))
+
+
+def xstr(s):
+    return '' if s is None else str(s)
 
 
 def super_sub_script_replace(text, start_tag, stop_tag):
@@ -84,7 +150,7 @@ def super_sub_script_replace(text, start_tag, stop_tag):
     return text
 
 
-def clean_abstract_text(html):
+def cleanAbstractText(html):
     # Super and Sub scripts insertion
     text = super_sub_script_replace(html, '<sub>', '</sub>')
     text = super_sub_script_replace(text, '<sup>', '</sup>')
@@ -126,16 +192,18 @@ def graduationYear(itm):
     return value
 
 
-def replaces(itm):
-    return "{0}|{1}".format(itm['context_key'], itm['front_end_url'])
+def replaces(file):
+    # upload xml to s3
+    # url = xmltos3()
+    return "{0}|{1}".format(os.path.splitext(os.path.basename(file))[0].split('_')[-1], 'test')
 
 
 def additonal_information(itm):
     if itm['source_publication'].strip() and itm['comments'].strip():
-        value = "{0} - {1}".format(clean_abstract_text(
+        value = "{0} - {1}".format(cleanAbstractText(
             itm['comments']), itm['source_publication'])
     elif itm['comments'].strip():
-        value = "{0}".format(clean_abstract_text(itm['comments']))
+        value = "{0}".format(cleanAbstractText(itm['comments']))
     elif itm['source_publication'].strip():
         value = "{0}".format(itm['source_publication'])
     else:
@@ -151,7 +219,7 @@ def writeCsvFile(csv_data, error_data, count):
         dict_writer.writeheader()
         dict_writer.writerows(csv_data)
     if error_data:
-        with open('file1/{0}_{1}_error_{2}.json'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
+        with open('{0}_{1}_error_{2}.json'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
             output_file.write(json.dumps(error_data, indent=4))
 
 
@@ -161,19 +229,18 @@ def tocsv(source):
     count = 0
     try:
         for root, dirs, files in os.walk(source):
-             for dir in dirs:
+            for dir in dirs:
                 os.chdir(os.path.join(root, dir))
+                print
                 for file in glob.glob("*.xml"):
+                    print("Found: " + file)
                     with open(file) as fd:
                         itm = xmltodict.parse(fd.read(), process_namespaces=True)[
-                                            'DISS_submission']
-                    print(itm)
+                            'DISS_submission']
+                        csv_data.append(transform(itm, '{0}{1}/{2}'.format(root, dir, file)))
+                        writeCsvFile(csv_data, error_data, count)
+                        print(csv_data)
     except Exception as e:
         print(e)
-        # logging.error('Error at %s', 'division', exc_info=e)
-        # error_data.append(itm)
-
-    # Write remaining csv if data
-    # if csv_data or error_data:
-    #     writeCsvFile(csv_data, error_data, count)
-    # print(getAcademicMap())
+        logging.error('Error at %s', 'division', exc_info=e)
+        error_data.append(itm)
