@@ -17,7 +17,7 @@ csv_divider = "|~|"
 csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor', 'keyword', 'license', 'rights statement', 'publisher',
                'subject', 'language', 'identifier', 'location', 'related_url', 'bibliographic_citation', 'source', 'abstract', 'academic_affiliation',
                'additional_information', 'alt_title', 'contributor_advisor', 'contributor_committeemember', 'date_available', 'date_issued', 'degree_grantors',
-               'degree_level', 'doi', 'embargo_reason', 'graduation_year', 'peerreviewed', 'replaces', 'language', 'admin_set_id', 'visibility', 'files']
+               'degree_level', 'doi', 'embargo_reason', 'graduation_year', 'peerreviewed', 'replaces', 'language', 'admin_set_id', 'visibility', 'files','replaces']
 
 defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'rights statement': 'http://rightsstatements.org/vocab/InC/1.0/',
@@ -25,7 +25,9 @@ defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             'admin_set_id': 'k643b116n',
             'visibility': 'open',
             'resource type': 'Dissertation',
+            #NOTE: check on resource type : dissertation, masters thesis, doctoral thesis
             'degree_level': 'Doctoral',
+            #NOTE: Doctoral, Masters
             'degree_grantors': 'http://id.loc.gov/authorities/names/n50000485'
             }
 
@@ -60,21 +62,6 @@ def transform(itm, file):
         description['DISS_categorization']['DISS_keyword'].split(', '))
 
     ########### need to review #########
-    # data_row['academic_affiliation'] = academicAffiliation(itm)
-    # data_row['graduation_year'] = graduationYear(itm)
-    #data_row['license'] = itm['distribution_license']
-    # data_row['publisher'] = itm["publisher"]
-    # data_row['identifier'] = itm['identifier']
-    #data_row['related url'] = itm['url']
-    #data_row['date_available'] = itm["publication_date"].split(' ')[0]
-    # itm["publication_date"].split('-')[0]
-    # data_row['date_issued'] = pubDateFormat(itm)
-    # data_row['doi'] = itm['doi']
-    # data_row['degree_name'] = itm['degree_name']
-    # data_row['peerreviewed'] = itm['peer_reviewed']
-    # data_row['replaces'] = replaces(itm)
-    # data_row['bibliographic_citation'] = itm['custom_citation']
-    # data_row['additional_information'] = additonal_information(itm)
 
     data_row['academic_affiliation'] = ''
     data_row['graduation_year'] = ''
@@ -194,6 +181,7 @@ def graduationYear(itm):
 
 def replaces(file):
     # upload xml to s3
+    print("Upload XML file to S3")
     # url = xmltos3()
     return "{0}|{1}".format(os.path.splitext(os.path.basename(file))[0].split('_')[-1], 'test')
 
@@ -231,7 +219,6 @@ def tocsv(source):
         for root, dirs, files in os.walk(source):
             for dir in dirs:
                 os.chdir(os.path.join(root, dir))
-                print
                 for file in glob.glob("*.xml"):
                     print("Found: " + file)
                     with open(file) as fd:
@@ -239,7 +226,6 @@ def tocsv(source):
                             'DISS_submission']
                         csv_data.append(transform(itm, '{0}{1}/{2}'.format(root, dir, file)))
                         writeCsvFile(csv_data, error_data, count)
-                        print(csv_data)
     except Exception as e:
         print(e)
         logging.error('Error at %s', 'division', exc_info=e)

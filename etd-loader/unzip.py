@@ -3,7 +3,7 @@ import os
 import zipfile
 from pathlib import Path
 
-
+#NOTE: process happen one by one
 def unzip(source, destination):
     os.chdir(source)
     for zipFile in glob.glob("*.zip"):
