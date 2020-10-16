@@ -10,7 +10,7 @@ class MyImporter
     attrs = {
       collection_id: collection_id,     # pass a collection id to the record importer and all records will be added to that collection
       depositor_id: depositor_id,       # pass a Hyrax user_key here and that Hyrax user will own all objects created during this import
-      deduplication_field: 'replaces' # pass a field with a persistent identifier (e.g., ARK) and it will check to see if a record with that identifier already
+      deduplication_field: 'replaces'   # pass a field with a persistent identifier (e.g., ARK) and it will check to see if a record with that identifier already
     }                                   # exists, update its metadata if so, and only if it doesn't find a record with that identifier will it make a new object.
 
     file = File.open(@csv_file)
