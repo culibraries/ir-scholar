@@ -14,21 +14,22 @@ if __name__ == "__main__":
         with zipfile.ZipFile(zipFile, "r") as zip_ref:
             zip_ref.printdir()
             zip_ref.extractall(destination + Path(zipFile).stem)
+
     # unzip(source, destination)
-    # print("==== Done... =====")
-    # print("===")
-    # print("===")
-    # print("===")
-    # #NOTE: catch exception for each step
-    # #NOTE: move to error folder with error log (.error)
+    print("==== Done... =====")
+    print("===")
+    print("===")
+    print("===")
+    #NOTE: catch exception for each step
+    #NOTE: move to error folder with error log (.error)
 
-    # print("==== Converting to CSV format...===")
-    # tocsv(source)
-    # print("==== Done...===")
-    # print("===")
-    # print("===")
-    # print("===")
+    print("==== Converting to CSV format...===")
+    tocsv(source)
+    print("==== Done...===")
+    print("===")
+    print("===")
+    print("===")
 
-    # print("==== Load CSV to IR...===")
-    # # os.system('ruby toir.rb')
-    # print("==== Done...===")
+    print("==== Load CSV to IR...===")
+    # os.system('ruby toir.rb')
+    print("==== Done...===")
