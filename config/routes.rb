@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   # ========= Local Development ==============
 
-  #devise_for :users , :skip => [:registrations]
+  # devise_for :users , :skip => [:registrations]
 
   # ==========================================
 
