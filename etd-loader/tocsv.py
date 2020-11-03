@@ -32,7 +32,7 @@ defaults = {'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
             }
 
 
-def transform(itm, file):
+def transform(itm, file_number, source):
     data_row = dict.fromkeys(csv_headers, '')
     data_row.update(defaults)
     data_row['title'] = itm['DISS_description']['DISS_title']
@@ -60,7 +60,12 @@ def transform(itm, file):
         description['DISS_categorization']['DISS_keyword'].split(', '))
     data_row['keyword'] = csv_divider.join(
         description['DISS_categorization']['DISS_keyword'].split(', '))
-
+    data_row['files'] = source + '/' + itm['DISS_content']['DISS_binary']['#text']
+    if itm['DISS_content']['DISS_attachment']:
+        newFileName = []
+        for attachment in itm['DISS_content']['DISS_attachment']:
+            newFileName.append(source + '/' + attachment['DISS_file_name'])
+        data_row['files'] += '|~|' + '|~|'.join(newFileName)
     ########### need to review #########
 
     data_row['academic_affiliation'] = ''
@@ -74,10 +79,9 @@ def transform(itm, file):
     data_row['doi'] = ''
     data_row['degree_name'] = description['DISS_degree']
     data_row['peerreviewed'] = ''
-    data_row['replaces'] = replaces(file)
+    data_row['replaces'] = replaces(file_number,source)
     data_row['bibliographic_citation'] = ''
     data_row['additional_information'] = ''
-    data_row['files'] = itm['DISS_content']['DISS_binary']
     return data_row
 
 
@@ -179,11 +183,9 @@ def graduationYear(itm):
     return value
 
 
-def replaces(file):
-    # upload xml to s3
-    print("Upload XML file to S3")
+def replaces(file_number, source):
     # url = xmltos3()
-    return "{0}|{1}".format(os.path.splitext(os.path.basename(file))[0].split('_')[-1], 'test')
+    return "{0}|{1}".format(file_number, 'test')
 
 
 def additonal_information(itm):
@@ -199,33 +201,30 @@ def additonal_information(itm):
     return value
 
 
-def writeCsvFile(csv_data, error_data, count):
+def writeCsvFile(source, csv_data, error_data):
     now = datetime.now().isoformat().replace(':', '').split('.')[0]
     keys = csv_data[0].keys()
-    with open('{0}_{1}_dataload_{2}.csv'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
+    with open(source + '{0}_dataload.csv'.format(defaults['resource type'].lower()), 'w') as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(csv_data)
     if error_data:
-        with open('{0}_{1}_error_{2}.json'.format(now, defaults['resource type'].lower(), count), 'w') as output_file:
+        with open(source + '{0}_{1}_error.json'.format(now, defaults['resource type'].lower()), 'w') as output_file:
             output_file.write(json.dumps(error_data, indent=4))
 
 
-def tocsv(source):
+def tocsv(source, file_number):
     csv_data = []
     error_data = []
-    count = 0
     try:
-        for root, dirs, files in os.walk(source):
-            for dir in dirs:
-                os.chdir(os.path.join(root, dir))
-                for file in glob.glob("*.xml"):
-                    print("Found: " + file)
-                    with open(file) as fd:
-                        itm = xmltodict.parse(fd.read(), process_namespaces=True)[
-                            'DISS_submission']
-                        csv_data.append(transform(itm, '{0}{1}/{2}'.format(root, dir, file)))
-                        writeCsvFile(csv_data, error_data, count)
+        for file in os.listdir(source):
+            if file.endswith(".xml"):
+                print("Found: " + file)
+                with open(source + '/' + file) as fd:
+                    itm = xmltodict.parse(fd.read(), process_namespaces=True)['DISS_submission']
+                    csv_data.append(transform(itm, file_number, source))
+                    writeCsvFile(source + '/', csv_data, error_data)
+                    os.system('rake etd_import:upload[source + '/' + file] --trace')
     except Exception as e:
         print(e)
         logging.error('Error at %s', 'division', exc_info=e)

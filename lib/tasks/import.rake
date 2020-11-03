@@ -1,7 +1,6 @@
-namespace :basic_import do
-    desc 'Ingest sample data'
-    task sample: [:environment] do
-      csv_file = Rails.root.join('app', 'importers', 'csv.csv')
-      ModularImporter.new(csv_file).import
-    end
+namespace :etd_import do
+  task :upload, [:filepath] => [:environment] do |t, args|
+    csv_file = args[:filepath]
+    ModularImporter.new(csv_file).import
   end
+end
