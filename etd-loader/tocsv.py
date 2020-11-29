@@ -1,4 +1,3 @@
-# coding: utf-8
 import os
 import glob
 import json
@@ -11,10 +10,10 @@ from dateutil.parser import parse
 from functools import reduce
 from datetime import datetime
 import logging
-# from xmltos3 import xmltos3
+from xmltos3 import xmltos3
 
 logger = logging.getLogger('etd-loader')
-hdlr = logging.FileHandler('/Users/dtrinh/efs/test/proquest/logs/etd-loader.log')
+hdlr = logging.FileHandler('/efs/prod/proquest/logs/etd-loader.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
@@ -22,10 +21,11 @@ logger.setLevel(logging.DEBUG)
 
 csv_divider = "|~|"
 
-csv_headers = ['title', 'date created', 'resource type', 'creator', 'contributor', 'keyword', 'license', 'rights statement', 'publisher',
+csv_headers = ['title', 'resource type', 'creator', 'contributor', 'keyword', 'license', 'rights statement', 'publisher',
                'subject', 'language', 'location', 'bibliographic_citation', 'source', 'abstract', 'academic_affiliation',
-               'additional_information', 'alt_title', 'contributor_advisor', 'contributor_committeemember', 'date_available', 'date_issued', 'degree_grantors',
-               'degree_level', 'doi', 'embargo_reason', 'graduation_year', 'peerreviewed', 'replaces', 'language', 'admin_set_id', 'visibility', 'files','replaces']
+               'additional_information', 'alt_title', 'contributor_advisor', 'contributor_committeemember', 'date_issued', 'degree_grantors',
+               'degree_level', 'doi', 'embargo_reason', 'graduation_year', 'peerreviewed', 'language', 'degree_name', 'admin_set_id',
+               'visibility', 'files', 'replaces', 'embargo_release_date']
 
 defaults = {
             'language': 'http://id.loc.gov/vocabulary/iso639-2/eng',
@@ -59,14 +59,12 @@ def transform(itm, file_number, source, file_name, folder_file_name):
     repository = itm['DISS_repository']
 
     data_row['title'] = description.get('DISS_title','No Title')
-    data_row['date created'] = description['DISS_dates'].get('DISS_comp_date','')
     if (description['@type'] == 'masters'):
         data_row['resource type'] = 'Masters Thesis'
     if (description['@type'] == 'doctoral'):
         data_row['resource type'] = 'Dissertation'
 
     data_row['creator'] = combineName(itm['DISS_authorship']['DISS_author'])
-
 
     if (description['DISS_categorization'].get('DISS_keyword') is not None):
         data_row['keyword'] = csv_divider.join(
@@ -76,21 +74,15 @@ def transform(itm, file_number, source, file_name, folder_file_name):
 
     data_row['subject'] = data_row['keyword'] + csv_divider + getSubjectList(description['DISS_categorization']['DISS_category'])
 
-
     data_row['abstract'] = getAbstractPara(content['DISS_abstract'].get('DISS_para','No Abstract'))
-
 
     data_row['academic_affiliation'] = description['DISS_institution'].get('DISS_inst_contact','')
 
     data_row['contributor_advisor'] = combineName(description['DISS_advisor'])
+
     data_row['contributor_committeemember'] = combineName(description['DISS_cmte_member'])
 
     data_row['files'] = folder_file_name + '/' + content['DISS_binary']['#text']
-
-    data_row['date_available'] = getDateAvailable(repository.get('DISS_agreement_decision_date', None),
-                                                                  description.get('DISS_dates', None),
-                                                                  itm['@embargo_code'],
-                                                                  restriction)
 
     data_row['date_issued'] = getDate(repository.get('DISS_agreement_decision_date', None),description.get('DISS_dates', None))
 
@@ -224,7 +216,7 @@ def academicAffiliation(itm):
 
 def replaces(file_number, source, file):
     url = xmltos3(source, file)
-    url = 'testurl'
+
     return "{0}|{1}".format(file_number, url)
 
 def writeCsvFile(source, csv_data, error_data):
@@ -260,6 +252,8 @@ def tocsv(source, file_number, folder_file_name, zip_file_path, rejected_path):
                         print('- Converted .zip to .zip.processed')
                         print('- Done')
                         logger.debug('Success: ' + folder_file_name)
+                    else:
+                        print('- Do embargo later')
     except Exception as e:
         print('- Error Found:' + str(e))
         logger.error('- Log: ' + zip_file_path + ' : ' + str(e))
