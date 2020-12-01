@@ -23,7 +23,7 @@ if __name__ == "__main__":
                 print('{0}: {1}'.format(count, Path(zipFile).stem))
                 print('- Unzipping: {0}'.format(Path(zipFile).stem))
                 zip_ref.extractall(destination + Path(zipFile).stem)
-                tocsv(destination + Path(zipFile).stem, Path(zipFile).stem.split('_')[-1], Path(zipFile).stem, source + zipFile, source +'rejected')
+                tocsv(destination + Path(zipFile).stem, Path(zipFile).stem.split('_')[-1], Path(zipFile).stem, source + zipFile, source +'rejected', source +'unaccepted')
         except BadZipfile:
             print("Bad Zipfile: " + Path(zipFile).stem)
             os.system('mv ' + source + zipFile + ' ' + source +'rejected')

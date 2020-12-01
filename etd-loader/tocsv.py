@@ -78,9 +78,15 @@ def transform(itm, file_number, source, file_name, folder_file_name):
 
     data_row['academic_affiliation'] = description['DISS_institution'].get('DISS_inst_contact','')
 
-    data_row['contributor_advisor'] = combineName(description['DISS_advisor'])
+    if 'DISS_advisor' in description:
+        data_row['contributor_advisor'] = combineName(description['DISS_advisor'])
+    else:
+        data_row['contributor_advisor'] = ''
 
-    data_row['contributor_committeemember'] = combineName(description['DISS_cmte_member'])
+    if 'DISS_cmte_member' in description:
+        data_row['contributor_committeemember'] = combineName(description['DISS_cmte_member'])
+    else:
+        data_row['contributor_committeemember'] = ''
 
     data_row['files'] = folder_file_name + '/' + content['DISS_binary']['#text']
 
@@ -95,11 +101,14 @@ def transform(itm, file_number, source, file_name, folder_file_name):
     data_row['graduation_year'] = data_row['date_issued'].split('-')[0]
 
     if 'DISS_attachment' in itm['DISS_content']:
+        subFolder = next(os.walk(source))[1]
         newFileName = []
-        for attachment in itm['DISS_content']['DISS_attachment']:
-            newFileName.append(source + '/' + attachment['DISS_file_name'])
-        data_row['files'] += '|~|' + '|~|'.join(newFileName)
-
+        if type(itm['DISS_content']['DISS_attachment']) is not list:
+            data_row['files'] += '|~|' + folder_file_name+'/'+subFolder[0]+'/'+itm['DISS_content']['DISS_attachment']['DISS_file_name']
+        else:
+            for attachment in itm['DISS_content']['DISS_attachment']:
+                newFileName.append(folder_file_name+'/'+subFolder[0]+'/'+attachment['DISS_file_name'])
+            data_row['files'] += '|~|' + '|~|'.join(newFileName)
     data_row['degree_name'] = description['DISS_degree']
     data_row['replaces'] = replaces(file_number,source,file_name)
     return data_row
@@ -121,28 +130,11 @@ def getReleaseDate(embargo_code, restriction):
         if restriction is not None:
             release_date = restriction.get('DISS_sales_restriction', None)
             splitRDate = release_date.get('@remove').split('/')
-            return splitRDate[2]+'-'+splitRDate[1]+'-'+splitRDate[0]
+            return splitRDate[2]+'-'+splitRDate[0]+'-'+splitRDate[1]
         else:
             return ''
     else:
         return ''
-
-def getDateAvailable(decision_date, comp_date, isEmbargo, restriction ):
-    if isEmbargo is not '0':
-        if restriction is not None:
-            releaseDate = restriction.get('DISS_sales_restriction', None)
-            splitRDate = releaseDate.get('@remove').split('/')
-            return splitRDate[2]+'-'+splitRDate[1]+'-'+splitRDate[0]
-    else:
-        if (decision_date is not None):
-            return decision_date.split(' ')[0]
-        else:
-            if comp_date.get('DISS_accept_date') is not None:
-                splitDate = comp_date.get('DISS_accept_date').split('/')
-                if splitDate[0] == '01' and splitDate[1] == '01':
-                    return splitDate[2]
-                else:
-                    return splitDate[2] + '-' + splitDate[1] + '-' + splitDate[0]
 
 def getDate(decision_date, comp_date):
     if (decision_date is not None):
@@ -153,7 +145,7 @@ def getDate(decision_date, comp_date):
             if splitDate[0] == '01' and splitDate[1] == '01':
                 return splitDate[2]
             else:
-                return splitDate[2] + '-' + splitDate[1] + '-' + splitDate[0]
+                return splitDate[2] + '-' + splitDate[0] + '-' + splitDate[1]
 
 def getAbstractPara(abstract):
     if type(abstract) is not list:
@@ -161,7 +153,7 @@ def getAbstractPara(abstract):
     else:
         newString = ''
         for para in abstract:
-            newString += para
+            newString += str(para)
         return newString
 
 def getAcademicMap():
@@ -216,7 +208,6 @@ def academicAffiliation(itm):
 
 def replaces(file_number, source, file):
     url = xmltos3(source, file)
-
     return "{0}|{1}".format(file_number, url)
 
 def writeCsvFile(source, csv_data, error_data):
@@ -228,7 +219,7 @@ def writeCsvFile(source, csv_data, error_data):
         dict_writer.writerows(csv_data)
         print('- Converted to : ' + source + '{0}_dataload.csv'.format(defaults['resource type'].lower()))
 
-def tocsv(source, file_number, folder_file_name, zip_file_path, rejected_path):
+def tocsv(source, file_number, folder_file_name, zip_file_path, rejected_path, unaccepted_path):
     csv_data = []
     error_data = []
     os.chdir('/data')
@@ -236,13 +227,13 @@ def tocsv(source, file_number, folder_file_name, zip_file_path, rejected_path):
         for file in os.listdir(source):
             if file.endswith(".xml"):
                 print("- Found: " + file)
-                with open(source + '/' + file) as fd:
+                with open(source + '/' + file, encoding="ISO-8859-1") as fd:
                     itm = xmltodict.parse(fd.read(), process_namespaces=True)['DISS_submission']
                     if itm['DISS_repository'].get('DISS_acceptance') is None or itm['DISS_repository'].get('DISS_acceptance') is '0':
                         print('- Log: ' + zip_file_path + ':is not accepted')
                         logger.error(zip_file_path + ' : ' + 'is not accepted')
-                        os.system('mv ' + zip_file_path + ' ' + rejected_path)
-                        print('- Moved to Rejected folder')
+                        os.system('mv ' + zip_file_path + ' ' + unaccepted_path)
+                        print('- Moved to UNACCEPTED folder')
                     elif itm.get('@embargo_code') is '0':
                         csv_data.append(transform(itm, file_number, source + '/', file, folder_file_name))
                         writeCsvFile(source + '/', csv_data, error_data)
@@ -259,3 +250,4 @@ def tocsv(source, file_number, folder_file_name, zip_file_path, rejected_path):
         logger.error('- Log: ' + zip_file_path + ' : ' + str(e))
         os.system('mv ' + zip_file_path + ' ' + rejected_path)
         print('- Moved to Rejected folder')
+
