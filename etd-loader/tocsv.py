@@ -13,7 +13,7 @@ import logging
 from xmltos3 import xmltos3
 
 logger = logging.getLogger('etd-loader')
-hdlr = logging.FileHandler('/efs/prod/proquest/logs/etd-loader.log')
+hdlr = logging.FileHandler('/efs/prod/proquest/logs/etd-loader-' + '{date:%Y-%m-%d_%H:%M:%S}.log'.format(date=datetime.now()))
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
@@ -94,7 +94,7 @@ def transform(itm, file_number, source, file_name, folder_file_name):
 
     data_row['embargo_release_date'] = getReleaseDate(itm['@embargo_code'], restriction)
 
-    data_row['visibility'] = getVisibility(itm['@embargo_code'])
+    data_row['visibility'] = getVisibility(itm['@embargo_code'], data_row['embargo_release_date'])
 
     data_row['degree_level'] = getDegreeLevel(description)
 
@@ -119,12 +119,13 @@ def getDegreeLevel(description):
     else:
         return 'Doctoral'
 
-def getVisibility(embargo_code):
+def getVisibility(embargo_code, release_date):
     if embargo_code is '0':
         return 'open'
+    elif release_date > '{date:%Y-%m-%d}'.format(date=datetime.now()):
+        return 'embargo'
     else:
-        return 'restricted'
-
+        return 'open'
 def getReleaseDate(embargo_code, restriction):
     if embargo_code is not '0':
         if restriction is not None:
@@ -234,17 +235,20 @@ def tocsv(source, file_number, folder_file_name, zip_file_path, rejected_path, u
                         logger.error(zip_file_path + ' : ' + 'is not accepted')
                         os.system('mv ' + zip_file_path + ' ' + unaccepted_path)
                         print('- Moved to UNACCEPTED folder')
-                    elif itm.get('@embargo_code') is '0':
+                    else:
                         csv_data.append(transform(itm, file_number, source + '/', file, folder_file_name))
                         writeCsvFile(source + '/', csv_data, error_data)
                         print('- Execute Rake Task: ' + 'rake etd_import:upload[' + source + '/dissertation_dataload.csv] --trace')
-                        os.system('rake etd_import:upload[' + source + '/dissertation_dataload.csv] --trace')
-                        os.system('mv ' + zip_file_path + ' ' + zip_file_path+'.processed')
-                        print('- Converted .zip to .zip.processed')
-                        print('- Done')
-                        logger.debug('Success: ' + folder_file_name)
-                    else:
-                        print('- Do embargo later')
+                        if (os.system('rake etd_import:upload[' + source + '/dissertation_dataload.csv] --trace')) == 0:
+                            os.system('mv ' + zip_file_path + ' ' + zip_file_path+'.processed')
+                            print('- Converted .zip to .zip.processed')
+                            print('- Done')
+                            logger.debug('Success: ' + folder_file_name)
+                        else:
+                            print('- Error Found:' + str(e))
+                            logger.error('- Log: ' + zip_file_path + ' : ' + str(e))
+                            os.system('mv ' + zip_file_path + ' ' + rejected_path)
+                            print('- Moved to Rejected folder')
     except Exception as e:
         print('- Error Found:' + str(e))
         logger.error('- Log: ' + zip_file_path + ' : ' + str(e))
