@@ -173,7 +173,8 @@ def getSubjectList(category):
         newSubject = []
         for cate in category:
             cateName = cate['DISS_cat_desc']
-            newSubject.append(cateName)
+            if (cateName is not None):
+                newSubject.append(cateName)
         return csv_divider.join(newSubject)
 
 def combineName(names, divider="|~|"):
