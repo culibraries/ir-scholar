@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## [Unreleased]
+## [1.2.0]
+
+### Added
+- ETD Loader scripts
 
 ## [1.1.0]
 

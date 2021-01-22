@@ -12,8 +12,9 @@ from datetime import datetime
 import logging
 from xmltos3 import xmltos3
 
+efs_url_env = 'test'
 logger = logging.getLogger('etd-loader')
-hdlr = logging.FileHandler('/efs/prod/proquest/logs/etd-loader-' + '{date:%Y-%m-%d_%H:%M:%S}.log'.format(date=datetime.now()))
+hdlr = logging.FileHandler('/efs/' + efs_url_env+ '/proquest/logs/etd-loader-' + '{date:%Y-%m-%d_%H:%M:%S}.log'.format(date=datetime.now()))
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
