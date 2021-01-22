@@ -44,7 +44,12 @@ COPY build/image_magic/policy.xml /etc/ImageMagick-6/policy.xml
 # Python2 setup
 RUN apt install -y python-pip
 RUN pip install --no-cache-dir -r requirements.txt
-
+RUN apt-get install -y python3-xmltodict
+RUN apt-get install -y python3-six
+RUN apt-get install -y python3-bs4
+RUN apt-get install -y python3-dateutil
+RUN apt-get install -y nano
+RUN apt-get install -y python3-boto3
 
 ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}
