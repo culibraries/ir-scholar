@@ -19,7 +19,7 @@ class Ability
       can :view_admin_show_any, ::Collection
     end
     cannot :manage, ::Collection unless collection_manager?
-    end
+    can :update, ContentBlock
   end
 
   def admin?
@@ -29,3 +29,4 @@ class Ability
   def collection_manager?
     user_groups.any? { |x| ["collection_manager", "admin"].include?(x) }
   end
+end
