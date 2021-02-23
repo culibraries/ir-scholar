@@ -1,6 +1,14 @@
 # CHANGELOG
 
-## [Unreleased]
+## Unrelease
+## [2.0.0]
+
+### Added
+- ETD Loader scripts
+
+
+## [1.2.1]
+- Fixed: not load TinyMCE for regular user
 
 ## [1.1.0]
 
