@@ -55,3 +55,5 @@ terms:
     term: Memo
   - id: Policy Memo
     term: Policy Memo
+  - id: Review
+    term : Review
