@@ -1,23 +1,19 @@
-<table class="table table-striped collection-highlights">
-  <tbody>
-    <% collections.each do |collection| %>
-      <tr>
-        <td>
-          <div class="media">
-            <div class="media-body">
-              <div class="media-heading">
-                <%= link_to [hyrax, collection] do %>
-                  <%= render_thumbnail_tag(collection, { class: 'hidden-xs file_listing_thumbnail', style: 'width:60px;' },
-                                           { suppress_link: true }) + collection.title_or_label %>
-                <% end %>
-              </div>
+
+<% collections.each do |collection| %>
+  <div class="collection-highlights" style="border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding-top: 5px;padding-bottom: 5px;margin-bottom: 10px;">
+    <div class="media">
+          <div class="media-body">
+            <div class="media-heading">
+              <%= link_to [hyrax, collection] do %>
+                <%= render_thumbnail_tag(collection, { class: 'hidden-xs file_listing_thumbnail', style: 'width:60px;' },
+                                        { suppress_link: true }) + collection.title_or_label %>
+              <% end %>
             </div>
           </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </div>
+  </div>
+<% end %>
+
 <ul class="list-inline collection-highlights-list">
   <li>
     <%= link_to t('hyrax.homepage.admin_sets.link'),

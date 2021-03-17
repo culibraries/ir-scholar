@@ -1,11 +1,11 @@
 # CHANGELOG
 
-## Unrelease
 ## [2.0.0]
 
 ### Added
 - ETD Loader scripts
-
+- Accessiblity tasks
+- New resource types has been added to "Other" work including: Review
 
 ## [1.2.1]
 - Fixed: not load TinyMCE for regular user
