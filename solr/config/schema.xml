@@ -109,7 +109,7 @@
       <analyzer>
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
-        <filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>
+        <!--<filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>-->
         <filter class="solr.TrimFilterFactory"/>
       </analyzer>
     </fieldType>
@@ -119,7 +119,7 @@
       <analyzer>
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
         <filter class="solr.TrimFilterFactory"/>
-        <filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>
+        <!--<filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>-->
       </analyzer>
     </fieldType>
         
@@ -144,7 +144,7 @@
         <filter class="solr.PorterStemFilterFactory"/>
         -->
         <filter class="solr.TrimFilterFactory"/>
-        <filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>
+        <!--<filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>-->
       </analyzer>
     </fieldType>
         
@@ -152,7 +152,7 @@
     <fieldType name="descendent_path" class="solr.TextField">
       <analyzer type="index">
         <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
-        <filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>
+        <!--<filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>-->
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.KeywordTokenizerFactory" />
@@ -163,7 +163,7 @@
     <fieldType name="ancestor_path" class="solr.TextField">
       <analyzer type="index">
         <tokenizer class="solr.KeywordTokenizerFactory" />
-        <filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>
+        <!--<filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>-->
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
@@ -176,7 +176,7 @@
         <filter class="solr.StandardFilterFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
-        <filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>
+        <!--<filter class="solr.TruncateTokenFilterFactory" prefixLength="32700"/>-->
       </analyzer>
     </fieldType>
   </types>

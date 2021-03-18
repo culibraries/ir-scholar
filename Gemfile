@@ -23,7 +23,7 @@ gem "recaptcha", require: "recaptcha/rails"
 # Production servers
 group :production do
  #gem 'mysql2', '~> 0.3.18'
-  gem 'mysql2'
+#gem 'mysql2'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -77,6 +77,8 @@ gem 'hyrax', '2.6.0'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
+
+gem 'blacklight_oai_provider'
 
 gem 'rsolr', '>= 1.0'
 gem 'bootstrap-sass', '~> 3.0'
