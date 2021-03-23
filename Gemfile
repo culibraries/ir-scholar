@@ -77,8 +77,8 @@ gem 'hyrax', '2.6.0'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
-
-gem 'blacklight_oai_provider'
+gem 'blacklight_oai_provider', :git => "git://github.com/projectblacklight/blacklight_oai_provider.git", :branch => "release-6.x"
+#gem 'blacklight_oai_provider'
 
 gem 'rsolr', '>= 1.0'
 gem 'bootstrap-sass', '~> 3.0'

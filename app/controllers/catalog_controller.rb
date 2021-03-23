@@ -323,4 +323,21 @@ class CatalogController < ApplicationController
   def render_bookmarks_control?
     false
   end
+
+
+  # config.oai = {
+  #     provider: {
+  #       repository_name: 'CU Scholar',
+  #       repository_url: 'https://scholar.colorado.edu ',
+  #       record_prefix: 'scholar.colorado.edu',
+  #       admin_email: 'cuscholaradmin@colorado.edu'
+  #     },
+  #     document: {
+  #       limit: 50,
+  #       timestamp_field: 'system_create_dtsi',
+  #       timestamp_method: 'system_created',
+  #       set_fields: 'isPartOf_ssim',
+  #       set_class: '::OaiSet'
+  #     }
+  #   }
 end
