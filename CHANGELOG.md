@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [2.0.1]
+
+### Hot fix
+- Thumbnail is not dislaying in the scholar item.
 ## [2.0.0]
 
 ### Added
