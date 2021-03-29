@@ -52,24 +52,24 @@
                           data: { label: file_set.id } %>
             </li>
           <% end %>
-          <script>
-          $.fn.exists = function () {
-          return this.length !== 0;
-          }
-          if ( $('.canonical-image').exists() ){
-            download_link=$('#file_download').attr('href');
-            tmp=download_link.split('/');
-            noid=tmp[tmp.length-1]
-            template='<div><h2 class="sr-only">Downloadable Content</h2> <img class="representative-media" alt="" role="presentation" src="'
-            template= template + download_link + '?file=thumbnail">'
-            template = template + '<a target="_blank" id="file_download" data-label="' + noid
-            template = template + '" href="'+ download_link + '">Download</a></div>'
-            $('.canonical-image').after(template)
-            $('.canonical-image').remove()
-          }
-          </script>
           </ul>
         </div>
       <% end %>
   <% end %>
 <% end %>
+<script>
+$.fn.exists = function () {
+return this.length !== 0;
+}
+if ( $('.canonical-image').exists() ){
+  download_link=$('#file_download').attr('href');
+  tmp=download_link.split('/');
+  noid=tmp[tmp.length-1]
+  template='<div><h2 class="sr-only">Downloadable Content</h2> <img class="representative-media" alt="" role="presentation" src="'
+  template= template + download_link + '?file=thumbnail">'
+  template = template + '<a target="_blank" id="file_download" data-label="' + noid
+  template = template + '" href="'+ download_link + '">Download</a></div>'
+  $('.canonical-image').after(template)
+  $('.canonical-image').remove()
+}
+</script>
