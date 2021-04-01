@@ -1,9 +1,18 @@
 # CHANGELOG
 
-## [1.2.0]
+## [2.0.1]
+
+### Hot fix
+- Thumbnail is not dislaying in the scholar item.
+## [2.0.0]
 
 ### Added
 - ETD Loader scripts
+- Accessiblity tasks
+- New resource types has been added to "Other" work including: Review
+
+## [1.2.1]
+- Fixed: not load TinyMCE for regular user
 
 ## [1.1.0]
 
