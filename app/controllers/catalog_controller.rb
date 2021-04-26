@@ -340,4 +340,36 @@ class CatalogController < ApplicationController
   #       set_class: '::OaiSet'
   #     }
   #   }
+  # config.oai = {
+  #     provider: {
+  #       repository_name: 'CU Scholar',
+  #       repository_url: 'http://ir.library.oregonstate.edu',
+  #       record_prefix: 'scholar.colorado.edu',
+  #       admin_email: 'cuscholaradmin@colorado.edu'
+  #     },
+  #     document: {
+  #       limit: 50,
+  #       timestamp_field: 'system_create_dtsi',
+  #       timestamp_method: 'system_created',
+  #       set_fields: 'isPartOf_ssim',
+  #       set_class: '::OaiSet'
+  #     }
+  #   }
+    config.oai = {
+    provider: {
+      repository_name: 'CU Scholar',
+      repository_url: 'https://scholar.colorado.edu',
+      record_prefix: 'oai:cuscholar',
+      admin_email: 'cuscholaradmin@colorado.edu',
+      sample_id: '109660'
+    },
+    document: {
+      limit: 50,            # number of records returned with each request, default: 15
+      set_fields: [        # ability to define ListSets, optional, default: nil
+        #{ label: 'language', solr_field: 'language_facet' },
+        { lable: "title", solr_field: "title_tesim"},
+        {lable:"creator",solr_field: "creator_tesim"}
+      ]
+    }
+  }
 end

@@ -21,10 +21,10 @@ gem 'omniauth-saml', :git => 'https://github.com/culibraries/omniauth-saml.git'
 gem "recaptcha", require: "recaptcha/rails"
 
 # Production servers
-group :production do
+#group :production do
  #gem 'mysql2', '~> 0.3.18'
 #gem 'mysql2'
-end
+#end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'
@@ -73,7 +73,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.6.0'
+gem 'hyrax', '2.9.4'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end

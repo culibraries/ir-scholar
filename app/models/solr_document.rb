@@ -225,4 +225,25 @@ class SolrDocument
   def file_format
     self[Solrizer.solr_name('file_format')]
   end
+
+  field_semantics.merge!(
+    contributor:  %w[contributor_tesim editor_tesim contributor_advisor_tesim contributor_committeemember_tesim oai_academic_affiliation_label oai_other_affiliation_label],
+    coverage:     %w['based_near_label_tesim conferenceLocation_tesim'],
+    creator:      'creator_tesim',
+    date:         'date_issued_tesim',
+    description:  %w['description_tesim abstract_tesim'],
+    format:       %w['file_extent_tesim file_format_tesim'],
+    identifier:   'oai_identifier',
+    language:     'language_label_tesim',
+    publisher:    'publisher_tesim',
+    relation:     'oai_nested_related_items_label',
+    rights:       'oai_rights',
+    source:       %w[source_tesim isBasedOnUrl_tesim],
+    subject:      %w[subject_tesim keyword_tesim],
+    title:        'title_tesim',
+    type:         'resource_type_tesim'
+  )
+
+
+
 end
