@@ -48,7 +48,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("academic_affiliation", :facetable), label: "Academic Affiliation",limit: 5
     #config.add_facet_field solr_name("keyword", :facetable), limit: 5
     config.add_facet_field solr_name("subject", :facetable), limit: 5
-    config.add_facet_field solr_name("language", :facetable), limit: 5 #, helper_method: :lookup_term_controlled_vocab
+    config.add_facet_field solr_name("language", :facetable), limit: 5 , helper_method: :lookup_term_controlled_vocab
     config.add_facet_field solr_name("based_near_label", :facetable), limit: 5
     config.add_facet_field solr_name("publisher", :facetable), limit: 5
     config.add_facet_field solr_name("file_format", :facetable), limit: 5
@@ -315,6 +315,25 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5
+
+    config.oai = {
+    provider: {
+      repository_name: 'CU Scholar',
+      repository_url: 'https://scholar.colorado.edu',
+      record_prefix: 'oai:cuscholar',
+      admin_email: 'cuscholaradmin@colorado.edu'
+    },
+    document: {
+      limit: 50,            # number of records returned with each request, default: 15
+      set_fields: [        # ability to define ListSets, optional, default: nil
+        { label: 'language', solr_field: 'language_tesim' },
+        # { lable: "title", solr_field: "title_tesim"},
+        # {lable:"creator",solr_field: "creator_tesim"}
+      ]
+    }
+  }
+
+
   end
 
   # disable the bookmark control from displaying in gallery view
@@ -355,21 +374,20 @@ class CatalogController < ApplicationController
   #       set_class: '::OaiSet'
   #     }
   #   }
-    config.oai = {
-    provider: {
-      repository_name: 'CU Scholar',
-      repository_url: 'https://scholar.colorado.edu',
-      record_prefix: 'oai:cuscholar',
-      admin_email: 'cuscholaradmin@colorado.edu',
-      sample_id: '109660'
-    },
-    document: {
-      limit: 50,            # number of records returned with each request, default: 15
-      set_fields: [        # ability to define ListSets, optional, default: nil
-        #{ label: 'language', solr_field: 'language_facet' },
-        { lable: "title", solr_field: "title_tesim"},
-        {lable:"creator",solr_field: "creator_tesim"}
-      ]
-    }
-  }
+  #   config.oai = {
+  #   provider: {
+  #     repository_name: 'CU Scholar',
+  #     repository_url: 'https://scholar.colorado.edu/catalog/oai',
+  #     record_prefix: 'oai:cuscholar',
+  #     admin_email: 'cuscholaradmin@colorado.edu'
+  #   },
+  #   document: {
+  #     limit: 50,            # number of records returned with each request, default: 15
+  #     set_fields: [        # ability to define ListSets, optional, default: nil
+  #       # { label: 'language', solr_field: 'language_facet' },
+  #       # { lable: "title", solr_field: "title_tesim"},
+  #       # {lable:"creator",solr_field: "creator_tesim"}
+  #     ]
+  #   }
+  # }
 end

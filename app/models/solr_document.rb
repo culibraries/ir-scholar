@@ -41,7 +41,26 @@ class SolrDocument
   #     end
   #   end
   # end
+  def system_created
+    Time.parse self['system_create_dtsi']
+  end
 
+  # Dates & Times are stored in Solr as UTC but need to be displayed in local timezone
+  def modified_date
+    Time.parse(self['system_modified_dtsi']).in_time_zone.to_date
+  end
+
+  def create_date
+    Time.parse(self['system_create_dtsi']).in_time_zone.to_date
+  end
+
+  def date_uploaded
+    Time.parse(self['date_uploaded_dtsi']).in_time_zone.to_date
+  end
+
+  def date_modified
+    Time.parse(self['date_modified_dtsi']).in_time_zone.to_date
+  end
   def contact_email
     self[Solrizer.solr_name('contact_email')]
   end
@@ -225,25 +244,47 @@ class SolrDocument
   def file_format
     self[Solrizer.solr_name('file_format')]
   end
+  def hasRelatedMediaFragment
+    self[Solrizer.solr_name('hasRelatedMediaFragment')]
+  end
 
   field_semantics.merge!(
-    contributor:  %w[contributor_tesim editor_tesim contributor_advisor_tesim contributor_committeemember_tesim oai_academic_affiliation_label oai_other_affiliation_label],
+    contributor:  %w[contributor_tesim editor_tesim contributor_advisor_tesim contributor_committeemember_tesim academic_affiliation_tesim oai_other_affiliation_label],
     coverage:     %w['based_near_label_tesim conferenceLocation_tesim'],
     creator:      'creator_tesim',
     date:         'date_issued_tesim',
-    description:  %w['description_tesim abstract_tesim'],
+    description:  'abstract_tesim',
+    #department:   'academic_affiliation_tesim',
     format:       %w['file_extent_tesim file_format_tesim'],
     identifier:   'oai_identifier',
-    language:     'language_label_tesim',
-    publisher:    'publisher_tesim',
+    language:     'language_tesim',
+    publisher:    %w['publisher_tesim degree_grantors_tesim'],
     relation:     'oai_nested_related_items_label',
-    rights:       'oai_rights',
-    source:       %w[source_tesim isBasedOnUrl_tesim],
-    subject:      %w[subject_tesim keyword_tesim],
+    rights:       %w[rights_statement oai_rights],
+    source:       'oai_source', 
+    subject:      %w[subject_tesim],
     title:        'title_tesim',
     type:         'resource_type_tesim'
   )
-
-
-
+def [](key)
+    return send(key) if %w[oai_identifier oai_source].include?(key)
+    super
+end
+def oai_identifier
+  if self['has_model_ssim'].first.to_s == 'Collection'
+    Hyrax::Engine.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: 'hyrax/collections', id: id)
+  else
+    Rails.application.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: "hyrax/#{self['has_model_ssim'].first.to_s.underscore.pluralize}", id: id)
+  end
+end
+def oai_source
+  if self['has_model_ssim'].first.to_s == 'Collection'
+    Hyrax::Engine.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: 'hyrax/collections', id: id)
+  else
+    url = Rails.application.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: "hyrax/#{self['has_model_ssim'].first.to_s.underscore.pluralize}", id: id)
+    download_url = url.split('/concern')[0]
+    download_url="#{download_url}/downloads/#{self['hasRelatedMediaFragment_ssim'].first.to_s}"
+    download_url
+  end
+end
 end
