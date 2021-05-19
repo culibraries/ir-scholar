@@ -315,23 +315,34 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5
-
-    config.oai = {
-    provider: {
-      repository_name: 'CU Scholar',
-      repository_url: 'https://scholar.colorado.edu',
-      record_prefix: 'oai:cuscholar',
-      admin_email: 'cuscholaradmin@colorado.edu'
-    },
-    document: {
-      limit: 50,            # number of records returned with each request, default: 15
-      set_fields: [        # ability to define ListSets, optional, default: nil
-        { label: 'language', solr_field: 'language_tesim' },
-        # { lable: "title", solr_field: "title_tesim"},
-        # {lable:"creator",solr_field: "creator_tesim"}
-      ]
-    }
-  }
+    if Rails.env.production?
+      config.oai = {
+      provider: {
+        repository_name: 'CU Scholar',
+        repository_url: 'https://scholar.colorado.edu',
+        record_prefix: 'oai:cuscholar',
+        admin_email: 'cuscholaradmin@colorado.edu'
+      },
+      document: {
+        limit: 50,            # number of records returned with each request, default: 15
+        set_fields: [ ]       # ability to define ListSets, optional, default: nil
+        
+        }
+      }
+    else
+      config.oai = {
+      provider: {
+        repository_name: 'CU Scholar',
+        repository_url: 'https://test-scholar.colorado.edu',
+        record_prefix: 'oai:cuscholar',
+        admin_email: 'cuscholaradmin@colorado.edu'
+      },
+      document: {
+        limit: 50,            # number of records returned with each request, default: 15
+        set_fields: [ ]       # ability to define ListSets, optional, default: nil
+        }
+      }
+    end
 
 
   end

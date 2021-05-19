@@ -281,10 +281,14 @@ def oai_source
   if self['has_model_ssim'].first.to_s == 'Collection'
     Hyrax::Engine.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: 'hyrax/collections', id: id)
   else
-    url = Rails.application.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: "hyrax/#{self['has_model_ssim'].first.to_s.underscore.pluralize}", id: id)
-    download_url = url.split('/concern')[0]
-    download_url="#{download_url}/downloads/#{self['hasRelatedMediaFragment_ssim'].first.to_s}"
-    download_url
+    begin
+      url = Rails.application.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: "hyrax/#{self['has_model_ssim'].first.to_s.underscore.pluralize}", id: id)
+      download_url = url.split('/concern')[0]
+      download_url="#{download_url}/downloads/#{self['hasRelatedMediaFragment_ssim'].first.to_s}"
+      download_url
+    rescue Exception => e
+      ""
+    end
   end
 end
 end

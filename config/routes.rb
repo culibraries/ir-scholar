@@ -15,16 +15,17 @@ Rails.application.routes.draw do
 
   # Switching enviroment Staging/Production vs Development
   # ========= Staging/Production ==============
-  # , :skip => [:registrations]
-  # devise_for :users, path_names: { sign_in: 'auth/saml'}, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
-  # devise_scope :user do
-  #   get 'users/auth/saml', to: 'users/omniauth_authorize#passthru', defaults: { provider: :saml }, as: 'new_cu_session'
-  # end
+  if Rails.env.production?
+      devise_for :users, :skip => [:registrations], path_names: { sign_in: 'auth/saml'}, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions', registrations: 'users/registrations' }
+      devise_scope :user do
+        get 'users/auth/saml', to: 'users/omniauth_authorize#passthru', defaults: { provider: :saml }, as: 'new_cu_session'
+      end
+  end
 
   # ========= Local Development ==============
-
-  devise_for :users, :skip => [:registrations]
-
+  if Rails.env.development?
+    devise_for :users, :skip => [:registrations]
+  end
   # ==========================================
 
   mount Hydra::RoleManagement::Engine => '/'

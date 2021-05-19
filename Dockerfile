@@ -27,7 +27,9 @@ ENV RAILS_ENV=${RAILS_ENV}
 #RUN git checkout metadata-wt
 RUN gem update --system \
     && gem install bundler \
-    && bundle install
+    && bundle install \
+    && rm -rf /data/tmp \
+    && mkdir /data/tmp
 
 RUN if [ "${RAILS_ENV}" = "production" ]; then \
 #  echo "Precompiling assets with $RAILS_ENV environment"; \
@@ -50,7 +52,6 @@ RUN chmod -R 777 /var/lib/clamav \
     && ln -s /usr/bin/python3 /usr/bin/python \
     && ln -s /usr/bin/pip3 /usr/bin/pip \
     && pip install --no-cache-dir -r /data/requirements.txt \
-    && mkdir /data/tmp/pids \
     && cp /usr/share/zoneinfo/America/Denver /etc/localtime
 
 ENV PATH="/opt/fits/fits-1.0.5:${PATH}"
