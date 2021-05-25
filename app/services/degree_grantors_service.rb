@@ -13,4 +13,12 @@ module DegreeGrantorsService
   def self.label(id)
     authority.find(id).fetch('term')
   end
+  def self.checkterm(id,term)
+    begin
+      authority.find(id).fetch(term)
+      true
+    rescue Exception => e
+      false
+    end
+  end
 end

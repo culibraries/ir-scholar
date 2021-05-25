@@ -9,8 +9,18 @@ module  AcademicAffiliationService
       [element[:label], element[:id]]
     end
   end
-
+  def self.oai_publish(id)
+    authority.find(id).fetch('oai_publish')
+  end
   def self.label(id)
     authority.find(id).fetch('term')
+  end
+  def self.checkterm(id,term)
+    begin
+      authority.find(id).fetch(term)
+      true
+    rescue Exception => e
+      false
+    end
   end
 end

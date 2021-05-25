@@ -315,25 +315,10 @@ class CatalogController < ApplicationController
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5
-    if Rails.env.production?
-      config.oai = {
+    config.oai = {
       provider: {
         repository_name: 'CU Scholar',
-        repository_url: 'https://scholar.colorado.edu',
-        record_prefix: 'oai:cuscholar',
-        admin_email: 'cuscholaradmin@colorado.edu'
-      },
-      document: {
-        limit: 50,            # number of records returned with each request, default: 15
-        set_fields: [ ]       # ability to define ListSets, optional, default: nil
-        
-        }
-      }
-    else
-      config.oai = {
-      provider: {
-        repository_name: 'CU Scholar',
-        repository_url: 'https://test-scholar.colorado.edu',
+        repository_url: ENV["ROOT_URL"],
         record_prefix: 'oai:cuscholar',
         admin_email: 'cuscholaradmin@colorado.edu'
       },
@@ -341,64 +326,12 @@ class CatalogController < ApplicationController
         limit: 50,            # number of records returned with each request, default: 15
         set_fields: [ ]       # ability to define ListSets, optional, default: nil
         }
-      }
+    }
+
+    def render_bookmarks_control?
+      false
     end
 
-
   end
 
-  # disable the bookmark control from displaying in gallery view
-  # Hyrax doesn't show any of the default controls on the list view, so
-  # this method is not called in that context.
-  def render_bookmarks_control?
-    false
-  end
-
-
-  # config.oai = {
-  #     provider: {
-  #       repository_name: 'CU Scholar',
-  #       repository_url: 'https://scholar.colorado.edu ',
-  #       record_prefix: 'scholar.colorado.edu',
-  #       admin_email: 'cuscholaradmin@colorado.edu'
-  #     },
-  #     document: {
-  #       limit: 50,
-  #       timestamp_field: 'system_create_dtsi',
-  #       timestamp_method: 'system_created',
-  #       set_fields: 'isPartOf_ssim',
-  #       set_class: '::OaiSet'
-  #     }
-  #   }
-  # config.oai = {
-  #     provider: {
-  #       repository_name: 'CU Scholar',
-  #       repository_url: 'http://ir.library.oregonstate.edu',
-  #       record_prefix: 'scholar.colorado.edu',
-  #       admin_email: 'cuscholaradmin@colorado.edu'
-  #     },
-  #     document: {
-  #       limit: 50,
-  #       timestamp_field: 'system_create_dtsi',
-  #       timestamp_method: 'system_created',
-  #       set_fields: 'isPartOf_ssim',
-  #       set_class: '::OaiSet'
-  #     }
-  #   }
-  #   config.oai = {
-  #   provider: {
-  #     repository_name: 'CU Scholar',
-  #     repository_url: 'https://scholar.colorado.edu/catalog/oai',
-  #     record_prefix: 'oai:cuscholar',
-  #     admin_email: 'cuscholaradmin@colorado.edu'
-  #   },
-  #   document: {
-  #     limit: 50,            # number of records returned with each request, default: 15
-  #     set_fields: [        # ability to define ListSets, optional, default: nil
-  #       # { label: 'language', solr_field: 'language_facet' },
-  #       # { lable: "title", solr_field: "title_tesim"},
-  #       # {lable:"creator",solr_field: "creator_tesim"}
-  #     ]
-  #   }
-  # }
 end

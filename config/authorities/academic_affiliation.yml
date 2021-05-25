@@ -1,16 +1,19 @@
 terms:
   - id: ATLAS Institute
     term: ATLAS Institute
+    oai_publish: false
   - id: Accounting
     term: Accounting
   - id: Administration
     term: Administration
+    oai_publish: false	
   - id: Advertising, Public Relations and Media Design
     term: Advertising, Public Relations and Media Design
   - id: Aerospace Engineering Sciences
     term: Aerospace Engineering Sciences
   - id: American Music Research Center
     term: American Music Research Center
+    oai_publish: false
   - id: Anthropology
     term: Anthropology
   - id: Applied Mathematics
@@ -27,28 +30,38 @@ terms:
     term: Biochemistry
   - id: Biofrontiers Institute
     term: Biofrontiers Institute
+    oai_publish: false
   - id: Brass and Percussion
     term: Brass and Percussion
   - id: Business Administration
     term: Business Administration
   - id: CU Engage
     term: CU Engage
+    oai_publish: false
   - id: Center for Asian Studies
     term: Center for Asian Studies
+    oai_publish: false
   - id: Center for Environmental Journalism
     term: Center for Environmental Journalism
+    oai_publish: false
   - id: Center for Media, Religion and Culture
     term: Center for Media, Religion and Culture
+    oai_publish: false
   - id: Center for Medieval and Early Modern Studies
     term: Center for Medieval and Early Modern Studies
+    oai_publish: false
   - id: Center for STEM Learning
     term: Center for STEM Learning
+    oai_publish: false
   - id: Center for Science & Technology Policy Research
     term: Center for Science & Technology Policy Research
+    oai_publish: false
   - id: Center for Western Civilization
     term: Center for Western Civilization
+    oai_publish: false
   - id: Center for the Study of Origins
     term: Center for the Study of Origins
+    oai_publish: false
   - id: Chemical Engineering
     term: Chemical Engineering
   - id: Chemical and Biological Engineering
@@ -63,12 +76,16 @@ terms:
     term: Classics
   - id: College of Arts and Sciences
     term: College of Arts and Sciences
+    oai_publish: false
   - id: College of Engineering and Applied Science
     term: College of Engineering and Applied Science
+    oai_publish: false
   - id: College of Media, Communication and Information
     term: College of Media, Communication and Information
+    oai_publish: false
   - id: College of Music
     term: College of Music
+    oai_publish: false
   - id: Communication
     term: Communication
   - id: Comparative Literature
@@ -83,8 +100,10 @@ terms:
     term: Conservative Thought
   - id: Continuing Education & Professional Studies
     term: Continuing Education & Professional Studies
+    oai_publish: false
   - id: Cooperative Institute for Research in Environmental Sciences
     term: Cooperative Institute for Research in Environmental Sciences
+    oai_publish: false
   - id: Critical Media Practices
     term: Critical Media Practices
   - id: Ecology and Evolutionary Biology
@@ -95,16 +114,20 @@ terms:
     term: Electrical, Computer and Energy Engineering (ECEE)
   - id: Engineering Management Program
     term: Engineering Management Program
+    oai_publish: false
   - id: English
     term: English
   - id: Entrepreneurship & Small Business Management
     term: Entrepreneurship & Small Business Management
   - id: Entrepreneurship Center for Music
     term: Entrepreneurship Center for Music
+    oai_publish: false
   - id: Environmental Center
     term: Environmental Center
+    oai_publish: false
   - id: Environmental Design Program
     term: Environmental Design Program
+    oai_publish: false
   - id: Environmental Studies
     term: Environmental Studies
   - id: Ethnic Studies
@@ -123,24 +146,31 @@ terms:
     term: Germanic and Slavic Languages and Literatures
   - id: Herbst Humanities Program
     term: Herbst Humanities Program
+    oai_publish: false
   - id: History
     term: History
   - id: Honors Program
     term: Honors Program
+    oai_publish: false
   - id: Humanities
     term: Humanities
   - id: Information Science
     term: Information Science
   - id: Institute for Behavioral Genetics
     term: Institute for Behavioral Genetics
+    oai_publish: false
   - id: Institute of Arctic & Alpine Research
     term: Institute of Arctic & Alpine Research
+    oai_publish: false
   - id: Institute of Behavioral Science
     term: Institute of Behavioral Science
+    oai_publish: false
   - id: Institute of Cognitive Science
     term: Institute of Cognitive Science
+    oai_publish: false
   - id: Integrated Teaching & Learning (ITL) Program
     term: Integrated Teaching & Learning (ITL) Program
+    oai_publish: false
   - id: Integrative Physiology
     term: Integrative Physiology
   - id: Interdisciplinary Telecommunications
@@ -151,16 +181,20 @@ terms:
     term: International Education
   - id: International English Center (IEC)
     term: International English Center (IEC)
+    oai_publish: false
   - id: JILA
     term: JILA
+    oai_publish: false
   - id: Journalism
     term: Journalism
   - id: Keyboard
     term: Keyboard
   - id: Laboratory for Atmospheric & Space Physics
     term: Laboratory for Atmospheric & Space Physics
+    oai_publish: false
   - id: Leeds School of Business
     term: Leeds School of Business
+    oai_publish: false
   - id: Linguistics
     term: Linguistics
   - id: Management
@@ -171,6 +205,7 @@ terms:
     term: Materials Engineering
   - id: Materials Science & Engineering Program
     term: Materials Science & Engineering Program
+    oai_publish: false
   - id: Mathematics
     term: Mathematics
   - id: Mechanical Engineering
@@ -187,14 +222,18 @@ terms:
     term: Musicology
   - id: National Education Policy Center
     term: National Education Policy Center
+    oai_publish: false
   - id: National Snow & Ice Data Center (NSIDC)
     term: National Snow & Ice Data Center (NSIDC)
+    oai_publish: false
   - id: National Solar Observatory
     term: National Solar Observatory
+    oai_publish: false
   - id: Native American and Indigenous Studies
     term: Native American and Indigenous Studies
   - id: Operations & Information Management
     term: Operations & Information Management
+    oai_publish: false
   - id: Philosophy
     term: Philosophy
   - id: Physics
@@ -203,16 +242,20 @@ terms:
     term: Political Science
   - id: Program for Writing and Rhetoric
     term: Program for Writing and Rhetoric
+    oai_publish: false
   - id: Psychology and Neuroscience
     term: Psychology and Neuroscience
   - id: Religious Studies
     term: Religious Studies
   - id: Renewable & Sustainable Energy Institute
     term: Renewable & Sustainable Energy Institute
+    oai_publish: false
   - id: Research and Engineering Center for Unmanned Vehicles (RECUV)
     term: Research and Engineering Center for Unmanned Vehicles (RECUV)
+    oai_publish: false
   - id: School of Education
     term: School of Education
+    oai_publish: false
   - id: Sociology
     term: Sociology
   - id: Spanish and Portuguese
@@ -223,18 +266,24 @@ terms:
     term: Strings
   - id: Sustainability Innovation Lab
     term: Sustainability Innovation Lab
+    oai_publish: false
   - id: Technology, Cybersecurity and Policy Program
     term: Technology, Cybersecurity and Policy Program
+    oai_publish: false
   - id: The National Center for Women & Information Technology
     term: The National Center for Women & Information Technology
+    oai_publish: false
   - id: Theatre and Dance
     term: Theatre and Dance
   - id: Thompson Jazz Studies Program
     term: Thompson Jazz Studies Program
+    oai_publish: false
   - id: University Libraries
     term: University Libraries
+    oai_publish: false
   - id: University of Colorado Museum of Natural History
     term: University of Colorado Museum of Natural History
+    oai_publish: false
   - id: Voice and Opera
     term: Voice and Opera
   - id: Women and Gender Studies
@@ -243,3 +292,4 @@ terms:
     term: Woodwinds
   - id: Other
     term: Other
+    oai_publish: false

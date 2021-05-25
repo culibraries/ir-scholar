@@ -249,7 +249,7 @@ class SolrDocument
   end
 
   field_semantics.merge!(
-    contributor:  %w[contributor_tesim editor_tesim contributor_advisor_tesim contributor_committeemember_tesim academic_affiliation_tesim oai_other_affiliation_label],
+    contributor:  %w[contributor_tesim editor_tesim contributor_advisor_tesim contributor_committeemember_tesim ],
     coverage:     %w['based_near_label_tesim conferenceLocation_tesim'],
     creator:      'creator_tesim',
     date:         'date_issued_tesim',
@@ -257,38 +257,116 @@ class SolrDocument
     #department:   'academic_affiliation_tesim',
     format:       %w['file_extent_tesim file_format_tesim'],
     identifier:   'oai_identifier',
-    language:     'language_tesim',
-    publisher:    %w['publisher_tesim degree_grantors_tesim'],
+    language:     'oai_language',
+    publisher:    'oai_publisher',
     relation:     'oai_nested_related_items_label',
-    rights:       %w[rights_statement oai_rights],
-    source:       'oai_source', 
-    subject:      %w[subject_tesim],
+    rights:       %w[oai_rights],
+    #source:       'doi_tesim', 
+    subject:      %w[subject_tesim oai_accademic_affiliation],
     title:        'title_tesim',
     type:         'resource_type_tesim'
   )
-def [](key)
-    return send(key) if %w[oai_identifier oai_source].include?(key)
-    super
-end
-def oai_identifier
-  if self['has_model_ssim'].first.to_s == 'Collection'
-    Hyrax::Engine.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: 'hyrax/collections', id: id)
-  else
-    Rails.application.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: "hyrax/#{self['has_model_ssim'].first.to_s.underscore.pluralize}", id: id)
+  def [](key)
+      return send(key) if %w[oai_identifier oai_source oai_language oai_rights oai_accademic_affiliation oai_publisher].include?(key)
+      super
   end
-end
-def oai_source
-  if self['has_model_ssim'].first.to_s == 'Collection'
-    Hyrax::Engine.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: 'hyrax/collections', id: id)
-  else
-    begin
+  def oai_publisher
+    pubs=[]
+    if self['publisher_tesim'].present?
+      pubs << self['publisher_tesim']
+    end
+    if self['degree_grantors_tesim'].present?
+      self['degree_grantors_tesim'].each do |item|
+        if DegreeGrantorsService.checkterm(item,'term')
+          pubs << DegreeGrantorsService.label(item)
+        end
+      end
+    end
+    pubs.uniq
+  end
+  def oai_accademic_affiliation
+    aa =[]
+    
+    if self['academic_affiliation_tesim'].present?
+      self['academic_affiliation_tesim'].each do |item|
+        if AcademicAffiliationService.checkterm(item,'oai_publish')
+          if AcademicAffiliationService.oai_publish(item)
+            aa << AcademicAffiliationService.label(item)
+          end
+        else
+          if AcademicAffiliationService.checkterm(item,'term')
+            #default to add item if oai_publish not in file
+            aa << AcademicAffiliationService.label(item)
+          # Removed as per review cycle(AJ)
+          # else  
+          #   # add item patron typed in AcademicAffiliation
+          #   aa << item
+          end
+        end
+      end
+    end
+    aa
+  end
+  def oai_identifier
+    if self['has_model_ssim'].first.to_s == 'Collection'
+      Hyrax::Engine.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: 'hyrax/collections', id: id)
+    else
+      oai_id = []
       url = Rails.application.routes.url_helpers.url_for(only_path: false, action: 'show', host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: "hyrax/#{self['has_model_ssim'].first.to_s.underscore.pluralize}", id: id)
-      download_url = url.split('/concern')[0]
-      download_url="#{download_url}/downloads/#{self['hasRelatedMediaFragment_ssim'].first.to_s}"
-      download_url
+      oai_id << url
+      # Add Download URL
+      #if self['hasRelatedMediaFragment_ssim'].try :nonzero?
+      begin
+        download_url = url.split('/concern')[0]
+        download_url="#{download_url}/downloads/#{self['hasRelatedMediaFragment_ssim'].first.to_s}"
+        oai_id << download_url
+      rescue Exception => e
+        ""
+      end
+      if self['doi_tesim'].try :nonzero?
+        oai_id << "#{self['doi_tesim'].first.to_s}"
+      end
+      oai_id
+    end
+  end
+  def oai_rights
+    oai_rights = []
+    begin
+      oai_rights << RightsService.label(self['rights_statement_tesim'].first.to_s)
     rescue Exception => e
       ""
     end
+    begin
+      oai_rights << LicenseService.label(self['license_tesim'].first.to_s)
+    rescue Exception => e
+      ""
+    end
+    oai_rights
   end
-end
+  def oai_subject
+      oai_subject = []
+      begin
+        oai_subject << self['subject_tesim']
+      rescue Exception => e
+        ""
+      end
+      begin
+      #Add Academic Affiliation
+        oai_subject << self['academic_affiliation_tesim']
+      rescue Exception => e
+        ""
+      end
+      oai_subject
+  end
+
+  def oai_language
+    
+    begin
+      LanguageService.label(self['language_tesim'].first.to_s)
+    rescue Exception => e
+      ""
+    end
+    
+  end
+
 end
