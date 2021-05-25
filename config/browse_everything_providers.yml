@@ -6,10 +6,10 @@
 #file_system:
 #  :home: <%= ENV['BROWSEEVERYTHING_FILESYSTEM_PATH'] || './tmp' %>
 
-<% if Rails.env.development? || Rails.env.test? %>
-file_system:
-  :home: "/Users/mast4541/github/cu/ir/develop/scholar/tmp"
-<% end %>
+# <% if Rails.env.development? || Rails.env.test? %>
+# file_system:
+#   :home: "/Users/mast4541/github/cu/ir/develop/scholar/tmp"
+# <% end %>
 # dropbox:
 #   :app_key: YOUR_DROPBOX_APP_KEY
 #   :app_secret: YOUR_DROPBOX_APP_SECRET
@@ -26,15 +26,15 @@ file_system:
 #   :app_secret: YOUR_AWS_S3_SECRET # explicitly here, or left out to use system-configured
 #   :region: YOUR_AWS_S3_REGION     # defaults.
 #   See https://aws.amazon.com/blogs/security/a-new-and-standardized-way-to-manage-credentials-in-the-aws-sdks/
-<% if Rails.env.production? %>
-s3:
-  :bucket: <%= ENV['AWS_S3_BUCKET'] %>
-#  :response_type: :signed_url # (:signed_url) set to :public_url for public urls or :s3_uri for an s3://BUCKET/KEY uri
-  :app_key: <%= ENV['AWS_S3_APP_KEY'] %> # :app_key, :app_secret, and :region can be specified
-  :app_secret: <%= ENV['AWS_S3_APP_SECRET'] %> # explicitly here, or left out to use system-configured
-  :region: <%= ENV['AWS_S3_REGION'] %> # defaults.
-#   See https://aws.amazon.com/blogs/security/a-new-and-standardized-way-to-manage-credentials-in-the-aws-sdks/
-<% end %>
+# <% if Rails.env.production? %>
+# s3:
+#   :bucket: <%= ENV['AWS_S3_BUCKET'] %>
+# #  :response_type: :signed_url # (:signed_url) set to :public_url for public urls or :s3_uri for an s3://BUCKET/KEY uri
+#   :app_key: <%= ENV['AWS_S3_APP_KEY'] %> # :app_key, :app_secret, and :region can be specified
+#   :app_secret: <%= ENV['AWS_S3_APP_SECRET'] %> # explicitly here, or left out to use system-configured
+#   :region: <%= ENV['AWS_S3_REGION'] %> # defaults.
+# #   See https://aws.amazon.com/blogs/security/a-new-and-standardized-way-to-manage-credentials-in-the-aws-sdks/
+# <% end %>
 #<% if Rails.env.production? %>
 #file_system:
 #  :home: "/data/tmp"

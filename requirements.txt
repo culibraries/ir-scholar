@@ -1,5 +1,7 @@
-boto3==1.9.250
-requests==2.22.0
-beautifulsoup4
-lxml
+boto3
+xmltodict
+six
+bs4
 pathlib
+python-dateutil
+requests
