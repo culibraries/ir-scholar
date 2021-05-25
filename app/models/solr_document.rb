@@ -323,7 +323,7 @@ class SolrDocument
       rescue Exception => e
         ""
       end
-      if self['doi_tesim'].try :nonzero?
+      if self['doi_tesim'].present? #.try :nonzero?
         oai_id << "#{self['doi_tesim'].first.to_s}"
       end
       oai_id
