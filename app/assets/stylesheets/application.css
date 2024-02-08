@@ -19,3 +19,10 @@
 @import "cu_boulder_font.css";
 @import "cu_boulder_branding.css";
 
+/* Add the Core Trust Seal to CU Branded Footer */
+.site-footer .container-fluid {
+  background-image: url('https://cubl-static.s3-us-west-2.amazonaws.com/samvera/CoreTrustSeal-logo-transparent.png');
+  background-repeat: no-repeat;
+  background-size: 75px;
+  background-position: center;
+}
