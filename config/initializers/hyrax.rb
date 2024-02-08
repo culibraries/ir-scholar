@@ -45,7 +45,7 @@ Hyrax.config do |config|
   # config.rendering_predicate = ::RDF::DC.hasFormat
 
   # Email recipient of messages sent via the contact form
-  config.contact_email = ENV['EMAIL_USERNAME']
+  config.contact_email = ENV['EMAIL_FROM']
 
   # Text prefacing the subject entered in the contact form
   # config.subject_prefix = "Contact form:"
@@ -69,8 +69,9 @@ Hyrax.config do |config|
   if Rails.env.production?
     config.analytics = true
 
-    # Google Analytics tracking ID to gather usage statistics
-    config.google_analytics_id = 'UA-152058677-1'
+    # Google Analytics GA4 tracking ID to gather usage statistics
+    #config.google_analytics_id = 'UA-152058677-1'
+    config.google_analytics_id = 'G-FF176QQ4LH'
 
     # Date you wish to start collecting Google Analytic statistics for
     # Leaving it blank will set the start date to when ever the file was uploaded by

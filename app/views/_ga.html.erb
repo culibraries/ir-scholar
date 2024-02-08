@@ -1,0 +1,21 @@
+<%# [CUBL_CUSTOM_CODE] : until this is updated in hyrax %>
+<%# Overrides hyrax/app/views/_ga.html.erb, and replaces old analytics with gtag.js. %>
+<%# This will allow us to use GA4 analytics. %>
+
+<%
+if Hyrax.config.google_analytics_id?
+tracking_id = Hyrax.config.google_analytics_id
+%>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<%= tracking_id %>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // For now send data to both GA4 and UA
+  gtag('config', '<%= tracking_id %>');
+  gtag('config', 'UA-152058677-1');
+</script>
+
+<% end %>
