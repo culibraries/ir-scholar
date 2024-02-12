@@ -54,6 +54,7 @@ RUN apk add --update --no-cache python3 && \
 
 # Clamv and Fits Installs and all the requirements
 RUN chmod -R 777 /var/lib/clamav \
+    && chown -R clamav:clamav /var/lib/clamav/ \
     && freshclam \
     && chmod -R 775 /var/lib/clamav \
     && mkdir -p /opt/fits && \
