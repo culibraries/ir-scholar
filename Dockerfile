@@ -1,19 +1,29 @@
-FROM ruby:2.5-alpine as builder
+ARG ALPINE_VERSION=3.15
+ARG RUBY_VERSION=2.7.6
+
+FROM ruby:$RUBY_VERSION-alpine$ALPINE_VERSION as hyrax-base
 
 # Necessary for bundler to properly install some gems
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
-#ARG RUBYGEMS_VERSION=2.7.11
 ARG RUBYGEMS_VERSION=3.2.34
-ARG PACKAGES="nodejs mariadb-dev libreoffice imagemagick ghostscript vim unzip ffmpeg freshclam clamav-daemon clamav-dev tzdata curl-dev curl"
+ARG DATABASE_APK_PACKAGE="sqlite-dev mariadb-dev"
+ARG EXTRA_APK_PACKAGES="git libreoffice imagemagick ghostscript vim ffmpeg freshclam clamav-daemon clamav-dev tzdata"
 
-RUN apk update \
-    && apk upgrade \
-    && apk add --update --no-cache \
-    build-base curl-dev git unzip curl \
-    yaml-dev zlib-dev nodejs yarn mariadb-dev sqlite-dev $PACKAGES \
-    && mkdir /data
+RUN apk update && \
+    apk --no-cache upgrade && \
+    apk --update --no-cache add build-base \
+    curl-dev \
+    curl \
+    unzip \
+    yaml-dev \
+    zlib-dev \
+    nodejs \
+    yarn \
+    $DATABASE_APK_PACKAGE \
+    $EXTRA_APK_PACKAGES && \
+    mkdir /data
 
 #RUN mkdir /data
 WORKDIR /data
@@ -100,3 +110,8 @@ RUN apk del sqlite-dev build-base py-pip git unzip yarn \
 
 EXPOSE 3000/tcp
 CMD ["bundle exec puma -C config/puma/production.rb"]
+
+
+FROM hyrax-base as hyrax-worker
+
+CMD bundle exec sidekiq
