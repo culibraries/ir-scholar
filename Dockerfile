@@ -9,15 +9,14 @@ ENV LC_ALL C.UTF-8
 
 ARG RUBYGEMS_VERSION=3.2.34
 ARG DATABASE_APK_PACKAGE="sqlite-dev mariadb-dev"
-ARG EXTRA_APK_PACKAGES="git libreoffice imagemagick ghostscript vim ffmpeg freshclam clamav-daemon clamav-dev tzdata"
+ARG EXTRA_APK_PACKAGES="git libreoffice imagemagick ghostscript vim ffmpeg freshclam clamav-daemon clamav tzdata"
 
 RUN apk update && \
     apk --no-cache upgrade && \
     apk --update --no-cache add build-base \
-    curl-dev \
     curl \
     unzip \
-    yaml-dev \
+    yaml \
     zlib-dev \
     nodejs \
     yarn \
@@ -38,7 +37,7 @@ ENV RAILS_ENV=${RAILS_ENV}
 #ADD . /data
 #RUN git checkout metadata-wt
 # Update RubyGems system.  RubyGems v3 installs bundler
-RUN gem update --system $RUBYGEMS_VERSION \ 
+RUN gem update --system $RUBYGEMS_VERSION \
     && bundle install --jobs "$(nproc)" \
     && rm -rf /data/tmp \
     && mkdir /data/tmp
@@ -65,11 +64,11 @@ RUN apk add --update --no-cache python3 && \
 # Clamv and Fits Installs and all the requirements
 RUN chmod -R 777 /var/lib/clamav \
     && chown -R clamav:clamav /var/lib/clamav/ \
-    && freshclam \
+    && freshclam --user=root \
     && chmod -R 775 /var/lib/clamav \
     && mkdir -p /opt/fits && \
-    curl -fSL -o /opt/fits-1.0.5.zip http://projects.iq.harvard.edu/files/fits/files/fits-1.0.5.zip && \
-    cd /opt && unzip fits-1.0.5.zip -d /opt/fits && rm fits-1.0.5.zip  && chmod +X /opt/fits/fits-1.0.5/fits.sh \
+    curl -fSL -o /opt/fits-1.5.1.zip https://github.com/harvard-lts/fits/releases/download/1.5.1/fits-1.5.1.zip && \
+    cd /opt && unzip fits-1.5.1.zip -d /opt/fits && rm fits-1.5.1.zip  && chmod +X /opt/fits/fits.sh \
     && pip install --no-cache-dir -r /data/requirements.txt \
     && cp /usr/share/zoneinfo/America/Denver /etc/localtime \
     && mv /data/app/assets/stylesheets/cu_boulder_font.css /data/public/assets/cu_boulder_font.css \
