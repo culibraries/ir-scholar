@@ -112,7 +112,7 @@ RUN apk add --update --no-cache python3 && \
     cd /opt && unzip fits-1.5.1.zip -d /opt/fits && rm fits-1.5.1.zip  && chmod +X /opt/fits/fits.sh && \
     pip install --no-cache-dir -r /data/requirements.txt
 
-ENV PATH="/opt/fits/fits-1.0.5:${PATH}"
+ENV PATH="/opt/fits/fits-1.5.1:${PATH}"
 
 #Clean and reduce risk
 RUN apk del sqlite-dev build-base py-pip git unzip yarn && \
