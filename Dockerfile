@@ -87,8 +87,6 @@ EXPOSE 3000/tcp
 CMD ["bundle exec puma -C config/puma/production.rb"]
 
 
-
-
 FROM hyrax-base as hyrax-web
 #Clean and reduce risk
 RUN apk del sqlite-dev build-base py-pip git unzip yarn && \
