@@ -9,27 +9,28 @@ end
 # CU Boulder Additions , '3.4.2' #
 gem 'hydra-derivatives', '3.4.2' # , git: 'https://github.com/samvera/hydra-derivatives.git'
 
-gem 'hydra-role-management', '~> 1'
-gem 'qa', '~> 5'
-gem 'sidekiq', '~> 6'
-gem 'mini_magick', '~> 4'
+gem 'hydra-role-management'
+gem 'qa'
+gem 'sidekiq'
+gem 'mini_magick'
 
 # SAML
 gem 'omniauth-saml', :git => 'https://github.com/culibraries/omniauth-saml.git'
 
 # Recaptcha
-gem "recaptcha", '~> 5', require: "recaptcha/rails"
+gem "recaptcha", require: "recaptcha/rails"
 
 # Production servers
 group :production do
-  gem 'mysql2', '~> 0.5'
+ #gem 'mysql2', '~> 0.3.18'
+  gem 'mysql2'
 end
 group :development do
   # Use sqlite3 as the database for Active Record
   gem "sqlite3", "~> 1.3.0"
 end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.1.7'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -56,7 +57,7 @@ gem 'redis', '~> 4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', '~> 11', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
@@ -67,14 +68,14 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 2'
+  gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', '~> 1' #, platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data' #, platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '~> 2.9.6'
+gem 'hyrax', '2.9.4'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -84,14 +85,14 @@ gem 'blacklight_oai_provider', :git => "https://github.com/projectblacklight/bla
 gem 'rsolr', '>= 1.0'
 gem 'bootstrap-sass', '~> 3.0'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
-gem 'jquery-rails', '~> 4'
-gem 'devise', '~> 4'
+gem 'jquery-rails'
+gem 'devise'
 gem 'devise-guests', '~> 0.6'
 group :development, :test do
-  gem 'fcrepo_wrapper', '~> 0.9'
-  gem 'rspec-rails', '~> 4'
+  gem 'fcrepo_wrapper'
+  gem 'rspec-rails'
 end
-gem 'rest-client', '~> 2'
+gem 'rest-client'
 
 gem 'riiif', '~> 2.0'
 
