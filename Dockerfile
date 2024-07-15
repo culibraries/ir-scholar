@@ -45,7 +45,7 @@ RUN gem update --system $RUBYGEMS_VERSION \
 RUN if [ "${RAILS_ENV}" = "production" ]; then \
 #  echo "Precompiling assets with $RAILS_ENV environment"; \
   RAILS_ENV=$RAILS_ENV SCHOLARS_SECRET_KEY_BASE=temporary bundle exec rails assets:precompile; \
-  fi 
+  fi
 
 RUN cp /data/public/assets/work-*.png /data/public/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png
 RUN cp /data/public/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png /data/public/assets/work-a6ad224077dcf8d7342d3f671bab54554d5e2e1b9b1506a25411a840b1c85202.png
@@ -68,13 +68,13 @@ RUN chmod -R 777 /var/lib/clamav \
     && chmod -R 775 /var/lib/clamav \
     && mkdir -p /opt/fits && \
     curl -fSL -o /opt/fits-1.5.1.zip https://github.com/harvard-lts/fits/releases/download/1.5.1/fits-1.5.1.zip && \
-    cd /opt && unzip fits-1.5.1.zip -d /opt/fits && rm fits-1.5.1.zip  && chmod +X /opt/fits/fits.sh \
-    && pip install --no-cache-dir -r /data/requirements.txt \
+    cd /opt && unzip fits-1.5.1.zip -d /opt/fits && rm fits-1.5.1.zip  && chmod +X /opt/fits/fits.sh && \
+    pip install --no-cache-dir -r /data/requirements.txt \
     && cp /usr/share/zoneinfo/America/Denver /etc/localtime \
     && mv /data/app/assets/stylesheets/cu_boulder_font.css /data/public/assets/cu_boulder_font.css \
     && mv /data/app/assets/stylesheets/cu_boulder_branding.css /data/public/assets/cu_boulder_branding.css
 
-ENV PATH="/opt/fits/fits-1.0.5:${PATH}"
+ENV PATH="/opt/fits:${PATH}"
 
 
 # COPY --from=builder $RAILS_ROOT $RAILS_ROOT
