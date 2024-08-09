@@ -7,7 +7,7 @@ end
 
 # CU Boulder
 # CU Boulder Additions , '3.4.2' #
-gem 'hydra-derivatives', '3.4.2' # , git: 'https://github.com/samvera/hydra-derivatives.git'
+gem 'hydra-derivatives', '3.6.1' # , git: 'https://github.com/samvera/hydra-derivatives.git'
 
 gem 'hydra-role-management'
 gem 'qa'
@@ -27,10 +27,10 @@ group :production do
 end
 group :development do
   # Use sqlite3 as the database for Active Record
-  gem "sqlite3", "~> 1.3.0"
+  gem "sqlite3", '~> 1.5.0'
 end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.7'
+gem 'rails', '~> 5.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -58,15 +58,14 @@ gem 'redis', '~> 4.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
+  # Adds support for Capybara system testing
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -75,7 +74,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data' #, platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'hyrax', '2.9.6'
+gem 'dry-monads', '~> 1.3'
+gem 'hyrax', '~> 3.0.0'
+gem 'tinymce-rails', '~> 5.0.0'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -86,6 +87,8 @@ gem 'rsolr', '>= 1.0'
 gem 'bootstrap-sass', '~> 3.0'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'jquery-rails'
+gem 'jquery-datatables-rails'#, github: 'rweng/jquery-datatables-rails'
+gem 'jquery-ui-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 group :development, :test do
@@ -96,4 +99,8 @@ gem 'rest-client'
 
 gem 'riiif', '~> 2.0'
 
-gem 'zizia', git: 'https://github.com/culibraries/zizia.git', ref: 'etd-loader'
+gem 'zizia', path: './zizia'
+
+gem 'posix-spawn'
+gem 'font-awesome-rails'
+gem 'font-awesome-sass'

@@ -1,7 +1,7 @@
-ARG ALPINE_VERSION=3.15
-ARG RUBY_VERSION=2.7.6
+ARG ALPINE_VERSION=3.16
+ARG RUBY_VERSION=2.7.8
 
-FROM ruby:$RUBY_VERSION-alpine$ALPINE_VERSION as hyrax-base
+FROM ruby:$RUBY_VERSION-alpine$ALPINE_VERSION AS hyrax-base
 
 # Necessary for bundler to properly install some gems
 ENV LANG C.UTF-8
@@ -111,6 +111,6 @@ EXPOSE 3000/tcp
 CMD ["bundle exec puma -C config/puma/production.rb"]
 
 
-FROM hyrax-base as hyrax-worker
+FROM hyrax-base AS hyrax-worker
 
 CMD bundle exec sidekiq
