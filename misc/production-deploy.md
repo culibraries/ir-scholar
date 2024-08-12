@@ -37,7 +37,7 @@ storage class set aws-
         </button>
         <a id="logo" href="/" class="navbar-brand" style="
     width: 350px;
-"><img src="https://www.colorado.edu/libraries/profiles/express/themes/ucb/images/cu-boulder-logo-text-white.svg" alt="Scholar @ University of Colorado Boulder">
+"><img src="https://cdn.colorado.edu/static/brand-assets/live/images/cu-boulder-logo-text-white.svg" alt="Scholar @ University of Colorado Boulder">
 
 </a>
 <span class="navbar-brand" style="
