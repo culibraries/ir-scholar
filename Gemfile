@@ -11,7 +11,7 @@ gem 'hydra-derivatives', '3.6.1' # , git: 'https://github.com/samvera/hydra-deri
 
 gem 'hydra-role-management'
 gem 'qa'
-gem 'sidekiq'
+gem 'sidekiq', '~> 6.5.8'
 gem 'mini_magick'
 
 # SAML

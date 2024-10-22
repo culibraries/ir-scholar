@@ -87,7 +87,6 @@ ENV PATH="/opt/fits:${PATH}"
 #    && cp /usr/share/zoneinfo/America/Denver /etc/localtime
 
 
-
 #Clean and reduce risk
 RUN apk del sqlite-dev build-base py-pip git unzip yarn \
     && rm -f /sbin/apk \
@@ -108,6 +107,9 @@ RUN apk del sqlite-dev build-base py-pip git unzip yarn \
     && rm -rf /data/test
 
 EXPOSE 3000/tcp
+
+FROM hyrax-base AS hyrax-web
+
 CMD ["bundle exec puma -C config/puma/production.rb"]
 
 
