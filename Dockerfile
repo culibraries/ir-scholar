@@ -115,4 +115,5 @@ CMD ["bundle exec puma -C config/puma/production.rb"]
 
 FROM hyrax-base AS hyrax-worker
 
+RUN rails hyrax:install:migrations
 CMD bundle exec sidekiq
