@@ -75,8 +75,8 @@ end
 gem 'tzinfo-data' #, platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'dry-monads', '~> 1.3'
-gem 'hyrax', '~> 3.0.0'
-gem 'tinymce-rails', '~> 5.0.0'
+gem 'hyrax', '~> 3.6.0'
+gem 'tinymce-rails', '~> 5.10'
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
 end
@@ -104,3 +104,5 @@ gem 'zizia', path: './zizia'
 gem 'posix-spawn'
 gem 'font-awesome-rails'
 gem 'font-awesome-sass'
+
+gem 'active-fedora', '~> 13.3'

@@ -62,190 +62,175 @@ class SolrDocument
     Time.parse(self['date_modified_dtsi']).in_time_zone.to_date
   end
   def contact_email
-    self[Solrizer.solr_name('contact_email')]
+    self['contact_email_tesim']
   end
   def contact_phone
-    self[Solrizer.solr_name('contact_phone')]
+    self['contact_phone_tesim']
   end
   def department
-    self[Solrizer.solr_name('department')]
+    self['department_tesim']
   end
   def abstract
-    self[Solrizer.solr_name('abstract')]
+    self['abstract_tesim']
   end
   def abstract_search
-    self[Solrizer.solr_name('abstract')]
+    self['abstract_tesim']
   end
   def academic_affiliation
-    self[Solrizer.solr_name('academic_affiliation')]
+    self['academic_affiliation_tesim']
   end
   def title
-    self[Solrizer.solr_name('title')]
+    self['title_tesim']
   end
   def alt_title
-    self[Solrizer.solr_name('alt_title')]
+    self['alt_title_tesim']
   end
   def bibliographic_citation
-    self[Solrizer.solr_name('bibliographic_citation')]
+    self['bibliographic_citation_tesim']
   end
   def conference_location
-    self[Solrizer.solr_name('conference_location')]
+    self['conference_location_tesim']
   end
   def conference_name
-    self[Solrizer.solr_name('conference_name')]
+    self['conference_name_tesim']
   end
   def event_date
-    self[Solrizer.solr_name('event_date')]
+    self['event_date_tesim']
   end
   def conference_section
-    self[Solrizer.solr_name('conference_section')]
+    self['conference_section_tesim']
   end
   def degree_discipline
-    self[Solrizer.solr_name('degree_discipline')]
+    self['degree_discipline_tesim']
   end
   def degree_field
-    self[Solrizer.solr_name('degree_field')]
+    self['degree_field_tesim']
   end
   def degree_grantors
-    self[Solrizer.solr_name('degree_grantors')]
+    self['degree_grantors_tesim']
   end
   def degree_level
-    self[Solrizer.solr_name('degree_level')]
+    self['degree_level_tesim']
   end
   def degree_name
-    self[Solrizer.solr_name('degree_name')]
+    self['degree_name_tesim']
   end
   def contributor_advisor
-    self[Solrizer.solr_name('contributor_advisor')]
+    self['contributor_advisor_tesim']
   end
   def contributor_committeemember
-    self[Solrizer.solr_name('contributor_committeemember')]
+    self['contributor_committeemember_tesim']
   end
   def creator
-    self[Solrizer.solr_name('creator')]
-  end
-  def academic_affiliation
-    self[Solrizer.solr_name('academic_affiliation')]
+    self['creator_tesim']
   end
   def resource_type
-    self[Solrizer.solr_name('resource_type')]
+    self['resource_type_tesim']
   end
   def graduation_year
-    self[Solrizer.solr_name('graduation_year')]
+    self['graduation_year_tesim']
   end
   def rights_statement
-    self[Solrizer.solr_name('rights_statement')]
+    self['rights_statement_tesim']
   end
   def other_affiliation
-    self[Solrizer.solr_name('other_affiliation')]
+    self['other_affiliation_tesim']
   end
   def date_accepted
-    self[Solrizer.solr_name('date_accepted')]
+    self['date_accepted_tesim']
   end
   def date_available
-    self[Solrizer.solr_name('date_available')]
+    self['date_available_tesim']
   end
   def date_collected
-    self[Solrizer.solr_name('date_collected')]
+    self['date_collected_tesim']
   end
   def date_copyright
-    self[Solrizer.solr_name('date_copyright')]
+    self['date_copyright_tesim']
   end
   def date_issued
-    self[Solrizer.solr_name('date_issued')]
+    self['date_issued_tesim']
   end
   def date_valid
-    self[Solrizer.solr_name('date_valid')]
+    self['date_valid_tesim']
   end
   def date_reviewed
-    self[Solrizer.solr_name('date_reviewed')]
+    self['date_reviewed_tesim']
   end
   def digitization_spec
-    self[Solrizer.solr_name('digitization_spec')]
+    self['digitization_spec_tesim']
   end
   def doi
-    self[Solrizer.solr_name('doi')]
+    self['doi_tesim']
   end
   def editor
-    self[Solrizer.solr_name('editor')]
+    self['editor_tesim']
   end
   def file_extent
-    self[Solrizer.solr_name('file_extent')]
+    self['file_extent_tesim']
   end
   def file_format
-    self[Solrizer.solr_name('file_format')]
-  end
-  def graduation_year
-    self[Solrizer.solr_name('graduation_year')]
+    self['file_format_tesim']
   end
   def has_journal
-    self[Solrizer.solr_name('has_journal')]
+    self['has_journal_tesim']
   end
   def has_number
-    self[Solrizer.solr_name('has_number')]
+    self['has_number_tesim']
   end
   def has_volume
-    self[Solrizer.solr_name('has_volume')]
+    self['has_volume_tesim']
   end
   def hydrologic_unit_code
-    self[Solrizer.solr_name('hydrologic_unit_code')]
+    self['hydrologic_unit_code_tesim']
   end
   def in_series
-    self[Solrizer.solr_name('in_series')]
+    self['in_series_tesim']
   end
   def interactivity_type
-    self[Solrizer.solr_name('interactivity_type')]
+    self['interactivity_type_tesim']
   end
   def is_based_on_url
-    self[Solrizer.solr_name('is_based_on_url')]
+    self['is_based_on_url_tesim']
   end
   def is_referenced_by
-    self[Solrizer.solr_name('is_referenced_by')]
+    self['is_referenced_by_tesim']
   end
   def isbn
-    self[Solrizer.solr_name('isbn')]
+    self['isbn_tesim']
   end
   def issn
-    self[Solrizer.solr_name('issn')]
+    self['issn_tesim']
   end
   def learning_resource_type
-    self[Solrizer.solr_name('learning_resource_type')]
-  end
-  def other_affiliation
-    self[Solrizer.solr_name('other_affiliation')]
+    self['learning_resource_type_tesim']
   end
   def replaces
-    self[Solrizer.solr_name('replaces')]
+    self['replaces_tesim']
   end
   def tableofcontents
-    self[Solrizer.solr_name('tableofcontents')]
+    self['tableofcontents_tesim']
   end
   def time_required
-    self[Solrizer.solr_name('time_required')]
+    self['time_required_tesim']
   end
   def typical_age_range
-    self[Solrizer.solr_name('typical_age_range')]
+    self['typical_age_range_tesim']
   end
   def web_of_science_uid
-    self[Solrizer.solr_name('web_of_science_uid')]
+    self['web_of_science_uid_tesim']
   end
   def additional_information
-    self[Solrizer.solr_name('additional_information')]
+    self['additional_information_tesim']
   end
   def embargo_reason
-    self[Solrizer.solr_name('embargo_reason')]
+    self['embargo_reason_tesim']
   end
   def peerreviewed
-    self[Solrizer.solr_name('peerreviewed')]
-  end
-  def file_extent
-    self[Solrizer.solr_name('file_extent')]
-  end
-  def file_format
-    self[Solrizer.solr_name('file_format')]
+    self['peerreviewed_tesim']
   end
   def hasRelatedMediaFragment
-    self[Solrizer.solr_name('hasRelatedMediaFragment')]
+    self['hasRelatedMediaFragment_tesim']
   end
 
   field_semantics.merge!(

@@ -1,8 +1,7 @@
 # Generated via
 #  `rails generate hyrax:work UndergraduateHonorsThesis`
 module Hyrax
-  class UndergraduateHonorsThesisPresenter < Hyrax::WorkShowPresenter
-    extend ActiveSupport::Concern
+  class UndergraduateHonorsThesisPresenter < Hyrax::BasePresenter
     delegate :abstract,:academic_affiliation,:additional_information,:alt_title,:bibliographic_citation,:conference_location,:conference_name,
     :contributor,:contributor_advisor,:contributor_committeemember,:creator,:date_available,:date_issued,:date_modified,:date_uploaded,
     :degree_field,:degree_grantors,:degree_name,:depositor,:doi,:editor,:embargo_reason,
