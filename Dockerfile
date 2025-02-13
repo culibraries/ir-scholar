@@ -42,8 +42,8 @@ RUN gem update --system $RUBYGEMS_VERSION \
     && rm -rf /data/tmp \
     && mkdir /data/tmp
 
-RUN if [ "${RAILS_ENV}" = "production" ]; then \
 #  echo "Precompiling assets with $RAILS_ENV environment"; \
+RUN if [ "${RAILS_ENV}" = "production" ]; then \
   RAILS_ENV=$RAILS_ENV SCHOLARS_SECRET_KEY_BASE=temporary bundle exec rails assets:precompile; \
   fi
 

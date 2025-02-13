@@ -5,5 +5,6 @@ analytics:
   app_name: cu-scholar
   app_version: v2.6.0
   privkey_path: /data/cu-scholar-98ddf6f79202.p12
+  privkey_value: notavalue
   privkey_secret: notasecret
   client_email: cu-scholar-account@cu-scholar-264616.iam.gserviceaccount.com
