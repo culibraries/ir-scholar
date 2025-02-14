@@ -1,7 +1,8 @@
 # Generated via
 #  `rails generate hyrax:work GraduateThesisOrDissertation`
 module Hyrax
-  class GraduateThesisOrDissertationPresenter < Hyrax::BasePresenter
+  class GraduateThesisOrDissertationPresenter < Hyrax::WorkShowPresenter
+    extend ActiveSupport::Concern
     delegate :abstract,:academic_affiliation,:additional_information,:alt_title,:bibliographic_citation,:conference_location,:conference_name,
     :contributor,:contributor_advisor,:contributor_committeemember,:creator,:date_available,:date_issued,:date_modified,:date_uploaded,
     :degree_field,:degree_grantors,:degree_name,:depositor,:doi,:editor,:embargo_reason,
@@ -9,8 +10,22 @@ module Hyrax
     :language,:license,:location,:other_affiliation,:peerreviewed,:publisher,:replaces,:resource_type,:rights_statement,
     to: :solr_document
 
-    def name 
+    def name
       "GraduateThesisOrDissertationPresenter"
+    end
+
+    def representative_presenter
+      return nil if representative_id.blank?
+
+      @representative_presenter ||= begin
+        result = member_presenters_for([representative_id]).first
+        return nil if result.try(:id) == id  # Prevent self-referencing
+        if result.is_a?(Hyrax::WorkShowPresenter)  # Ensure we don’t return a Work
+          result.representative_presenter || result.member_presenters.find { |p| p.is_a?(Hyrax::FileSetPresenter) }
+        else
+          result
+        end
+      end
     end
   end
 end

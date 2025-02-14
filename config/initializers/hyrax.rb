@@ -71,8 +71,9 @@ Hyrax.config do |config|
 
     # Google Analytics GA4 tracking ID to gather usage statistics
     #config.google_analytics_id = 'UA-152058677-1'
-    config.google_analytics_id = 'G-FF176QQ4LH'
+    #config.google_analytics_id = 'G-FF176QQ4LH'
 
+    config.analytics_provider = 'ga4'
     # Date you wish to start collecting Google Analytic statistics for
     # Leaving it blank will set the start date to when ever the file was uploaded by
     # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
