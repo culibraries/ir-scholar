@@ -107,4 +107,4 @@ gem 'font-awesome-sass'
 
 gem 'active-fedora', '~> 13.3'
 
-gem 'sprockets', '~> 3.7.2'
+gem 'sprockets', '= 3.7.2'
