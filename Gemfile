@@ -7,7 +7,7 @@ end
 
 # CU Boulder
 # CU Boulder Additions , '3.4.2' #
-gem 'hydra-derivatives', '3.6.1' # , git: 'https://github.com/samvera/hydra-derivatives.git'
+gem 'hydra-derivatives', '~> 3.7.0' # , git: 'https://github.com/samvera/hydra-derivatives.git'
 
 gem 'hydra-role-management'
 gem 'qa'
