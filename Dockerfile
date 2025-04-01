@@ -14,7 +14,9 @@ ARG EXTRA_APK_PACKAGES="git libreoffice imagemagick ghostscript vim ffmpeg fresh
 RUN apk update && \
     apk --no-cache upgrade && \
     apk --update --no-cache add build-base \
+    bash \
     curl \
+    openjdk8 \
     unzip \
     yaml \
     zlib-dev \
