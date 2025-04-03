@@ -99,7 +99,7 @@ gem 'rest-client'
 
 gem 'riiif', '~> 2.0'
 
-gem 'zizia', path: './zizia'
+gem 'zizia', git: 'https://github.com/culibraries/zizia.git', ref: 'etd-loader'
 
 gem 'posix-spawn'
 gem 'font-awesome-rails'

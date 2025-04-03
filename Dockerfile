@@ -16,7 +16,7 @@ RUN apk update && \
     apk --update --no-cache add build-base \
     bash \
     curl \
-    openjdk8 \
+    openjdk17 \
     unzip \
     yaml \
     zlib-dev \
@@ -69,8 +69,8 @@ RUN chmod -R 777 /var/lib/clamav \
     && freshclam --user=root \
     && chmod -R 775 /var/lib/clamav \
     && mkdir -p /opt/fits && \
-    curl -fSL -o /opt/fits-1.5.1.zip https://github.com/harvard-lts/fits/releases/download/1.5.1/fits-1.5.1.zip && \
-    cd /opt && unzip fits-1.5.1.zip -d /opt/fits && rm fits-1.5.1.zip  && chmod +X /opt/fits/fits.sh && \
+    curl -fSL -o /opt/fits-1.6.0.zip https://github.com/harvard-lts/fits/releases/download/1.6.0/fits-1.6.0.zip && \
+    cd /opt && unzip fits-1.6.0.zip -d /opt/fits && rm fits-1.6.0.zip  && chmod +X /opt/fits/fits.sh && \
     pip install --no-cache-dir -r /data/requirements.txt \
     && cp /usr/share/zoneinfo/America/Denver /etc/localtime \
     && mv /data/app/assets/stylesheets/cu_boulder_font.css /data/public/assets/cu_boulder_font.css \
@@ -88,6 +88,7 @@ ENV PATH="/opt/fits:${PATH}"
 #RUN mkdir /data/tmp/pids \
 #    && cp /usr/share/zoneinfo/America/Denver /etc/localtime
 
+RUN rails hyrax:install:migrations
 
 #Clean and reduce risk
 RUN apk del sqlite-dev build-base py-pip git unzip yarn \
@@ -116,7 +117,5 @@ CMD ["bundle exec puma -C config/puma/production.rb"]
 
 
 FROM hyrax-base AS hyrax-worker
-
-RUN rails hyrax:install:migrations
 
 CMD bundle exec sidekiq
