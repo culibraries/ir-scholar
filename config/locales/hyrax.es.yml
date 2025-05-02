@@ -52,6 +52,7 @@ es:
     footer:
       copyright_html: "<strong>Copyright &copy; 2018 Samvera</strong> bajo licencia de Apache, Version 2.0"
       service_html: Un servicio de <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera/a>.
+      accessibility_html: <a href="https://libraries.colorado.edu/services/accessibility-services" class="navbar-link" target="_blank">Servicios de accesibilidad</a> | <a href="https://oit.colorado.edu/services/business-services/sensusaccess" class="navbar-link" target="_blank">Convertidor de accesibilidad a PDF</a>
     institution_name: institución
     institution_name_full: El nombre de la institución
     product_name: Hyrax

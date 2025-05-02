@@ -51,7 +51,8 @@ fr:
       suffix: "@ Example.org"
     footer:
       copyright_html: "<strong>Copyright © 2018 Samvera</strong> Licence sous Licence Apache, Version 2.0"
-      service_html: Un service de <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a> .
+      service_html: Un service de <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a>.
+      accessibility_html: <a href="https://libraries.colorado.edu/services/accessibility-services" class="navbar-link" target="_blank">Services d'accessibilité</a> | <a href="https://oit.colorado.edu/services/business-services/sensusaccess" class="navbar-link" target="_blank">Convertisseur d'accessibilité PDF</a>
     institution_name: Institution
     institution_name_full: Nom de l'établissement
     product_name: Hyrax

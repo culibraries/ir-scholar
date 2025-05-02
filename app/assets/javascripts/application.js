@@ -20,6 +20,8 @@
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require blacklight/blacklight
 
+//= require tinymce
+
 //= require_tree .
 //= require hyrax
 
