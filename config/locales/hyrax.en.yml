@@ -94,7 +94,7 @@ en:
       suffix: "@colorado.edu"
     footer:
       copyright_html: "<strong>Copyright © 2018 University of Colorado Boulder</srong>"
-      service_html: A service provided by <a href="https://www.colorado.edu/libraries/libraries/" class="navbar-link" target="_blank">University of Colorado Boulder Libraries</a>.
+      service_html: A service provided by <a href="https://libraries.colorado.edu/" class="navbar-link" target="_blank">University of Colorado Boulder Libraries</a>.
       accessibility_html: <a href="https://libraries.colorado.edu/services/accessibility-services" class="navbar-link" target="_blank">Accessibility Services</a> | <a href="https://oit.colorado.edu/services/business-services/sensusaccess" class="navbar-link" target="_blank">PDF Accessibility Converter</a>
     institution_name: CU Boulder
     institution_name_full: University of Colorado Boulder
