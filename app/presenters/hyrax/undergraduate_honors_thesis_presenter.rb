@@ -14,19 +14,19 @@ module Hyrax
       "UndergraduateHonorsThesisPresenter"
     end
 
-    def representative_presenter
-      return nil if representative_id.blank?
-
-      @representative_presenter ||= begin
-        result = member_presenters_for([representative_id]).first
-        return nil if result.try(:id) == id  # Prevent self-referencing
-        if result.is_a?(Hyrax::WorkShowPresenter)  # Ensure we don’t return a Work
-          result.representative_presenter || result.member_presenters.find { |p| p.is_a?(Hyrax::FileSetPresenter) }
-        else
-          result
-        end
-      end
-    end
+    # def representative_presenter
+    #   return nil if representative_id.blank?
+    #
+    #   @representative_presenter ||= begin
+    #     result = member_presenters([representative_id]).first
+    #     return nil if result.try(:id) == id  # Prevent self-referencing
+    #     if result.is_a?(Hyrax::WorkShowPresenter)  # Ensure we don’t return a Work
+    #       result.representative_presenter || result.member_presenters.find { |p| p.is_a?(Hyrax::FileSetPresenter) }
+    #     else
+    #       result
+    #     end
+    #   end
+    # end
   end
 end
 #:file_extent,:file_format

@@ -311,7 +311,6 @@ Hyrax.config do |config|
   config.recaptcha_site_key = ENV.fetch('RECAPTCHA_SITE_KEY', 'xxxx')
   # WARNING: KEEP THIS SECRET. DO NOT STORE IN REPOSITORY
   config.recaptcha_secret_key = ENV.fetch('RECAPTCHA_SECRET_KEY', 'xxxx')
-
 end
 
 Date::DATE_FORMATS[:standard] = "%Y-%m-%d"
