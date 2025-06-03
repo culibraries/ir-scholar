@@ -65,7 +65,7 @@ module Hyrax
     def iiif_viewer?
       representative_id.present? &&
         representative_presenter.present? &&
-        (representative_presenter.image? ? representative_presenter.image? : false ) &&
+        representative_presenter.image? &&
         Hyrax.config.iiif_image_server? &&
         members_include_viewable_image?
     end
@@ -93,16 +93,12 @@ module Hyrax
     # @return FileSetPresenter presenter for the representative FileSets
     def representative_presenter
       return nil if representative_id.blank?
-
-      @representative_presenter ||= begin
-        result = member_presenters([representative_id]).first
-        return nil if result.try(:id) == id  # Prevent self-referencing
-        if result.is_a?(Hyrax::WorkShowPresenter)  # Ensure we don’t return a Work
-          result.representative_presenter || result.member_presenters.find { |p| p.is_a?(Hyrax::FileSetPresenter) }
-        else
-          result
+      @representative_presenter ||=
+        begin
+          result = member_presenters([representative_id]).first
+          return nil if result.try(:id) == id
+          result.try(:representative_presenter) || result
         end
-      end
     end
 
     # Get presenters for the collections this work is a member of via the member_of_collections association.

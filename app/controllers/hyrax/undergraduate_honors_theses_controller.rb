@@ -4,7 +4,7 @@ module Hyrax
   # Generated controller for UndergraduateHonorsThesis
   class UndergraduateHonorsThesesController < ApplicationController
     # Adds Hyrax behaviors to the controller.
-    include Hyrax::WorksControllerBehavior
+    include Scholar::WorksControllerBehavior
     include Hyrax::BreadcrumbsForWorks
     self.curation_concern_type = ::UndergraduateHonorsThesis
 
