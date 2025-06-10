@@ -1,7 +1,7 @@
 {
-  "name": "scholar",
+  "name": "hyrax",
   "private": true,
-  "repository": "git@github.com/culibraries/ir-scholar.git",
+  "repository": "git@github.com:samvera/hyrax.git",
   "dependencies": {
   "universalviewer": "^3.0.16"
 },
