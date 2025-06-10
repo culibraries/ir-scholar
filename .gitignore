@@ -64,6 +64,7 @@ docker-compose.override.yml
 /public/*.ttf
 /public/*.woff
 /virtpy
+/public/uv
 
 /vendor/bundle
 .byebug_history
