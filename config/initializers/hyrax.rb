@@ -21,7 +21,6 @@ Hyrax.config do |config|
   # Injected via `rails g hyrax:work Default`
   config.register_curation_concern :default
 
-
   # Register roles that are expected by your implementation.
   # @see Hyrax::RoleRegistry for additional details.
   # @note there are magical roles as defined in Hyrax::RoleRegistry::MAGIC_ROLES
@@ -70,8 +69,8 @@ Hyrax.config do |config|
     config.analytics = true
 
     # Google Analytics GA4 tracking ID to gather usage statistics
-    #config.google_analytics_id = 'UA-152058677-1'
-    #config.google_analytics_id = 'G-FF176QQ4LH'
+    # config.google_analytics_id = 'UA-152058677-1'
+    # config.google_analytics_id = 'G-FF176QQ4LH'
 
     config.analytics_provider = 'ga4'
     # Date you wish to start collecting Google Analytic statistics for
@@ -160,7 +159,7 @@ Hyrax.config do |config|
   #   * iiif_image_size_default
   #
   # Default is false
-  config.iiif_image_server = false
+  config.iiif_image_server = true
 
   # Returns a URL that resolves to an image provided by a IIIF image server
   config.iiif_image_url_builder = lambda do |file_id, base_url, size, format|
@@ -199,7 +198,7 @@ Hyrax.config do |config|
   #
   # The banner image. Should be 5000px wide by 1000px tall
   # config.banner_image = 'https://cloud.githubusercontent.com/assets/92044/18370978/88ecac20-75f6-11e6-8399-6536640ef695.jpg'
-  config.banner_image = ENV.fetch('HOMEPAGE_BANNER_IMAGE','https://cubl-static.s3-us-west-2.amazonaws.com/samvera/boulder-flatirons.png')
+  config.banner_image = ENV.fetch('HOMEPAGE_BANNER_IMAGE', 'https://cubl-static.s3-us-west-2.amazonaws.com/samvera/boulder-flatirons.png')
   # Temporary paths to hold uploads before they are ingested into FCrepo
   # These must be lambdas that return a Pathname. Can be configured separately
   #  config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' }
@@ -315,6 +314,6 @@ end
 
 Date::DATE_FORMATS[:standard] = "%Y-%m-%d"
 
-#Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
-#Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
-#Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')
+# Qa::Authorities::Local.register_subauthority('subjects', 'Qa::Authorities::Local::TableBasedAuthority')
+# Qa::Authorities::Local.register_subauthority('languages', 'Qa::Authorities::Local::TableBasedAuthority')
+# Qa::Authorities::Local.register_subauthority('genres', 'Qa::Authorities::Local::TableBasedAuthority')

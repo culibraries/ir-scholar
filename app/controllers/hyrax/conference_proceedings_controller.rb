@@ -4,7 +4,7 @@ module Hyrax
   # Generated controller for ConferenceProceeding
   class ConferenceProceedingsController < ApplicationController
     # Adds Hyrax behaviors to the controller.
-    include Scholar::WorksControllerBehavior
+    include Hyrax::WorksControllerBehavior
     include Hyrax::BreadcrumbsForWorks
     self.curation_concern_type = ::ConferenceProceeding
 

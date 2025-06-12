@@ -1037,7 +1037,7 @@ DEPENDENCIES
   posix-spawn
   puma (~> 3.7)
   qa
-  rails (~> 5.0)
+  rails (~> 5.2.8)
   recaptcha
   redis (~> 4.0)
   rest-client

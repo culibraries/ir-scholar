@@ -47,7 +47,7 @@ group :development, :test do
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0'
+gem 'rails', '~> 5.2.8'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
