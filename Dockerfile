@@ -40,7 +40,7 @@ ENV RAILS_ENV=${RAILS_ENV}
 #RUN git checkout metadata-wt
 # Update RubyGems system.  RubyGems v3 installs bundler
 RUN gem update --system $RUBYGEMS_VERSION \
-    && bundle install --jobs "$(nproc)" \
+    && bundle install --jobs "$(nproc)" --without development,test \
     && rm -rf /data/tmp \
     && mkdir /data/tmp
 
@@ -106,7 +106,7 @@ RUN apk del sqlite-dev build-base py-pip git unzip yarn \
     && rm -rf /data/spec \
     && rm -rf /data/solr \
     && rm -rf /data/misc \
-    && rm -rf /data/db \
+#    && rm -rf /data/db \
     && rm -rf /data/test
 
 EXPOSE 3000/tcp

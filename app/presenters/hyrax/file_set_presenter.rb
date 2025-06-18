@@ -102,18 +102,17 @@ module Hyrax
 
     private
 
-      def link_presenter_class
-        SingleUseLinkPresenter
-      end
+    def link_presenter_class
+      SingleUseLinkPresenter
+    end
 
-      def fetch_parent_presenter
-        ids = ActiveFedora::SolrService.query("{!field f=member_ids_ssim}#{id}",
-                                              fl: ActiveFedora.id_field)
-                                       .map { |x| x.fetch(ActiveFedora.id_field) }
-        Hyrax::PresenterFactory.build_for(ids: ids,
-                                          presenter_class: WorkShowPresenter,
-                                          presenter_args: current_ability).first
-      end
+    def fetch_parent_presenter
+      ids = ActiveFedora::SolrService.query("{!field f=member_ids_ssim}#{id}",
+                                            fl: ActiveFedora.id_field)
+                                     .map { |x| x.fetch(ActiveFedora.id_field) }
+      Hyrax::PresenterFactory.build_for(ids: ids,
+                                        presenter_class: WorkShowPresenter,
+                                        presenter_args: current_ability).first
+    end
   end
 end
-
