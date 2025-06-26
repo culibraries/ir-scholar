@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Hyrax
   class WorkShowPresenter
     include ModelProxy
@@ -21,7 +22,7 @@ module Hyrax
 
     # delegate fields from Hyrax::Works::Metadata to solr_document
     delegate :based_near_label, :related_url, :depositor, :identifier, :resource_type,
-             :keyword, :itemtype, :admin_set, :rights_notes, :access_right, :abstract, to: :solr_document
+      :keyword, :itemtype, :admin_set, :rights_notes, :access_right, :abstract, to: :solr_document
 
     # @param [SolrDocument] solr_document
     # @param [Ability] current_ability
@@ -34,18 +35,18 @@ module Hyrax
     end
 
     def page_title
-      "#{human_readable_type} | #{title.first} | ID: #{id} | #{I18n.t('hyrax.product_name')}"
+      "#{human_readable_type} | #{title.first} | ID: #{id} | #{I18n.t("hyrax.product_name")}"
     end
 
     # CurationConcern methods
     delegate :stringify_keys, :human_readable_type, :collection?, :to_s, :suppressed?,
-             to: :solr_document
+      to: :solr_document
 
     # Metadata Methods
     delegate :title, :date_created, :description,
-             :creator, :contributor, :subject, :publisher, :language, :embargo_release_date,
-             :lease_expiration_date, :license, :source, :rights_statement, :thumbnail_id, :representative_id,
-             :rendering_ids, :member_of_collection_ids, :alternative_title, to: :solr_document
+      :creator, :contributor, :subject, :publisher, :language, :embargo_release_date,
+      :lease_expiration_date, :license, :source, :rights_statement, :thumbnail_id, :representative_id,
+      :rendering_ids, :member_of_collection_ids, :alternative_title, to: :solr_document
 
     def workflow
       @workflow ||= WorkflowPresenter.new(solr_document, current_ability)
@@ -57,7 +58,7 @@ module Hyrax
 
     # @return [String] a download URL, if work has representative media, or a blank string
     def download_url
-      return '' if representative_presenter.nil?
+      return "" if representative_presenter.nil?
       Hyrax::Engine.routes.url_helpers.download_url(representative_presenter, host: request.host)
     end
 
@@ -70,7 +71,7 @@ module Hyrax
         members_include_viewable_image?
     end
 
-    alias universal_viewer? iiif_viewer?
+    alias_method :universal_viewer?, :iiif_viewer?
     deprecation_deprecate universal_viewer?: "use iiif_viewer? instead"
 
     # @return [Symbol] the name of the IIIF viewer partial to render
@@ -99,7 +100,7 @@ module Hyrax
           result = member_presenters([representative_id]).first
           return nil if result.try(:id) == id # Prevent self-referencing
           if result.is_a?(Hyrax::WorkShowPresenter) # Ensure we don’t return a Work
-            result.representative_presenter || result.member_presenters.find { |p| p.is_a?(Hyrax::FileSetPresenter) }
+            result.representative_presenter || result.member_presenters.find { |p| p.is_a?(Hyrax::FileSetPresenter) and !p.parent.nil? }
           else
             result
           end
@@ -110,8 +111,8 @@ module Hyrax
     # @return [Array<CollectionPresenter>] presenters
     def member_of_collection_presenters
       PresenterFactory.build_for(ids: member_of_authorized_parent_collections,
-                                 presenter_class: collection_presenter_class,
-                                 presenter_args: presenter_factory_arguments)
+        presenter_class: collection_presenter_class,
+        presenter_args: presenter_factory_arguments)
     end
 
     def date_modified
@@ -123,7 +124,7 @@ module Hyrax
     end
 
     def link_name
-      current_ability.can?(:read, id) ? to_s : 'Private'
+      current_ability.can?(:read, id) ? to_s : "Private"
     end
 
     def export_as_nt
@@ -228,8 +229,8 @@ module Hyrax
     def manifest_metadata
       Hyrax.config.iiif_metadata_fields.each_with_object([]) do |field, metadata|
         metadata << {
-          'label' => I18n.t("simple_form.labels.defaults.#{field}"),
-          'value' => Array.wrap(send(field).map { |f| Loofah.fragment(f.to_s).scrub!(:whitewash).to_s })
+          "label" => I18n.t("simple_form.labels.defaults.#{field}"),
+          "value" => Array.wrap(send(field).map { |f| Loofah.fragment(f.to_s).scrub!(:whitewash).to_s })
         }
       end
     end
@@ -287,7 +288,7 @@ module Hyrax
 
     def current_page
       page = request.params[:page].nil? ? 1 : request.params[:page].to_i
-      page > total_pages ? total_pages : page
+      (page > total_pages) ? total_pages : page
     end
 
     def manifest_helper
@@ -314,8 +315,8 @@ module Hyrax
           PcdmMemberPresenterFactory.new(solr_document, current_ability)
         else
           self.class
-              .presenter_factory_class
-              .new(solr_document, current_ability, request)
+            .presenter_factory_class
+            .new(solr_document, current_ability, request)
         end
     end
 

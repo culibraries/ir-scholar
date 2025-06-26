@@ -19,7 +19,7 @@ module Hyrax
 
     # CurationConcern methods
     delegate :stringify_keys, :human_readable_type, :collection?, :image?, :video?,
-             :audio?, :pdf?, :office_document?, :representative_id, :to_s, to: :solr_document
+      :audio?, :pdf?, :office_document?, :representative_id, :to_s, to: :solr_document
 
     # Methods used by blacklight helpers
     delegate :has?, :first, :fetch, to: :solr_document
@@ -27,12 +27,14 @@ module Hyrax
     # Metadata Methods
     # Added visibility for use in file_sets/media_display views
     delegate :title, :label, :description, :creator, :contributor, :subject,
-             :publisher, :language, :date_uploaded,
-             :embargo_release_date, :lease_expiration_date,
-             :depositor, :keyword, :title_or_label, :keyword,
-             :date_created, :date_modified, :itemtype,
-             :original_file_id, :visibility,
-             to: :solr_document
+      :publisher, :language, :date_uploaded,
+      :embargo_release_date, :lease_expiration_date,
+      :depositor, :keyword, :title_or_label, :keyword,
+      :date_created, :date_modified, :itemtype,
+      :original_file_id, :visibility,
+      to: :solr_document
+
+    delegate :member_of_collection_ids, to: :parent
 
     def alpha_channels
       []
@@ -44,7 +46,7 @@ module Hyrax
 
     # The title of the webpage that shows this FileSet.
     def page_title
-      "#{human_readable_type} | #{title.first} | ID: #{id} | #{I18n.t('hyrax.product_name')}"
+      "#{human_readable_type} | #{title.first} | ID: #{id} | #{I18n.t("hyrax.product_name")}"
     end
 
     # The first title assertion
@@ -54,11 +56,11 @@ module Hyrax
 
     # The link text when linking to the show page of this FileSet
     def link_name
-      current_ability.can?(:read, id) ? first_title : 'File'
+      current_ability.can?(:read, id) ? first_title : "File"
     end
 
     def editor?
-      current_ability.can?(:edit, solr_document)
+      current_ability.can?(:edit, self)
     end
 
     def tweeter
@@ -75,7 +77,7 @@ module Hyrax
     end
 
     def events(size = 100)
-      super(size)
+      super
     end
 
     # This overrides the method in WithEvents
@@ -107,12 +109,12 @@ module Hyrax
     end
 
     def fetch_parent_presenter
-      ids = ActiveFedora::SolrService.query("{!field f=member_ids_ssim}#{id}",
-                                            fl: ActiveFedora.id_field)
-                                     .map { |x| x.fetch(ActiveFedora.id_field) }
+      ids = Hyrax::SolrService.query("{!field f=member_ids_ssim}#{id}", fl: Hyrax.config.id_field)
+        .map { |x| x.fetch(Hyrax.config.id_field) }
+      Hyrax.logger.warn("Couldn't find a parent work for FileSet: #{id}.") if ids.empty?
       Hyrax::PresenterFactory.build_for(ids: ids,
-                                        presenter_class: WorkShowPresenter,
-                                        presenter_args: current_ability).first
+        presenter_class: WorkShowPresenter,
+        presenter_args: current_ability).first
     end
   end
 end
