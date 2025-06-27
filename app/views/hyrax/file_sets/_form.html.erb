@@ -10,9 +10,11 @@
   <div class="row">
     <div class="col-md-12 form-actions">
       <%= f.submit(
+            # (curation_concern.persisted? ? t('.save') : t('.attach_to', parent: self.parent.human_readable_type)),
             (curation_concern.persisted? ? t('.save') : t('.attach_to', parent: @parent.human_readable_type)),
             class: 'btn btn-primary'
           ) %>
+      <%#= link_to t('.cancel'), parent_path(self.parent), class: 'btn btn-link' %>
       <%= link_to t('.cancel'), parent_path(@parent), class: 'btn btn-link' %>
     </div>
   </div>
