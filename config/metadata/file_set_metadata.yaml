@@ -73,8 +73,8 @@ attributes:
   # missing: publisher
   label:
     type: string
-  # form:
-  #   primary: false
+    form:
+      primary: false
   language:
     type: string
     multiple: true

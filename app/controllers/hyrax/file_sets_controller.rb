@@ -125,7 +125,7 @@ module Hyrax
 
     def cast_file_set
       return unless @file_set.class == ::FileSet
-      @file_set = @file_set.valkyrie_resource if @file_set.respond_to?(:parent) && @file_set.parent&.id.nil?
+      @file_set = @file_set.valkyrie_resource if @file_set.respond_to?(:parent) && @file_set.parent.nil?
     end
 
     def parent(file_set: curation_concern)

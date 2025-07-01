@@ -53,13 +53,16 @@
     <h3><%= t('.restore') %></h3>
     <% @version_list.each do |version| %>
       <% Hyrax.logger.warn("version: #{version.to_json}") %>
-      <!--      <div class="radio">-->
-      <!--        <label class="radio <%#= version.current? ? 'disabled' : '' %>">-->
-      <%#= radio_button_tag(:revision, version.label, false, disabled: version.current?, required: 'required') %>
-      <%#= version.current? ? t('.current') : t('.restore_from') %>
-      <!--          <%#= version.created %> [by <%#= version.committer %>]-->
-      <!--        </label>-->
-      <!--      </div>-->
+      <% Hyrax.logger.warn("version: #{version.to_s}") %>
+      <% Hyrax.logger.warn("version: #{version.instance_values.sort}") %>
+      <% Hyrax.logger.warn("version: #{version.version.to_s}") %>
+      <div class="radio">
+        <label class="radio <%= version.current? ? 'disabled' : '' %>">
+          <%= radio_button_tag(:revision, version.label, false, disabled: version.current?, required: 'required') %>
+          <%= version.current? ? t('.current') : t('.restore_from') %>
+          <%= version.created %> [by <%= version.committer %>]
+        </label>
+      </div>
     <% end %>
     <div id="save_version_note" class="alert hide"><%= t('.save_your_note') %></div>
     <%= f.button :button, name: "revert_submit",

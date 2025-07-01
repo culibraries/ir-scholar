@@ -17,11 +17,11 @@ module Hyrax
     end
 
     def label
-      version.try(:label) || version.version_id.to_s
+      version.try(:label) || ""
     end
 
     def uri
-      version.try(:uri) || version.version_id.to_s
+      version.try(:uri) || ""
     end
 
     def created
@@ -29,9 +29,10 @@ module Hyrax
     end
 
     def committer
-      Hyrax::VersionCommitter
-        .find_by(version_id: @version.uri)
-        &.committer_login
+      version.try(:committer) || version.try(:version_id) || ""
+      # Hyrax::VersionCommitter
+      #   .find_by(version_id: version.version_id)
+      #   &.committer_login
     end
   end
 end
