@@ -41,7 +41,7 @@ module Hyrax
     end
 
     def single_use_links
-      @single_use_links ||= SingleUseLink.where(itemId: id).map { |link| link_presenter_class.new(link) }
+      @single_use_links ||= SingleUseLink.where(item_id: id).map { |link| link_presenter_class.new(link) }
     end
 
     # The title of the webpage that shows this FileSet.
@@ -111,7 +111,10 @@ module Hyrax
     def fetch_parent_presenter
       ids = Hyrax::SolrService.query("{!field f=member_ids_ssim}#{id}", fl: Hyrax.config.id_field)
         .map { |x| x.fetch(Hyrax.config.id_field) }
-      Hyrax.logger.warn("Couldn't find a parent work for FileSet: #{id}.") if ids.empty?
+      if ids.empty?
+        Hyrax.logger.warn("Couldn't find a parent work for FileSet: #{id}.") if ids.empty?
+        ids = Hyrax.query_service.find_parents(resource: file_set)
+      end
       Hyrax::PresenterFactory.build_for(ids: ids,
         presenter_class: WorkShowPresenter,
         presenter_args: current_ability).first

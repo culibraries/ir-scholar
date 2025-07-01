@@ -97,6 +97,11 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
 end
+
+# simple_form 3.5.1 broke hydra-editor for certain model types;
+#   see: https://github.com/plataformatec/simple_form/issues/1549
+gem 'simple_form', '~> 5.2.0'
+
 gem 'rest-client'
 
 gem 'riiif', '~> 2.0'

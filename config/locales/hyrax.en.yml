@@ -63,7 +63,7 @@ en:
       form:
         q:
           label: "Search %{application_name}"
-          placeholder:  "Enter search terms or select 'Go' to browse"
+          placeholder: "Enter search terms or select 'Go' to browse"
     base:
       show:
         abstract: "Abstract"
@@ -110,7 +110,7 @@ en:
         contributor_committeemember: "The name(s) of Academic Committee Member(s) on this project. Enter one name per line, last name first: Smith, Joan Q."
         academic_affiliation: "Academic Department/College/School/Unit at CU Boulder"
         resource_type: "The general category of this resource (e.g. Masters Thesis, dissertation )."
-        alt_title: "An alternative title for this item. This should be a title that helps identify the item or a version of the title that differs significantly from the full Title."
+        alternative_title: "An alternative title for this item. This should be a title that helps identify the item or a version of the title that differs significantly from the full Title."
         doi: "Digital Object Identifier for the resource. Example: https://doi.org/10.1000/182"
         graduation_year: "The commencement year for the author of the Thesis or Dissertation."
         abstract: "A brief description or summary of the item."
@@ -143,7 +143,7 @@ en:
         date_issued_u: "Date Awarded"
         date_created: "Date Created"
         degree_level: "Degree Level"
-        alt_title: "Alternative Title"
+        alternative_title: "Alternative Title"
         doi: "DOI"
         identifier: "Identifier"
         bibliographic_citation: "Citation"
@@ -165,7 +165,7 @@ en:
         based_near: "Location"
         is_referenced_by: "Referenced By"
         isbn: "ISBN"
-        issn: "ISSN" 
+        issn: "ISSN"
         has_journal: "Journal Title"
         has_number: "Journal Issue/Number"
         has_volume: "Journal Volume"

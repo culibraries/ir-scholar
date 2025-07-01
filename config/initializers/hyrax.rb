@@ -1,5 +1,4 @@
 Hyrax.config do |config|
-
   # Injected via `rails g hyrax:work GraduateThesisOrDissertation`
   config.register_curation_concern :graduate_thesis_or_dissertation
   # Injected via `rails g hyrax:work UndergraduateHonorsThesis`
@@ -44,7 +43,7 @@ Hyrax.config do |config|
   # config.rendering_predicate = ::RDF::DC.hasFormat
 
   # Email recipient of messages sent via the contact form
-  config.contact_email = ENV['EMAIL_TO']
+  config.contact_email = ENV["EMAIL_TO"]
 
   # Text prefacing the subject entered in the contact form
   # config.subject_prefix = "Contact form:"
@@ -72,7 +71,7 @@ Hyrax.config do |config|
     # config.google_analytics_id = 'UA-152058677-1'
     # config.google_analytics_id = 'G-FF176QQ4LH'
 
-    config.analytics_provider = 'ga4'
+    config.analytics_provider = "ga4"
     # Date you wish to start collecting Google Analytic statistics for
     # Leaving it blank will set the start date to when ever the file was uploaded by
     # NOTE: if you have always sent analytics to GA for downloads and page views leave this commented out
@@ -129,7 +128,7 @@ Hyrax.config do |config|
 
   # Location autocomplete uses geonames to search for named regions
   # Username for connecting to geonames
-  config.geonames_username = 'libnotify'
+  config.geonames_username = "libnotify"
 
   # Should the acceptance of the licence agreement be active (checkbox), or
   # implied when the save button is pressed? Set to true for active
@@ -159,7 +158,7 @@ Hyrax.config do |config|
   #   * iiif_image_size_default
   #
   # Default is false
-  config.iiif_image_server = true
+  config.iiif_image_server = false
 
   # Returns a URL that resolves to an image provided by a IIIF image server
   config.iiif_image_url_builder = lambda do |file_id, base_url, size, format|
@@ -172,7 +171,7 @@ Hyrax.config do |config|
   # Returns a URL that resolves to an info.json file provided by a IIIF image server
   config.iiif_info_url_builder = lambda do |file_id, base_url|
     uri = Riiif::Engine.routes.url_helpers.info_url(file_id, host: base_url)
-    uri.sub(%r{/info\.json\Z}, '')
+    uri.sub(%r{/info\.json\Z}, "")
   end
   # config.iiif_info_url_builder = lambda do |_, _|
   #   ""
@@ -198,7 +197,7 @@ Hyrax.config do |config|
   #
   # The banner image. Should be 5000px wide by 1000px tall
   # config.banner_image = 'https://cloud.githubusercontent.com/assets/92044/18370978/88ecac20-75f6-11e6-8399-6536640ef695.jpg'
-  config.banner_image = ENV.fetch('HOMEPAGE_BANNER_IMAGE', 'https://cubl-static.s3-us-west-2.amazonaws.com/samvera/boulder-flatirons.png')
+  config.banner_image = ENV.fetch("HOMEPAGE_BANNER_IMAGE", "https://cubl-static.s3-us-west-2.amazonaws.com/samvera/boulder-flatirons.png")
   # Temporary paths to hold uploads before they are ingested into FCrepo
   # These must be lambdas that return a Pathname. Can be configured separately
   #  config.upload_path = ->() { Rails.root + 'tmp' + 'uploads' }
@@ -307,9 +306,9 @@ Hyrax.config do |config|
   #
   # ReCaptcha site key and secret key, supplied by google after
   # registering a domain.
-  config.recaptcha_site_key = ENV.fetch('RECAPTCHA_SITE_KEY', 'xxxx')
+  config.recaptcha_site_key = ENV.fetch("RECAPTCHA_SITE_KEY", "xxxx")
   # WARNING: KEEP THIS SECRET. DO NOT STORE IN REPOSITORY
-  config.recaptcha_secret_key = ENV.fetch('RECAPTCHA_SECRET_KEY', 'xxxx')
+  config.recaptcha_secret_key = ENV.fetch("RECAPTCHA_SECRET_KEY", "xxxx")
 end
 
 Date::DATE_FORMATS[:standard] = "%Y-%m-%d"

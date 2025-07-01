@@ -4,7 +4,7 @@ module Scholar
   # default metadata
   module DefaultMetadata
     extend ActiveSupport::Concern
-    
+
     # Usage notes and expectations can be found in the Metadata Application Profile:
     #   https://docs.google.com/spreadsheets/d/1koKjV7bjn7v4r5a3gsowEimljHiAwbwuOgjHe7FEtuw/edit?usp=sharing
 
@@ -18,7 +18,7 @@ module Scholar
 
       # # Provide each model a hook to set property defaults
       # after_initialize :set_defaults, unless: :persisted?
-      
+
       # #mbs
       # #property :nested_ordered_abstract, predicate: ::RDF::Vocab::BIBO.abstract, class_name: NestedOrderedAbstract do |index|
       # #  index.as :stored_searchable
@@ -75,8 +75,6 @@ module Scholar
       #   index.as :stored_searchable, :facetable
       # end
 
-      
-
       # property :date_issued, predicate: ::RDF::Vocab::DC.issued, multiple: false do |index|
       #   index.as :stored_searchable, :facetable
       # end
@@ -110,8 +108,6 @@ module Scholar
       # # accessor value used by AddOtherFieldOptionActor to persist "Other" values provided by the user
       # attr_accessor :degree_name_other
 
-      
-
       # property :digitization_spec, predicate: ::RDF::URI.new('http://opaquenamespace.org/ns/conversionSpecifications') do |index|
       #   index.as :stored_searchable
       # end
@@ -144,13 +140,10 @@ module Scholar
       #   index.as :stored_searchable, :facetable
       # end
 
-      
-
       # property :identifier_uri, predicate: ::RDF::Vocab::Identifiers.uri do |index|
       #   index.as :stored_searchable
       # end
 
-      
       # property :in_series, predicate: ::RDF::URI.new('http://lsdis.cs.uga.edu/projects/semdis/opus#in_series') do |index|
       #   index.as :stored_searchable
       # end
@@ -162,7 +155,7 @@ module Scholar
       # property :issn, predicate: ::RDF::Vocab::Identifiers.issn do |index|
       #   index.as :stored_searchable
       # end
-  
+
       # #property :nested_geo, predicate: ::RDF::URI('https://purl.org/geojson/vocab#Feature'), class_name: NestedGeo
       # #mbs
       # # property :nested_related_items, predicate: ::RDF::Vocab::DC.relation, class_name: NestedRelatedItems do |index|
@@ -210,8 +203,7 @@ module Scholar
       # # accessor attribute used only to allow validators to check selected options depending on current_user role
       # attr_accessor :current_username
 
-
-      # property :alt_title, predicate: ::RDF::Vocab::DC.alternative do |index|
+      # property :alternative_title, predicate: ::RDF::Vocab::DC.alternative do |index|
       #   index.as :stored_searchable
       # end
 
@@ -242,7 +234,6 @@ module Scholar
       # property :description, predicate: ::RDF::Vocab::DC11.description do |index|
       #   index.as :stored_searchable
       # end
-      
 
       # property :abstract, predicate: ::RDF::Vocab::DC.abstract do |index|
       #   index.as :stored_searchable
@@ -263,7 +254,7 @@ module Scholar
       # property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
       #   index.as :stored_searchable, :facetable
       # end
-      
+
       # property :access_right, predicate: ::RDF::Vocab::DC.accessRights
 
       # property :publisher, predicate: ::RDF::Vocab::DC11.publisher do |index|
@@ -295,7 +286,7 @@ module Scholar
       # end
 
       # property :bibliographic_citation, predicate: ::RDF::Vocab::DC.bibliographicCitation
-      
+
       # property :source, predicate: ::RDF::Vocab::DC.source do |index|
       #   index.as :stored_searchable
       # end
@@ -305,17 +296,17 @@ module Scholar
       # class_attribute :controlled_properties
       # self.controlled_properties = [:based_near]
       # accepts_nested_attributes_for :based_near, reject_if: id_blank, allow_destroy: true
-      
-      ####leave comment
-      
-      #accepts_nested_attributes_for :nested_geo, allow_destroy: true, reject_if: :all_blank
-      #accepts_nested_attributes_for :nested_related_items, allow_destroy: true, reject_if: :all_blank
+
+      # ###leave comment
+
+      # accepts_nested_attributes_for :nested_geo, allow_destroy: true, reject_if: :all_blank
+      # accepts_nested_attributes_for :nested_related_items, allow_destroy: true, reject_if: :all_blank
       # reject if all attributes all blank OR if either index or creator is blank
-      #accepts_nested_attributes_for :nested_ordered_title, allow_destroy: true, reject_if: proc { |attributes| attributes[:title].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
-      #accepts_nested_attributes_for :nested_ordered_creator, allow_destroy: true, reject_if: proc { |attributes| attributes[:creator].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
-      #accepts_nested_attributes_for :nested_ordered_abstract, allow_destroy: true, reject_if: proc { |attributes| attributes[:abstract].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
-      #accepts_nested_attributes_for :nested_ordered_contributor, allow_destroy: true, reject_if: proc { |attributes| attributes[:contributor].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
-      #accepts_nested_attributes_for :nested_ordered_additional_information, allow_destroy: true, reject_if: proc { |attributes| attributes[:additional_information].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
+      # accepts_nested_attributes_for :nested_ordered_title, allow_destroy: true, reject_if: proc { |attributes| attributes[:title].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
+      # accepts_nested_attributes_for :nested_ordered_creator, allow_destroy: true, reject_if: proc { |attributes| attributes[:creator].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
+      # accepts_nested_attributes_for :nested_ordered_abstract, allow_destroy: true, reject_if: proc { |attributes| attributes[:abstract].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
+      # accepts_nested_attributes_for :nested_ordered_contributor, allow_destroy: true, reject_if: proc { |attributes| attributes[:contributor].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
+      # accepts_nested_attributes_for :nested_ordered_additional_information, allow_destroy: true, reject_if: proc { |attributes| attributes[:additional_information].blank? || attributes.all? { |key, value| key == '_destroy' || value.blank? } }
     end
   end
 end
