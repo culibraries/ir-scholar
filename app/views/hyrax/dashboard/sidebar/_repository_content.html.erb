@@ -1,10 +1,11 @@
 <li class="h5"><%= t('hyrax.admin.sidebar.repository_objects') %></li>
-
-<%= menu.nav_link(hyrax.my_collections_path,
-                  onclick: "dontChangeAccordion(event);",
-                  also_active_for: hyrax.dashboard_collections_path) do %>
-  <span class="fa fa-folder-open" aria-hidden="true"></span>
-  <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.collections') %></span>
+<% if can? :view_admin_show, Collection %>
+  <%= menu.nav_link(hyrax.my_collections_path,
+                    onclick: "dontChangeAccordion(event);",
+                    also_active_for: hyrax.dashboard_collections_path) do %>
+    <span class="fa fa-folder-open" aria-hidden="true"></span>
+    <span class="sidebar-action-text"><%= t('hyrax.admin.sidebar.collections') %></span>
+  <% end %>
 <% end %>
 
 <%= menu.nav_link(hyrax.my_works_path,

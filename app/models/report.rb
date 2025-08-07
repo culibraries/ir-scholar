@@ -81,6 +81,9 @@ class Report < ActiveFedora::Base
   property :rights_statement, predicate: ::RDF::Vocab::EDM.rights do |index|
     index.as :stored_searchable, :facetable
   end
+  property :license, predicate: ::RDF::Vocab::DC.license do |index|
+    index.as :stored_searchable, :facetable
+  end
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)

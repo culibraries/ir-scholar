@@ -25,22 +25,8 @@ class SolrDocument
   use_extension(Blacklight::Document::DublinCore)
 
   # Do content negotiation for AF models.
-
   use_extension(Hydra::ContentNegotiation)
 
-  # CU Boulder Modifications
-  # def self.solrized_methods(property_names)
-  #   property_names.each do |property_name|
-  #     define_method property_name.to_sym do
-  #       values = self[Solrizer.solr_name(property_name)]
-  #       if values.respond_to?(:each)
-  #         values.reject(&:blank?)
-  #       else
-  #         values
-  #       end
-  #     end
-  #   end
-  # end
   def system_created
     Time.parse self["system_create_dtsi"]
   end
@@ -156,6 +142,10 @@ class SolrDocument
 
   def rights_statement
     self["rights_statement_tesim"]
+  end
+
+  def license
+    self["license_tesim"]
   end
 
   def other_affiliation
@@ -300,6 +290,7 @@ class SolrDocument
     format: %w['file_extent_tesim file_format_tesim'],
     identifier: "oai_identifier",
     language: "oai_language",
+    license: "license_tesim",
     publisher: "oai_publisher",
     relation: "oai_nested_related_items_label",
     rights: %w[oai_rights],
@@ -352,7 +343,7 @@ class SolrDocument
   end
 
   def oai_identifier
-    if self["has_model_ssim"].first.to_s == "Collection"
+    if self["has_model_ssim"].first == "Collection"
       Hyrax::Engine.routes.url_helpers.url_for(only_path: false, action: "show", host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: "hyrax/collections", id: id)
     else
       oai_id = []
@@ -377,12 +368,12 @@ class SolrDocument
   def oai_rights
     oai_rights = []
     begin
-      oai_rights << RightsService.label(self["rights_statement_tesim"].first.to_s)
+      oai_rights << RightsService.label(self["rights_statement_tesim"].first)
     rescue Exception => e
       ""
     end
     begin
-      oai_rights << LicenseService.label(self["license_tesim"].first.to_s)
+      oai_rights << LicenseService.label(self["license_tesim"].first)
     rescue Exception => e
       ""
     end
@@ -406,7 +397,7 @@ class SolrDocument
   end
 
   def oai_language
-    LanguageService.label(self["language_tesim"].first.to_s)
+    LanguageService.label(self["language_tesim"].first)
   rescue Exception => e
     ""
   end
