@@ -343,7 +343,7 @@ class SolrDocument
   end
 
   def oai_identifier
-    if self["has_model_ssim"].first == "Collection"
+    if self["has_model_ssim"].first.to_s == "Collection"
       Hyrax::Engine.routes.url_helpers.url_for(only_path: false, action: "show", host: CatalogController.blacklight_config.oai[:provider][:repository_url], controller: "hyrax/collections", id: id)
     else
       oai_id = []
@@ -368,12 +368,12 @@ class SolrDocument
   def oai_rights
     oai_rights = []
     begin
-      oai_rights << RightsService.label(self["rights_statement_tesim"].first)
+      oai_rights << RightsService.label(self["rights_statement_tesim"].first.to_s)
     rescue Exception => e
       ""
     end
     begin
-      oai_rights << LicenseService.label(self["license_tesim"].first)
+      oai_rights << LicenseService.label(self["license_tesim"].first.to_s)
     rescue Exception => e
       ""
     end
@@ -397,7 +397,7 @@ class SolrDocument
   end
 
   def oai_language
-    LanguageService.label(self["language_tesim"].first)
+    LanguageService.label(self["language_tesim"].first.to_s)
   rescue Exception => e
     ""
   end
