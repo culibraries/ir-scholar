@@ -24,7 +24,7 @@ csv_divider = "|~|"
 
 csv_headers = ['title', 'resource type', 'creator', 'contributor', 'keyword', 'license', 'rights statement', 'publisher',
                'subject', 'language', 'location', 'bibliographic_citation', 'source', 'abstract', 'academic_affiliation',
-               'additional_information', 'alt_title', 'contributor_advisor', 'contributor_committeemember', 'date_issued', 'degree_grantors',
+               'additional_information', 'alternative_title', 'contributor_advisor', 'contributor_committeemember', 'date_issued', 'degree_grantors',
                'degree_level', 'doi', 'embargo_reason', 'graduation_year', 'peerreviewed', 'language', 'degree_name', 'admin_set_id',
                'visibility', 'files', 'replaces', 'embargo_release_date']
 
@@ -41,7 +41,7 @@ defaults = {
             'embargo_reason': '',
             'bibliographic_citation': '',
             'additional_information': '',
-            'alt_title': '',
+            'alternative_title': '',
             'source': '',
             'publisher':'University of Colorado Boulder',
             'license': '',

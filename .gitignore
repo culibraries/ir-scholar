@@ -6,6 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
+/zizia
+/config/uv
 
 __pycache__
 .pyc
@@ -62,6 +64,7 @@ docker-compose.override.yml
 /public/*.ttf
 /public/*.woff
 /virtpy
+/public/uv
 
 /vendor/bundle
 .byebug_history
@@ -70,6 +73,7 @@ config/local_env.yml
 
 fits.log
 .vscode/*
+.idea
 
 rules.log
 log/rules.log

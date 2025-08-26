@@ -136,6 +136,12 @@ ActiveRecord::Schema.define(version: 201901241536542) do
     t.index ["machine_id"], name: "index_hyrax_collection_types_on_machine_id", unique: true
   end
 
+  create_table "hyrax_default_administrative_set", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.string "default_admin_set_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "hyrax_features", force: :cascade do |t|
     t.string "key", null: false
     t.boolean "enabled", default: false, null: false
@@ -306,9 +312,9 @@ ActiveRecord::Schema.define(version: 201901241536542) do
   end
 
   create_table "single_use_links", force: :cascade do |t|
-    t.string "downloadKey"
+    t.string "download_key"
     t.string "path"
-    t.string "itemId"
+    t.string "item_id"
     t.datetime "expires"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -346,7 +352,7 @@ ActiveRecord::Schema.define(version: 201901241536542) do
 
   create_table "sipity_entity_specific_responsibilities", force: :cascade do |t|
     t.integer "workflow_role_id", null: false
-    t.string "entity_id", null: false
+    t.integer "entity_id", null: false
     t.integer "agent_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

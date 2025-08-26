@@ -5,12 +5,12 @@ module Hyrax
   # Generated form for GraduateThesisOrDissertation
   class GraduateThesisOrDissertationForm < Scholar::EtdWorkForm
     self.model_class = ::GraduateThesisOrDissertation
-    #self.terms += [:resource_type]
-    self.terms -=[:contributor]
-    #self.terms +=[:degree_name]
+    # self.terms += [:resource_type]
+    self.terms -= [:contributor]
+    # self.terms +=[:degree_name]
 
     def self.multiple?(field)
-      if [ :resource_type].include? field.to_sym
+      if [:resource_type].include? field.to_sym
         false
         #,:language , :degree_name, :academic_affiliation,
       else
@@ -20,9 +20,9 @@ module Hyrax
 
     def self.model_attributes(_)
       attrs = super
-      #attrs[:academic_affiliation] = Array(attrs[:academic_affiliation]) if attrs[:academic_affiliation]
+      # attrs[:academic_affiliation] = Array(attrs[:academic_affiliation]) if attrs[:academic_affiliation]
       attrs[:resource_type] = Array(attrs[:resource_type]) if attrs[:resource_type]
-      #attrs[:degree_name] = Array(attrs[:degree_name]) if attrs[:degree_name]
+      # attrs[:degree_name] = Array(attrs[:degree_name]) if attrs[:degree_name]
       # attrs[:language] = Array(attrs[:language]) if attrs[:language]
       attrs
     end
@@ -35,9 +35,9 @@ module Hyrax
     end
 
     # def degree_name
-    #   dn =self[Solrizer.solr_name('degree_name')]
+    #   dn =self['degree_name_tesim]
     #   dn.first || ""
     # end
-    
+
   end
 end
