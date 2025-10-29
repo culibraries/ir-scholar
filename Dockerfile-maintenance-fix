@@ -118,13 +118,14 @@ WORKDIR /data
 COPY ./app/models/concerns/scholar/ability/collection_ability.rb /data/models/concerns/scholar/ability/collection_ability.rb
 COPY ./app/views/hyrax/base/_attribute_rows.html.erb /data/app/views/hyrax/base/_attribute_rows.html.erb
 COPY ./app/services/permissions_service.rb /data/app/services/permissions_service.rb
+RUN /bin/echo '.image-masthead .background-container { -webkit-filter: blur(0); filter: blur(0); } .image-masthead \
+    .background-container-gradient { background: linear-gradient(transparent, rgba(0,0,0,0.0), rgba(0,0,0,0.5)) }' >> \
+    /data/public/assets/application-fd83a48c4ee997b2b27727564cd88d8a64acf427bbfe11185c72ed913fb08ddc.css
+RUN /bin/gzip -c /data/public/assets/application-fd83a48c4ee997b2b27727564cd88d8a64acf427bbfe11185c72ed913fb08ddc.css > \
+    /data/public/assets/application-fd83a48c4ee997b2b27727564cd88d8a64acf427bbfe11185c72ed913fb08ddc.css.gz
 
 ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}
-
-RUN if [ "${RAILS_ENV}" = "production" ]; then \
-  RAILS_ENV=$RAILS_ENV SCHOLARS_SECRET_KEY_BASE=temporary bundle exec rails assets:precompile; \
-  fi
 
 EXPOSE 3000/tcp
 
@@ -137,13 +138,14 @@ WORKDIR /data
 COPY ./app/models/concerns/scholar/ability/collection_ability.rb /data/models/concerns/scholar/ability/collection_ability.rb
 COPY ./app/views/hyrax/base/_attribute_rows.html.erb /data/app/views/hyrax/base/_attribute_rows.html.erb
 COPY ./app/services/permissions_service.rb /data/app/services/permissions_service.rb
+RUN /bin/echo '.image-masthead .background-container { -webkit-filter: blur(0); filter: blur(0); } .image-masthead \
+    .background-container-gradient { background: linear-gradient(transparent, rgba(0,0,0,0.0), rgba(0,0,0,0.5)) }' >> \
+    /data/public/assets/application-fd83a48c4ee997b2b27727564cd88d8a64acf427bbfe11185c72ed913fb08ddc.css
+RUN /bin/gzip -c /data/public/assets/application-fd83a48c4ee997b2b27727564cd88d8a64acf427bbfe11185c72ed913fb08ddc.css > \
+    /data/public/assets/application-fd83a48c4ee997b2b27727564cd88d8a64acf427bbfe11185c72ed913fb08ddc.css.gz
 
 ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}
-
-RUN if [ "${RAILS_ENV}" = "production" ]; then \
-  RAILS_ENV=$RAILS_ENV SCHOLARS_SECRET_KEY_BASE=temporary bundle exec rails assets:precompile; \
-  fi
 
 EXPOSE 3000/tcp
 
