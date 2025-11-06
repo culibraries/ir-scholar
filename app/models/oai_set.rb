@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # builds set for oai
-class OaiSet < BlacklightOaiProvider::Set
+class OaiSet < BlacklightOaiProvider::SolrSet
   class << self
     # The Solr repository object (optional)
     attr_accessor :repository
@@ -16,17 +16,17 @@ class OaiSet < BlacklightOaiProvider::Set
     def all
       return if @fields.nil?
 
-      params = { rows: 0, facet: true, 'facet.field' => @fields }
+      params = {:rows => 0, :facet => true, "facet.field" => @fields}
       response = @repository.search @search_builder.merge(params)
       sets_from_facets(response.facet_fields) if response.facet_fields
     end
 
     # Return a Solr filter query given a set spec
     def from_spec(spec)
-      parts = spec.split(':')
+      parts = spec.split(":")
       raise OAI::ArgumentException unless parts.count == 2 && Array(@fields).include?(parts[0])
 
-      parts.join(':')
+      parts.join(":")
     end
 
     private
@@ -53,7 +53,7 @@ class OaiSet < BlacklightOaiProvider::Set
   private
 
   def name_from_spec
-    spec_id = @spec.split(':').last
-    ActiveFedora::SolrService.query("has_model_ssim:AdminSet AND id:#{spec_id}", rows: 1).first['title_tesim'].first
+    spec_id = @spec.split(":").last
+    Hyrax::SolrService.query("has_model_ssim:AdminSet AND id:#{spec_id}", rows: 1).first["title_tesim"].first
   end
 end

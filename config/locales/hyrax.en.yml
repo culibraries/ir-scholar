@@ -63,7 +63,7 @@ en:
       form:
         q:
           label: "Search %{application_name}"
-          placeholder:  "Enter search terms or select 'Go' to browse"
+          placeholder: "Enter search terms or select 'Go' to browse"
     base:
       show:
         abstract: "Abstract"
@@ -74,6 +74,7 @@ en:
         graduation_year: "Commencement Year"
         academic_affiliation: "Academic Affiliation"
         rights_statement: "Rights Statement"
+        license: "License"
         resource_type: "Resource Type"
         last_modified: "Last Modified"
         date_issued: "Date Issued"
@@ -94,7 +95,8 @@ en:
       suffix: "@colorado.edu"
     footer:
       copyright_html: "<strong>Copyright © 2018 University of Colorado Boulder</srong>"
-      service_html: A service provided by  <a href="https://www.colorado.edu/libraries/libraries/" class="navbar-link" target="_blank">University of Colorado Boulder Libraries</a>.
+      service_html: A service provided by <a href="https://libraries.colorado.edu/" class="navbar-link" target="_blank">University of Colorado Boulder Libraries</a>.
+      accessibility_html: <a href="https://libraries.colorado.edu/services/accessibility-services" class="navbar-link" target="_blank">Accessibility Services</a> | <a href="https://oit.colorado.edu/services/business-services/sensusaccess" class="navbar-link" target="_blank">PDF Accessibility Converter</a>
     institution_name: CU Boulder
     institution_name_full: University of Colorado Boulder
     product_name: CU Scholar
@@ -109,7 +111,7 @@ en:
         contributor_committeemember: "The name(s) of Academic Committee Member(s) on this project. Enter one name per line, last name first: Smith, Joan Q."
         academic_affiliation: "Academic Department/College/School/Unit at CU Boulder"
         resource_type: "The general category of this resource (e.g. Masters Thesis, dissertation )."
-        alt_title: "An alternative title for this item. This should be a title that helps identify the item or a version of the title that differs significantly from the full Title."
+        alternative_title: "An alternative title for this item. This should be a title that helps identify the item or a version of the title that differs significantly from the full Title."
         doi: "Digital Object Identifier for the resource. Example: https://doi.org/10.1000/182"
         graduation_year: "The commencement year for the author of the Thesis or Dissertation."
         abstract: "A brief description or summary of the item."
@@ -138,11 +140,12 @@ en:
         academic_affiliation: "Academic Affiliation"
         resource_type: "Resource Type"
         rights_statement: "Rights Statement"
+        license: "License"
         date_issued: "Date Issued"
         date_issued_u: "Date Awarded"
         date_created: "Date Created"
         degree_level: "Degree Level"
-        alt_title: "Alternative Title"
+        alternative_title: "Alternative Title"
         doi: "DOI"
         identifier: "Identifier"
         bibliographic_citation: "Citation"
@@ -150,7 +153,6 @@ en:
         graduation_year: "Commencement Year"
         abstract: "Abstract or Summary"
         degree_name: "Degree Name"
-        embargo_reason: "Embargo Reason"
         additional_information: "Additional Information"
         date_available: "Date Available"
         other_affiliation: "Non-Academic Affiliation"
@@ -164,7 +166,7 @@ en:
         based_near: "Location"
         is_referenced_by: "Referenced By"
         isbn: "ISBN"
-        issn: "ISSN" 
+        issn: "ISSN"
         has_journal: "Journal Title"
         has_number: "Journal Issue/Number"
         has_volume: "Journal Volume"

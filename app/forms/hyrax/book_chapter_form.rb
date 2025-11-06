@@ -6,8 +6,8 @@ module Hyrax
   class BookChapterForm < Hyrax::Forms::WorkForm
     self.model_class = ::BookChapter
     # self.terms += [:resource_type]
-    self.terms = [:title, :creator, :academic_affiliation,:resource_type, :rights_statement,
-      :date_issued, 
+    self.terms = [:title, :creator, :academic_affiliation, :resource_type, :rights_statement,
+      :date_issued,
       :abstract,
       :isbn,
       :publisher,
@@ -15,7 +15,7 @@ module Hyrax
       :peerreviewed,
       :editor,
       :contributor,
-      :alt_title,
+      :alternative_title,
       :identifier,
       :in_series,
       :bibliographic_citation,
@@ -23,7 +23,7 @@ module Hyrax
       :based_near,
       :language,
       :other_affiliation,
-      :keyword, 
+      :keyword,
       :subject,
       :is_referenced_by,
       :additional_information,
@@ -32,8 +32,8 @@ module Hyrax
       :visibility_during_embargo, :embargo_release_date, :visibility_after_embargo,
       :visibility_during_lease, :lease_expiration_date, :visibility_after_lease,
       :visibility, :ordered_member_ids, :in_works_ids,
-      :member_of_collection_ids, 
+      :member_of_collection_ids,
       :admin_set_id, :replaces]
-    self.required_fields = [:title, :creator,:academic_affiliation, :resource_type, :rights_statement]
+    self.required_fields = [:title, :creator, :academic_affiliation, :resource_type, :rights_statement]
   end
 end
