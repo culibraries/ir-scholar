@@ -26,3 +26,12 @@
   background-size: 75px;
   background-position: center;
 }
+
+/* Override the blur on the head image and make it crisp */
+.image-masthead .background-container {
+  -webkit-filter: blur(0);
+  filter: blur(0);
+}
+.image-masthead .background-container-gradient {
+  background: linear-gradient(transparent, rgba(0,0,0,0.0), rgba(0,0,0,0.5))
+}
