@@ -30,7 +30,7 @@
 <%= presenter.attribute_to_html(:related_url, label: t('simple_form.labels.defaults.related_url'), render_as: :external_link, html_dl: true) %>
 <%= presenter.attribute_to_html(:resource_type, label: t('simple_form.labels.defaults.resource_type'), render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:source, html_dl: true) %>
-<%= presenter.attribute_to_html(:rights_statement, render_as: :search_external_link, search_field: 'rights_statement', label: t('simple_form.labels.defaults.rights_statement'), html_dl: true) %>
+<%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement, label: t('simple_form.labels.defaults.rights_statement'), html_dl: true) %>
 <%= presenter.attribute_to_html(:license, render_as: :search_external_link, search_field: 'license', html_dl: true) %>
 <%= presenter.attribute_to_html(:other_affiliation, label: t('simple_form.labels.defaults.other_affiliation'), render_as: :faceted, html_dl: true) %>
 
