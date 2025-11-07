@@ -25,13 +25,13 @@ class SearchExternalLinkAttributeRenderer < Hyrax::Renderers::AttributeRenderer
         case options.fetch(:search_field, field).to_s
         when 'rights_statement'
           label = get_value_from_yaml('rights_statements.yml', query)
-          uri = search_path(clean_uri)
+          uri = search_path(query)
         when 'degree_grantors'
           label = get_value_from_yaml('degree_grantors.yml', query)
-          uri = search_path(clean_uri)
+          uri = search_path(query)
         when 'license'
           label = get_value_from_yaml('licenses.yml', query)
-          uri = search_path(clean_uri)
+          uri = search_path(query)
         when 'language'
           label = get_value_from_yaml('language.yml', query)
           uri = facet_search_path(query)
