@@ -1,5 +1,4 @@
 class Ability
-  include Scholar::Ability::CollectionAbility
   include Hydra::Ability
   include Hyrax::Ability
   self.ability_logic += [:everyone_can_create_curation_concerns, :collection_abilities]
