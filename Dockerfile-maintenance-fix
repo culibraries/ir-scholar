@@ -117,7 +117,6 @@ FROM culibraries/scholar-web:2.1.0-RC3-test AS hyrax-web
 WORKDIR /data
 COPY ./cu-scholar-98ddf6f79202.p12 /data/cu-scholar-98ddf6f79202.p12
 RUN chown root:root /data/cu-scholar-98ddf6f79202.p12 && chmod 755 /data/cu-scholar-98ddf6f79202.p12
-COPY ./app/models/ability.rb /data/models/ability.rb
 COPY ./app/models/concerns/scholar/ability/collection_ability.rb /data/app/models/concerns/scholar/ability/collection_ability.rb
 COPY ./app/views/hyrax/base/_attribute_rows.html.erb /data/app/views/hyrax/base/_attribute_rows.html.erb
 COPY ./app/renderers/search_external_link_attribute_renderer.rb /data/app/renderers/search_external_link_attribute_renderer.rb
@@ -140,7 +139,6 @@ FROM culibraries/scholar-worker:2.1.0-RC3-test AS hyrax-worker
 WORKDIR /data
 COPY ./cu-scholar-98ddf6f79202.p12 /data/cu-scholar-98ddf6f79202.p12
 RUN chown root:root /data/cu-scholar-98ddf6f79202.p12 && chmod 755 /data/cu-scholar-98ddf6f79202.p12
-COPY ./app/models/ability.rb /data/models/ability.rb
 COPY ./app/models/concerns/scholar/ability/collection_ability.rb /data/app/models/concerns/scholar/ability/collection_ability.rb
 COPY ./app/views/hyrax/base/_attribute_rows.html.erb /data/app/views/hyrax/base/_attribute_rows.html.erb
 COPY ./app/renderers/search_external_link_attribute_renderer.rb /data/app/renderers/search_external_link_attribute_renderer.rb
