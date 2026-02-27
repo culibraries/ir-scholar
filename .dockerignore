@@ -51,7 +51,7 @@ rules.log
 log/rules.log
 blazegraph.jnl
 
-# [#12] Exclude directories that are deleted in the builder cleanup step
+# Exclude directories that are deleted in the builder cleanup step
 /spec
 /test
 /solr
