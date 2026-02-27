@@ -29,10 +29,11 @@ end
 group :development do
   # Use sqlite3 as the database for Active Record
   gem "rubocop", require: false
+  # Run "bundle exec standardrb --fix" to auto-fix style violations
+  gem "standard", "~> 1.37", require: false
   gem "sqlite3", "~> 1.5.0"
   gem "minitar-cli"
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem "standard", ">= 1.35.1"
   gem "web-console", ">= 3.3.0"
   gem "listen", ">= 3.2.0"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -115,3 +116,5 @@ gem "font-awesome-sass"
 gem "active-fedora", "~> 13.3"
 
 gem "sprockets", "= 3.7.2"
+
+gem "ffi", "= 1.17.2"
