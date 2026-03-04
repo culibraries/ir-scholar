@@ -7,7 +7,7 @@ ARG RUBY_VERSION=2.7.8
 FROM ruby:$RUBY_VERSION-alpine$ALPINE_VERSION AS clamav-builder
 
 ARG CLAMAV_PACKAGES="g++ gcc make cmake python3 bzip2-dev check-dev curl-dev json-c-dev libmilter-dev libxml2-dev \
-  linux-headers ncurses-dev openssl libssl3 pcre2-dev zlib-dev musl-dev libunwind-dev gcompat freshclam clamav-daemon"
+  linux-headers ncurses-dev openssl libssl3 pcre2-dev zlib-dev musl-dev libunwind-dev gcompat freshclam"
 
 RUN apk update && \
     apk --no-cache upgrade && \
@@ -25,7 +25,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     -D CMAKE_INSTALL_PREFIX=/usr \
     -D CMAKE_INSTALL_LIBDIR=lib \
     -D APP_CONFIG_DIRECTORY=/etc/clamav \
-    -D DATABASE_DIRECTORY=/var/lib/clamav  \
+    -D DATABASE_DIRECTORY=/usr/lib/clamav  \
     -D ENABLE_EXTERNAL_MSPACK=OFF \
     -D ENABLE_CLAMONACC=OFF \
     -D ENABLE_JSON_SHARED=OFF \
@@ -37,10 +37,10 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     rm -rf /root/.cargo /root/.rustup
 
 # Update ClamAV virus database
-RUN chmod -R 777 /var/lib/clamav \
-    && chown -R clamav:clamav /var/lib/clamav/ \
-    && freshclam --user=root \
-    && chmod -R 775 /var/lib/clamav
+RUN mkdir /usr/lib/clamav && chmod -R 777 /usr/lib/clamav \
+    && chown -R clamav:clamav /usr/lib/clamav/ \
+    && freshclam \
+    && chmod -R 775 /usr/lib/clamav
 
 ###############################################################################
 # Stage 1b: Builder – install gems, precompile assets, install FITS & pip deps
@@ -167,6 +167,7 @@ COPY --link --from=builder /usr/local/bundle /usr/local/bundle
 # Copy application code from builder
 COPY --link --from=builder /data /data
 
+RUN addgroup -S clamav && adduser -S -G clamav clamav
 # Copy ClamAV binaries and libraries from clamav-builder
 COPY --link --from=clamav-builder /usr/bin/clamscan /usr/bin/clamscan
 COPY --link --from=clamav-builder /usr/bin/clamdscan /usr/bin/clamdscan
@@ -175,7 +176,8 @@ COPY --link --from=clamav-builder /usr/sbin/clamd /usr/sbin/clamd
 COPY --link --from=clamav-builder /usr/lib/libclam* /usr/lib/
 COPY --link --from=clamav-builder /usr/lib/libfreshclam* /usr/lib/
 COPY --link --from=clamav-builder /etc/clamav /etc/clamav
-COPY --link --from=clamav-builder /var/lib/clamav /var/lib/clamav
+COPY --link --from=clamav-builder /usr/lib/clamav /usr/lib/clamav
+COPY --link --from=clamav-builder /var/log/clamav /var/log/clamav
 
 # Copy FITS
 COPY --link --from=builder /opt/fits /opt/fits
