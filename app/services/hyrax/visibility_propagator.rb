@@ -18,10 +18,7 @@ module Hyrax
       when ActiveFedora::Base # ActiveFedora
         FileSetVisibilityPropagator.new(source: source)
       when Hyrax::Resource # Valkyrie
-        # Due to performance issues for a Hyrax::Resource in Fedora 6,
-        # use a job that copies both permissions and visibility instead
-        # of reloading and iterating again.
-        ResourcePermissionsVisibilityPropagator.new(source: source)
+        ResourceVisibilityPropagator.new(source: source)
       else
         NullVisibilityPropagator.new(source: source)
       end
