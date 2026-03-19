@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 ## CUBL Change:
-# This forces all FileSet
+# This casts ActiveFedora FileSets to their Valkyrie resource form when appropriate because ActiveFedora FileSets aren't
+# handled as well by the Hyrax code
 Hyrax::FileSetsController.class_eval do
   before_action :cast_file_set
 

@@ -50,3 +50,9 @@ fits.log
 rules.log
 log/rules.log
 blazegraph.jnl
+
+# Exclude directories that are deleted in the builder cleanup step
+/spec
+/test
+/solr
+/misc

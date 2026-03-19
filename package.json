@@ -11,6 +11,10 @@
     "uv-install": "shx cp -r ./node_modules/universalviewer/dist ./public/uv",
     "uv-config": "shx cp ./config/uv/uv.html ./public/uv/uv.html & shx cp ./config/uv/uv-config.json ./public/uv/"
   },
+  "engines": {
+    "yarn": ">=1.0.0",
+    "npm": "please-use-yarn"
+  },
   "devDependencies": {
     "shx": "^0.3.4"
   }
